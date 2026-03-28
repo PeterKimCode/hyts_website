@@ -8,6 +8,7 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
     <!-- Phosphor Icons (Minimalist Line Icons) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="assets/images/site-logo.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
     <header class="top-nav">
         <div class="container top-nav-inner flex-between">
             <div class="logo-area" onclick="app.navigate('home')">
-                <i class="ph-light ph-church main-logo-icon"></i>
+                <img src="assets/images/site-logo.png" alt="학교 로고" class="main-logo-image">
                 <div class="logo-text">
                     <h1>한영총회신학학술연구원</h1>
                     <span>대한예수교장로회(한영총회)직영신학교</span>
@@ -112,8 +113,10 @@
     <!-- Templates to inject into DOM via JS -->
     <template id="tmpl-home">
         <div class="hero-wrap">
-            <div class="hero-image">
-                <img src="assets/images/hero.png" alt="University Hero Background">
+            <div class="hero-image hero-slider" aria-hidden="true">
+                <div class="hero-slide hero-slide-1"></div>
+                <div class="hero-slide hero-slide-2"></div>
+                <div class="hero-slide hero-slide-3"></div>
                 <div class="hero-gradient"></div>
             </div>
             <div class="hero-content container">
