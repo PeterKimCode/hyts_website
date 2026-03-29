@@ -26,7 +26,7 @@ html_sections = {
 
 # Insert Dean photo and Signature
 html_sections["intro_greeting"]["text"] = '<img src="assets/images/dean.png" class="dean-photo" alt="학장 사진">\n' + html_sections["intro_greeting"]["text"]
-html_sections["intro_greeting"]["text"] = html_sections["intro_greeting"]["text"].replace("우상용 드림", '<img src="assets/images/      " class="dean-signature" alt="서명">\n우상용 드림')
+html_sections["intro_greeting"]["text"] = html_sections["intro_greeting"]["text"].replace("우상용 드림",n우상용 드림')
 
 # Feature card grid template for empty sections
 feature_template = """
