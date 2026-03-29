@@ -29,7 +29,10 @@ html_sections["intro_greeting"]["text"] = '<img src="assets/images/dean.png" cla
 html_sections["intro_greeting"]["text"] = html_sections["intro_greeting"]["text"].replace("우상용 드림", '<img src="assets/images/      " class="dean-signature" alt="서명">\n우상용 드림')
 
 
-# --- 1. 박스 디자인 틀(Template)을 먼저 정의합니다 ---
+import json
+import os
+
+# --- 1. 박스 디자인 틀(Template) 정의 ---
 feature_template = """
 <div class="feature-card-grid">
     <div class="fc-box">
@@ -55,37 +58,69 @@ feature_template = """
 </div>
 """
 
-# --- 2. 이제 이 틀을 사용해서 내용을 채웁니다 ---
-recruitment_boxes = feature_template.format(
-    i1="ph-student", t1="학사 과정", d1="신학과, 목회학과, 선교학과",
-    i2="ph-books", t2="석사 과정", d2="신학과(Th.M/M.A)<br/>목회학과(M.Div)<br/>선교학과(M.A)",
-    i3="ph-graduation-cap", t3="박사 과정", d3="신학과(Ph.D)<br/>목회학과(D.Min)<br/>선교학과(Ph.D)",
-    i4="ph-chalkboard-teacher", t4="연구원 과정", d4="신학/목회/선교 연구과정"
-)
+# --- 2. 요청하신 사진 스타일의 표(Table) 디자인 정의 ---
+recruitment_table_html = """
+<div class="content-body">
+    <table style="width:100%; border-collapse: collapse; border: 2px solid #333; background: #fff; margin-top: 20px;">
+        <thead>
+            <tr style="background-color: #e0e0e0; border-bottom: 2px solid #333;">
+                <th style="width: 25%; padding: 12px; border: 1px solid #999; text-align: left;">구분</th>
+                <th style="width: 75%; padding: 12px; border: 1px solid #999; text-align: left;">내용</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px; border: 1px solid #999; font-weight: bold; background: #f9f9f9;">모집 과정</td>
+                <td style="padding: 12px; border: 1px solid #999;">
+                    학사: 신학과, 목회학과, 선교학과<br>
+                    석사: 신학과(Th.M/M.A), 목회학과(M.Div), 선교학과(M.A Missiology)<br>
+                    박사: 신학과(Ph.D), 목회학과(D.Min), 선교학과(Ph.D Missiology)<br>
+                    연구원: 신학/목회/선교 연구과정
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; border: 1px solid #999; font-weight: bold; background: #f9f9f9;">전형 방식</td>
+                <td style="padding: 12px; border: 1px solid #999;">연중 수시모집 (상시 원서 접수)</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; border: 1px solid #999; font-weight: bold; background: #f9f9f9;">전형 절차</td>
+                <td style="padding: 12px; border: 1px solid #999;">
+                    1. 온라인 원서 접수<br>2. 서류 제출 및 심사<br>3. 면접 전형<br>4. 합격자 개별 통보<br>5. 등록 안내 및 등록
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; border: 1px solid #999; font-weight: bold; background: #f9f9f9;">일정</td>
+                <td style="padding: 12px; border: 1px solid #999;">
+                    원서접수: 연중 상시 / 면접: 수시 진행 (개별 안내)<br>
+                    합격 발표: 면접 후 개별 통보 / 등록: 합격자 안내에 따라 진행<br>
+                    <small>※ 개강 일정은 학기별로 별도 공지됩니다.</small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+"""
 
-process_boxes = feature_template.format(
-    i1="ph-clipboard-text", t1="원서 접수", d1="온라인 상시 접수 가능",
-    i2="ph-identification-card", t2="서류 및 면접", d2="서류 심사 후 수시 면접 진행",
-    i3="ph-megaphone", t3="합격 발표", d3="면접 후 개별 통보",
-    i4="ph-potted-plant", t4="등록 안내", d4="합격자 대상 별도 등록 안내"
-)
-
-# --- 3. 웹사이트 섹션에 적용합니다 ---
+# --- 3. 웹사이트 섹션에 적용 ---
+# 모집요강 부분은 'text' 대신 직접 만든 'html'(표)을 넣습니다.
 html_sections["admissions_guideline"] = {
     "title": "모집요강 및 전형일정",
-    "html": f"<div class='content-body'><p>본 연구원은 연중 수시모집으로 운영됩니다.</p></div>" + recruitment_boxes + process_boxes
+    "html": recruitment_table_html
 }
 
-# 나머지 학사안내, 대학생활 등의 기존 설정들
+# 나머지 학사안내 등은 기존 박스 디자인 유지
 html_sections["academic_info"] = {"title": "학사안내", "html": feature_template.format(i1="ph-calendar-blank", t1="학사일정", d1="연간 학사일정 및 학기 구분 안내", i2="ph-books", t2="수강신청", d2="수강신청 안내 및 유의사항 규정", i3="ph-scroll", t3="학칙 및 규정", d3="총회신학학술연구원 제규정 열람", i4="ph-file-text", t4="각종 서식", d4="재학 중 필요한 서식 자료 다운로드")}
 html_sections["campus_life"] = {"title": "대학생활", "html": feature_template.format(i1="ph-users-three", t1="총학생회", d1="HYTS&GTCC총학생회및동문회", i2="ph-basketball", t2="동아리", d2="사역과 친교를 위한 동아리 소개", i3="ph-hands-praying", t3="학생상담", d3="신앙 상담 및 진로 상담 신청", i4="ph-ticket", t4="학교행사", d4="체육대회 및 수련회, 영성집회")}
 html_sections["online_service"] = {"title": "온라인서비스", "html": feature_template.format(i1="ph-laptop", t1="온라인 강의", d1="비대면 온라인 스트리밍 강의실", i2="ph-student", t2="학생포털", d2="성적 조회 및 증명서 발급 신청", i3="ph-flask", t3="연구자 포털", d3="논문 제출 및 연구 자료 검색", i4="ph-headset", t4="IT 센터", d4="원격 지원 서비스 시스템")}
 
-# --- 이후 코드는 기존과 동일 (HTML 포맷팅 및 파일 저장 부분) ---
+# --- 4. HTML 포맷팅 루프 (에러 수정됨) ---
 for k, v in html_sections.items():
-    if 'text' not in v:
+    if 'html' in v: # 이미 표나 박스로 만든 건 건드리지 않음
         continue
     
+    if 'text' not in v:
+        continue
+        
     formatted_text = ""
     for line in v['text'].split("\n"):
         line = line.strip()
@@ -99,10 +134,12 @@ for k, v in html_sections.items():
             if line.startswith("<img"):
                 formatted_text += line
             else:
-                formatted_text += f<p>{line}</p>
+                # 수정됨: 따옴표 추가
+                formatted_text += f"<p>{line}</p>"
     
     html_sections[k]['html'] = f"<div class='content-body'>{formatted_text}</div>"
 
+# --- 5. 최종 파일 저장 ---
 js_content = "const siteData = " + json.dumps(html_sections, indent=2, ensure_ascii=False) + ";\n"
 os.makedirs("js", exist_ok=True)
 with open("js/data.js", "w", encoding="utf-8") as f:
