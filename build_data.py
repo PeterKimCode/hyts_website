@@ -27,7 +27,27 @@ html_sections = {
 # Insert Dean photo and Signature
 html_sections["intro_greeting"]["text"] = '<img src="assets/images/dean.png" class="dean-photo" alt="학장 사진">\n' + html_sections["intro_greeting"]["text"]
 html_sections["intro_greeting"]["text"] = html_sections["intro_greeting"]["text"].replace("우상용 드림", '<img src="assets/images/      " class="dean-signature" alt="서명">\n우상용 드림')
+# --- 모집 요강 박스 생성 및 적용 시작 ---
+recruitment_boxes = feature_template.format(
+    i1="ph-student", t1="학사 과정", d1="신학과, 목회학과, 선교학과",
+    i2="ph-books", t2="석사 과정", d2="신학과(Th.M/M.A)<br/>목회학과(M.Div)<br/>선교학과(M.A)",
+    i3="ph-graduation-cap", t3="박사 과정", d3="신학과(Ph.D)<br/>목회학과(D.Min)<br/>선교학과(Ph.D)",
+    i4="ph-chalkboard-teacher", t4="연구원 과정", d4="신학/목회/선교 연구과정"
+)
 
+process_boxes = feature_template.format(
+    i1="ph-clipboard-text", t1="원서 접수", d1="온라인 상시 접수 가능",
+    i2="ph-identification-card", t2="서류 및 면접", d2="서류 심사 후 수시 면접 진행",
+    i3="ph-megaphone", t3="합격 발표", d3="면접 후 개별 통보",
+    i4="ph-potted-plant", t4="등록 안내", d4="합격자 대상 별도 등록 안내"
+)
+
+# 기존의 텍스트 불러오기 방식을 무시하고 박스 디자인으로 덮어씌움
+html_sections["admissions_guideline"] = {
+    "title": "모집요강 및 전형일정",
+    "html": f"<div class='content-body'><p>본 연구원은 연중 수시모집으로 운영됩니다.</p></div>" + recruitment_boxes + process_boxes
+}
+# --- 모집 요강 박스 생성 및 적용 끝 ---
 # Feature card grid template for empty sections
 feature_template = """
 <div class="feature-card-grid">
