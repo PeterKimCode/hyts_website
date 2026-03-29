@@ -29,7 +29,33 @@ html_sections["intro_greeting"]["text"] = '<img src="assets/images/dean.png" cla
 html_sections["intro_greeting"]["text"] = html_sections["intro_greeting"]["text"].replace("우상용 드림", '<img src="assets/images/      " class="dean-signature" alt="서명">\n우상용 드림')
 
 
-# --- 모집 요강 박스 생성 및 적용 시작 ---
+# --- 1. 박스 디자인 틀(Template)을 먼저 정의합니다 ---
+feature_template = """
+<div class="feature-card-grid">
+    <div class="fc-box">
+        <div class="fc-icon"><i class="ph-light {i1}"></i></div>
+        <h4>{t1}</h4>
+        <p>{d1}</p>
+    </div>
+    <div class="fc-box">
+        <div class="fc-icon"><i class="ph-light {i2}"></i></div>
+        <h4>{t2}</h4>
+        <p>{d2}</p>
+    </div>
+    <div class="fc-box">
+        <div class="fc-icon"><i class="ph-light {i3}"></i></div>
+        <h4>{t3}</h4>
+        <p>{d3}</p>
+    </div>
+    <div class="fc-box">
+        <div class="fc-icon"><i class="ph-light {i4}"></i></div>
+        <h4>{t4}</h4>
+        <p>{d4}</p>
+    </div>
+</div>
+"""
+
+# --- 2. 이제 이 틀을 사용해서 내용을 채웁니다 ---
 recruitment_boxes = feature_template.format(
     i1="ph-student", t1="학사 과정", d1="신학과, 목회학과, 선교학과",
     i2="ph-books", t2="석사 과정", d2="신학과(Th.M/M.A)<br/>목회학과(M.Div)<br/>선교학과(M.A)",
@@ -44,12 +70,43 @@ process_boxes = feature_template.format(
     i4="ph-potted-plant", t4="등록 안내", d4="합격자 대상 별도 등록 안내"
 )
 
-# 기존의 텍스트 불러오기 방식을 무시하고 박스 디자인으로 덮어씌움
+# --- 3. 웹사이트 섹션에 적용합니다 ---
 html_sections["admissions_guideline"] = {
     "title": "모집요강 및 전형일정",
     "html": f"<div class='content-body'><p>본 연구원은 연중 수시모집으로 운영됩니다.</p></div>" + recruitment_boxes + process_boxes
 }
-# --- 모집 요강 박스 생성 및 적용 끝 ---
+
+# 나머지 학사안내, 대학생활 등의 기존 설정들
+html_sections["academic_info"] = {"title": "학사안내", "html": feature_template.format(i1="ph-calendar-blank", t1="학사일정", d1="연간 학사일정 및 학기 구분 안내", i2="ph-books", t2="수강신청", d2="수강신청 안내 및 유의사항 규정", i3="ph-scroll", t3="학칙 및 규정", d3="총회신학학술연구원 제규정 열람", i4="ph-file-text", t4="각종 서식", d4="재학 중 필요한 서식 자료 다운로드")}
+html_sections["campus_life"] = {"title": "대학생활", "html": feature_template.format(i1="ph-users-three", t1="총학생회", d1="HYTS&GTCC총학생회및동문회", i2="ph-basketball", t2="동아리", d2="사역과 친교를 위한 동아리 소개", i3="ph-hands-praying", t3="학생상담", d3="신앙 상담 및 진로 상담 신청", i4="ph-ticket", t4="학교행사", d4="체육대회 및 수련회, 영성집회")}
+html_sections["online_service"] = {"title": "온라인서비스", "html": feature_template.format(i1="ph-laptop", t1="온라인 강의", d1="비대면 온라인 스트리밍 강의실", i2="ph-student", t2="학생포털", d2="성적 조회 및 증명서 발급 신청", i3="ph-flask", t3="연구자 포털", d3="논문 제출 및 연구 자료 검색", i4="ph-headset", t4="IT 센터", d4="원격 지원 서비스 시스템")}
+
+# --- 이후 코드는 기존과 동일 (HTML 포맷팅 및 파일 저장 부분) ---
+for k, v in html_sections.items():
+    if 'text' not in v:
+        continue
+    
+    formatted_text = ""
+    for line in v['text'].split("\n"):
+        line = line.strip()
+        if not line:
+            formatted_text += "<br/>"
+        elif line.startswith("•") or line.startswith("▪") or line.startswith("🔹"):
+            formatted_text += f"<li>{line}</li>"
+        elif line.endswith("학점") or line.endswith("과정") or "과목 구성" in line:
+            formatted_text += f"<h4 class='sub-heading'>{line}</h4>"
+        else:
+            if line.startswith("<img"):
+                formatted_text += line
+            else:
+                formatted_text += f<p>{line}</p>
+    
+    html_sections[k]['html'] = f"<div class='content-body'>{formatted_text}</div>"
+
+js_content = "const siteData = " + json.dumps(html_sections, indent=2, ensure_ascii=False) + ";\n"
+os.makedirs("js", exist_ok=True)
+with open("js/data.js", "w", encoding="utf-8") as f:
+    f.write(js_content)
 
 
 # Feature card grid template for empty sections
