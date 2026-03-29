@@ -32,31 +32,29 @@ const siteData = {
   "degree_bachelor": {
     "title": "학사 과정",
 
-# 학과별 상세 내용을 담은 박스 그리드 생성
-undergraduate_info = feature_template.format(
-    i1="ph-cross", t1="신학과", 
-    d1="""<b>학점:</b> 140학점 (약 48과목)<br/>
-          <b>특징:</b> 성경해석 및 조직신학 중심<br/>
-          <b>주요과목:</b> 구약/신약학, 조직신학, 교회사""",
-          
-    i2="ph-hands-praying", t2="목회학과", 
-    d2="""<b>학점:</b> 140학점 (약 48과목)<br/>
-          <b>특징:</b> 실무 목회 및 리더십 강화<br/>
-          <b>주요과목:</b> 설교학, 목회상담, 교회행정""",
-          
-    i3="ph-globe-hemisphere-west", t3="선교학과", 
-    d3="""<b>학점:</b> 140학점 (약 48과목)<br/>
-          <b>특징:</b> 타문화권 사역 및 선교 전략<br/>
-          <b>주요과목:</b> 선교신학, 문화인류학, 선교실습""",
-          
-    i4="ph-check-circle", t4="공통 필수", 
-    d4="""웨스트민스터 신앙고백, 소요리문답,<br/>대요리문답, 영성훈련, 채플(매학기)"""
+# 1. 학사 과정 상세 내용을 담은 박스 그리드 정의
+undergraduate_boxes = feature_template.format(
+    i1="ph-cross", 
+    t1="신학과", 
+    d1="<b>학점:</b> 140학점 (약 48과목)<br/><b>학년별:</b> 1~4학년 체계적 이수<br/><b>핵심:</b> 조직신학, 성경해석, 교회사",
+    
+    i2="ph-hands-praying", 
+    t2="목회학과", 
+    d2="<b>학점:</b> 140학점 (약 48과목)<br/><b>실무:</b> 설교학, 목회상담, 행정<br/><b>핵심:</b> 목회 리더십 및 현장 실습",
+    
+    i3="ph-globe-hemisphere-west", 
+    t3="선교학과", 
+    d3="<b>학점:</b> 140학점 (약 48과목)<br/><b>전략:</b> 타문화 선교, 문화인류학<br/><b>핵심:</b> 선교 역사 및 세계 종교",
+    
+    i4="ph-check-circle", 
+    t4="공통 필수", 
+    d4="웨스트민스터 신앙고백, 소요리문답,<br/>대요리문답, 영성훈련, 채플(매학기)"
 )
 
-# 웹사이트의 '학위과정-학사' 섹션에 적용
+# 2. 웹사이트 데이터 구조에 강제 주입 (루프에서 덮어씌워지지 않도록 설정)
 html_sections["degree_bachelor"] = {
-    "title": "학사 과정 안내",
-    "html": f"<div class='content-body'><p>한영총회신학학술연구원 학사 과정은 총 140학점을 이수해야 합니다.</p></div>" + undergraduate_info
+    "title": "학사 과정",
+    "html": f"<div class='content-body'><p style='margin-bottom:20px;'>한영총회신학학술연구원 학사 과정은 총 140학점을 이수해야 합니다.</p></div>" + undergraduate_boxes
 }
 
 
