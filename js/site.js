@@ -19,6 +19,6 @@
             `이름: ${name}\n연락처: ${phone}\n이메일 주소: ${email}\n문의사항:\n${message}`
         );
 
-        window.location.href = `mailto:kimty5401@naver.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:yjisc@naver.com?subject=${subject}&body=${body}`;
     });
 })();
