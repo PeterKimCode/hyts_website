@@ -31,6 +31,11 @@ const boards = {
         title: '각종 서식',
         description: '학사 관련 신청서와 행정 서식을 내려받을 수 있는 게시판',
         page: 'academic_forms.html'
+    },
+    'school-events': {
+        title: '학교행사',
+        description: '학교의 주요 집회, 행사, 특별 프로그램 소식을 안내하는 게시판',
+        page: 'school_events.html'
     }
 };
 

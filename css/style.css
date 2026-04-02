@@ -1216,6 +1216,137 @@ a {
     margin-bottom: 15px;
     opacity: 0.8;
 }
+
+.council-hero {
+    padding: 40px 32px;
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(15, 118, 110, 0.02)),
+        linear-gradient(180deg, #fffaf0 0%, #f6f1e7 100%);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    overflow: hidden;
+}
+
+.council-hero h3 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: #0f3d3e;
+    font-weight: 800;
+}
+
+.council-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.council-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.council-row-middle,
+.council-row-admin,
+.council-row-team {
+    justify-content: space-between;
+}
+
+.council-card {
+    min-width: 180px;
+    padding: 20px 24px;
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    box-shadow: 0 18px 35px rgba(15, 118, 110, 0.18);
+}
+
+.council-card-main,
+.council-card-sub {
+    background: linear-gradient(135deg, #5fd4cf, #2ca39b);
+    color: #0c2f30;
+}
+
+.council-card-dept,
+.council-card-team {
+    background: linear-gradient(135deg, #297c7d, #245f66);
+}
+
+.council-line {
+    background: rgba(15, 23, 42, 0.65);
+}
+
+.council-line-short {
+    width: 2px;
+    height: 28px;
+}
+
+.council-line-wide {
+    width: min(90%, 920px);
+    height: 2px;
+}
+
+.role-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.role-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 22px 20px;
+}
+
+.role-card h4 {
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.role-card p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.8;
+}
+
+.counseling-card {
+    display: grid;
+    gap: 24px;
+}
+
+.counseling-copy h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.counseling-copy p {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.05rem;
+    line-height: 1.95;
+    margin-bottom: 16px;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.counseling-card .curriculum-table th {
+    width: 20%;
+    min-width: 140px;
+}
+
+.counseling-card .curriculum-table td {
+    width: 30%;
+}
 .fc-box h4 {
     font-size: 1.3rem;
     color: var(--text-dark);
@@ -1395,6 +1526,38 @@ a {
     }
     .board-article {
         padding: 24px 20px;
+    }
+    .council-hero {
+        padding: 28px 18px;
+    }
+    .council-row-middle,
+    .council-row-admin,
+    .council-row-team {
+        justify-content: center;
+    }
+    .council-line-wide {
+        width: 2px;
+        height: 24px;
+    }
+    .council-card {
+        min-width: 220px;
+    }
+    .counseling-card .curriculum-table,
+    .counseling-card .curriculum-table tbody,
+    .counseling-card .curriculum-table tr,
+    .counseling-card .curriculum-table th,
+    .counseling-card .curriculum-table td {
+        display: block;
+        width: 100%;
+        white-space: normal;
+    }
+    .counseling-card .curriculum-table th {
+        padding-bottom: 8px;
+        border-bottom: none;
+    }
+    .counseling-card .curriculum-table td {
+        padding-top: 0;
+        margin-bottom: 18px;
     }
     .footer-grid {
         grid-template-columns: 1fr;

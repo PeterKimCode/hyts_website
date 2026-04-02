@@ -13,6 +13,7 @@ node build_boards.js
 - `content/boards/research-forum`
 - `content/boards/admissions-faq`
 - `content/boards/academic-forms`
+- `content/boards/school-events`
 
 권장 마크다운 형식:
 
