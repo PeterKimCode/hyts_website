@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사이트맵 | 총회신학연구원</title>
+    <title>온라인강의 게시판 | 총회신학연구원</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="icon" type="image/png" href="assets/images/site-logo.png">
@@ -44,48 +44,9 @@
         </div>
     </nav>
     <main class="fade-in">
-        <div class="page-header"><h2>사이트맵</h2></div>
+        <div class="page-header"><h2>온라인강의</h2></div>
         <div class="container page-content-area shadow-sm">
-            <div class="content-body">
-                <p>원하시는 메뉴로 바로 이동하실 수 있도록 전체 페이지를 정리했습니다.</p>
-                <div class="sitemap-grid">
-                    <section class="sitemap-section">
-                        <h3>학교소개</h3>
-                        <ul class="sitemap-list">
-                            <li><a href="intro_greeting.html">학교소개<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="intro_ideology.html">교육이념 및 방향<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="intro_org.html">조직도<i class="ph-light ph-arrow-right"></i></a></li>
-                        </ul>
-                    </section>
-                    <section class="sitemap-section">
-                        <h3>입학안내</h3>
-                        <ul class="sitemap-list">
-                            <li><a href="admissions_guideline.html">모집요강 및 전형일정<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="admissions_req.html">지원자격 및 제출서류<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="admissions_tuition.html">등록금 및 장학제도<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="admissions_faq.html">입학FAQ<i class="ph-light ph-arrow-right"></i></a></li>
-                        </ul>
-                    </section>
-                    <section class="sitemap-section">
-                        <h3>학위과정</h3>
-                        <ul class="sitemap-list">
-                            <li><a href="degree_bachelor.html">학사과정<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="degree_master.html">석사과정<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="degree_doctor.html">박사과정<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="degree_research.html">연구과정<i class="ph-light ph-arrow-right"></i></a></li>
-                        </ul>
-                    </section>
-                    <section class="sitemap-section">
-                        <h3>온라인서비스</h3>
-                        <ul class="sitemap-list">
-                            <li><a href="online_service.html">온라인서비스 메인<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="board_online_lectures.html">온라인강의 게시판<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="board_student_portal.html">학생포털 게시판<i class="ph-light ph-arrow-right"></i></a></li>
-                            <li><a href="board_research_forum.html">연구자 포럼 게시판<i class="ph-light ph-arrow-right"></i></a></li>
-                        </ul>
-                    </section>
-                </div>
-            </div>
+            <div data-board-listing="online-lectures" data-empty="온라인 강의 게시글이 아직 없습니다."></div>
         </div>
     </main>
     <footer class="modern-footer">
@@ -98,5 +59,6 @@
             <div class="footer-bottom"><p>&copy; 2026 대한예수교장로회(한영) 총회신학연구원. All rights reserved.</p></div>
         </div>
     </footer>
+    <script src="js/boards.js"></script>
 </body>
 </html>
