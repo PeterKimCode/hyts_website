@@ -1507,6 +1507,7 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 18px;
+    margin: 26px 0 38px;
 }
 
 .role-card {
@@ -1659,6 +1660,14 @@ a {
     padding: 16px 18px;
     color: #334155;
     line-height: 1.8;
+}
+
+.intro-section + .role-list {
+    margin-top: 30px;
+}
+
+.role-list + .intro-section {
+    margin-top: 38px;
 }
 
 .counseling-card {
