@@ -63,6 +63,7 @@ a {
     align-items: center;
     gap: 16px;
     cursor: pointer;
+    color: inherit;
 }
 
 .main-logo-image {
@@ -394,12 +395,16 @@ a {
 }
 
 .form-actions {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
     margin-top: auto; /* Push to bottom */
     padding-top: 15px;
 }
 
-.btn-submit {
+.btn-submit,
+.btn-secondary {
     background: var(--primary-blue);
     color: var(--white);
     border: none;
@@ -413,10 +418,20 @@ a {
     align-items: center;
     gap: 8px;
     box-shadow: 0 10px 25px rgba(28, 60, 111, 0.3);
+    text-decoration: none;
 }
 
-.btn-submit:hover {
+.btn-secondary {
+    background: var(--white);
+    color: var(--primary-blue);
+    border: 1px solid rgba(28, 60, 111, 0.15);
+    box-shadow: none;
+}
+
+.btn-submit:hover,
+.btn-secondary:hover {
     background: var(--hover-blue);
+    color: var(--white);
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(28, 60, 111, 0.4);
 }
@@ -637,6 +652,44 @@ a {
     gap: 30px;
     margin-top: 20px;
 }
+
+.sitemap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.sitemap-section {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 28px;
+}
+
+.sitemap-section h3 {
+    color: var(--primary-blue);
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+}
+
+.sitemap-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sitemap-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dark);
+}
+
+.sitemap-list a:hover {
+    color: var(--primary-blue);
+}
 .fc-box {
     background: var(--bg-light);
     border: 1px solid var(--border-color);
@@ -797,6 +850,15 @@ a {
         margin-bottom: 20px;
     }
     .page-content-area { padding: 40px 20px; }
+    .form-group-row,
+    .form-actions {
+        flex-direction: column;
+    }
+    .btn-submit,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
