@@ -842,6 +842,11 @@ a {
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.curriculum-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .curriculum-column {
     min-width: 0;
     border-right: 1px solid rgba(255, 255, 255, 0.5);
@@ -849,6 +854,28 @@ a {
 
 .curriculum-column:last-child {
     border-right: none;
+}
+
+.research-overview {
+    margin-bottom: 28px;
+}
+
+.research-overview h3 {
+    margin-bottom: 14px;
+    color: var(--text-dark);
+    font-size: 1.9rem;
+    font-weight: 800;
+}
+
+.research-overview ul {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.research-overview li {
+    list-style: disc;
+    margin-bottom: 12px;
+    color: #374151;
 }
 
 .curriculum-grid-heading,
@@ -1159,6 +1186,9 @@ a {
         white-space: nowrap;
     }
     .curriculum-grid {
+        min-width: 760px;
+    }
+    .curriculum-grid-3 {
         min-width: 760px;
     }
     .footer-grid {
