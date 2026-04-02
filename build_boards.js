@@ -26,6 +26,11 @@ const boards = {
         title: '입학FAQ',
         description: '입학 관련 자주 묻는 질문을 모아둔 게시판',
         page: 'admissions_faq.html'
+    },
+    'academic-forms': {
+        title: '각종 서식',
+        description: '학사 관련 신청서와 행정 서식을 내려받을 수 있는 게시판',
+        page: 'academic_forms.html'
     }
 };
 
