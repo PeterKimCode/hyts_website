@@ -181,8 +181,8 @@ function buildLayout(title, content, extraScript = '') {
             <a class="logo-area" href="../../index.html">
                 <img src="../../assets/images/site-logo.png" alt="학교 로고" class="main-logo-image">
                 <div class="logo-text">
-                    <h1>총회신학연구원</h1>
-                    <span>대한예수교장로회(한영) 직영 신학연구원</span>
+                    <h1>총회신학학술연구원</h1>
+                    <span>대한예수교장로회(한영)총회신학학술연구원</span>
                 </div>
             </a>
             <div class="top-links-area">
@@ -208,7 +208,7 @@ function buildLayout(title, content, extraScript = '') {
                     <span>학교소개</span>
                 </summary>
                 <div class="nav-dropdown-menu">
-                    <a href="../../intro_greeting.html">총장 인사말</a>
+                    <a href="../../intro_greeting.html">학장 인사말</a>
                     <a href="../../intro_ideology.html">교육이념</a>
                     <a href="../../intro_history.html">연혁</a>
                     <a href="../../intro_org.html">조직도</a>
@@ -236,8 +236,8 @@ function buildLayout(title, content, extraScript = '') {
             <div class="footer-grid">
                 <div class="f-col">
                     <h6>OUR CAMPUS</h6>
-                    <h3 class="f-brand">총회신학연구원</h3>
-                    <p>대한예수교장로회(한영)<br>직영 신학연구원</p>
+                    <h3 class="f-brand">총회신학학술연구원</h3>
+                    <p>대한예수교장로회(한영)<br>총회신학학술연구원</p>
                     <p><strong>Phone:</strong> (031) 677-8428</p>
                     <p><strong>Email:</strong> admin@hyts.ac.kr</p>
                 </div>
@@ -258,7 +258,7 @@ function buildLayout(title, content, extraScript = '') {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 대한예수교장로회(한영) 총회신학연구원. All rights reserved.</p>
+                <p>&copy; 2026 대한예수교장로회(한영)총회신학학술연구원. All rights reserved.</p>
             </div>
         </div>
     </footer>
