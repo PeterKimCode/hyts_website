@@ -1,11 +1,11 @@
 {
   "id": "online-lectures",
-  "title": "온라인강의",
-  "description": "비대면 강의, 수업 일정, 수강 안내 게시판",
+  "title": "교과목다운로드",
+  "description": "각 학과의 교가목을 다운로드하실수 있습니다",
   "page": "board_online_lectures.html",
   "posts": [
     {
-      "title": "온라인 강의실 이용 안내",
+      "title": "교과목다운로드",
       "date": "2026-04-02",
       "summary": "비대면 수업 접속 방법과 기본 이용 수칙을 안내합니다.",
       "slug": "2026-04-02-online-class-guide",
