@@ -1,13 +1,13 @@
 {
   "id": "student-portal",
-  "title": "학생포털",
-  "description": "학생 서비스, 증명서 발급, 공지 안내 게시판",
+  "title": "동영상강의다운로드",
+  "description": "각학과의 동영상강의를 다운로드하실수 있습니다.",
   "page": "board_student_portal.html",
   "posts": [
     {
-      "title": "학생포털 이용 및 증명서 발급 안내",
+      "title": "동영상강의 다운로드",
       "date": "2026-04-02",
-      "summary": "학생포털에서 성적 조회와 증명서 발급을 신청하는 방법을 안내합니다.",
+      "summary": "동영상강의다운로드및 시청을 하실수 있습니다.",
       "slug": "2026-04-02-portal-guide",
       "url": "board_posts/student-portal/2026-04-02-portal-guide.html"
     }
