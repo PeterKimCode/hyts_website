@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 :root {
     --primary-blue: #1c3c6f;
@@ -2086,3 +2086,40 @@ a {
         gap: 40px;
     }
 }
+
+/* HYTS NAV TRANSLATE START */
+.lang-selector {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-weight: 600;
+    border-left: 1px solid #e2e8f0;
+    padding-left: 24px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.lang-selector:hover {
+    color: var(--primary-blue);
+}
+
+.translate-widget {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+@media (min-width: 769px) {
+    .nav-dropdown {
+        position: relative;
+    }
+
+    .nav-dropdown[open] .nav-dropdown-menu,
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+        display: block;
+    }
+}
+/* HYTS NAV TRANSLATE END */
