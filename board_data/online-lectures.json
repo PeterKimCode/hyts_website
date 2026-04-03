@@ -1,7 +1,7 @@
 {
   "id": "online-lectures",
   "title": "교과목다운로드",
-  "description": "각 학과의 교가목을 다운로드하실수 있습니다",
+  "description": "각 학과의 교과목을 다운로드하실수 있습니다",
   "page": "board_online_lectures.html",
   "posts": [
     {
