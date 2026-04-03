@@ -11,7 +11,7 @@ def get_content(start_idx, end_idx):
     return "\n".join(lines[start_idx:min(end_idx, len(lines))]).strip()
 
 html_sections = {
-    "intro_greeting": {"title": "학장 인사말", "text": get_content(95, 103)},
+    "intro_greeting": {"title": "총장 인사말", "text": get_content(95, 103)},
     "intro_ideology": {"title": "교육이념 및 연혁", "text": get_content(108, 133)},
     "intro_org": {"title": "조직도", "text": get_content(134, 176)},
     "admissions_guideline": {"title": "모집요강 및 전형일정", "text": get_content(177, 213)},
