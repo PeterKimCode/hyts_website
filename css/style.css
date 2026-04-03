@@ -2113,15 +2113,11 @@ a {
     overflow: hidden;
 }
 
-@media (min-width: 769px) {
-    .nav-dropdown {
-        position: relative;
-    }
+.nav-dropdown {
+    position: relative;
+}
 
-    .nav-dropdown[open] .nav-dropdown-menu,
-    .nav-dropdown:hover .nav-dropdown-menu,
-    .nav-dropdown:focus-within .nav-dropdown-menu {
-        display: block;
-    }
+.nav-dropdown[open] .nav-dropdown-menu {
+    display: block;
 }
 /* HYTS NAV TRANSLATE END */

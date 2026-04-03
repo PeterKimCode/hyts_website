@@ -1,8 +1,10 @@
-﻿(() => {
+(() => {
     const consultForm = document.querySelector('[data-consult-form]');
     const langToggle = document.querySelector('[data-lang-toggle]');
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     const STORAGE_KEY = 'hyts_lang';
+    const COOKIE_NAME = 'googtrans';
+    const COOKIE_DOMAIN = `;domain=${window.location.hostname}`;
 
     if (consultForm) {
         consultForm.addEventListener('submit', (event) => {
@@ -14,9 +16,9 @@
             const email = String(formData.get('email') || '').trim();
             const message = String(formData.get('message') || '').trim();
 
-            const subject = encodeURIComponent('[입학 상담 요청] 홈페이지 문의');
+            const subject = encodeURIComponent('[\uc785\ud559 \uc0c1\ub2f4 \uc694\uccad] \ud648\ud398\uc774\uc9c0 \ubb38\uc758');
             const body = encodeURIComponent(
-                `이름: ${name}\n연락처: ${phone}\n이메일 주소: ${email}\n문의사항:\n${message}`
+                `\uc774\ub984: ${name}\n\uc5f0\ub77d\ucc98: ${phone}\n\uc774\uba54\uc77c \uc8fc\uc18c: ${email}\n\ubb38\uc758\uc0ac\ud56d:\n${message}`
             );
 
             window.location.href = `mailto:yjisc@naver.com?subject=${subject}&body=${body}`;
@@ -24,15 +26,34 @@
     }
 
     dropdowns.forEach((dropdown) => {
-        const summary = dropdown.querySelector('summary');
-        if (!summary) return;
+        dropdown.addEventListener('toggle', () => {
+            if (!dropdown.open) return;
+            dropdowns.forEach((otherDropdown) => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.open = false;
+                }
+            });
+        });
+    });
 
-        summary.addEventListener('click', (event) => {
-            if (window.innerWidth >= 769) {
-                event.preventDefault();
+    document.addEventListener('click', (event) => {
+        dropdowns.forEach((dropdown) => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.open = false;
             }
         });
     });
+
+    function setTranslateCookie(value) {
+        const cookieValue = `${COOKIE_NAME}=${value};path=/`;
+        document.cookie = cookieValue;
+        document.cookie = cookieValue + COOKIE_DOMAIN;
+    }
+
+    function clearTranslateCookie() {
+        document.cookie = `${COOKIE_NAME}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        document.cookie = `${COOKIE_NAME}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/` + COOKIE_DOMAIN;
+    }
 
     function loadGoogleTranslate() {
         if (window.google && window.google.translate) return;
@@ -51,7 +72,7 @@
         };
 
         const script = document.createElement('script');
-        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
         script.async = true;
         script.dataset.googleTranslate = 'true';
         document.head.appendChild(script);
@@ -67,30 +88,51 @@
         window.setTimeout(() => waitForTranslateCombo(callback, attempts + 1), 250);
     }
 
-    function applyLanguage(lang) {
-        loadGoogleTranslate();
-        waitForTranslateCombo((combo) => {
-            if (combo.value !== lang) {
-                combo.value = lang;
-                combo.dispatchEvent(new Event('change'));
-            }
-            localStorage.setItem(STORAGE_KEY, lang);
-            updateToggleLabel(lang);
-        });
-    }
-
     function updateToggleLabel(lang) {
         if (!langToggle) return;
         langToggle.textContent = lang === 'en' ? 'KOR' : 'ENG';
     }
 
+    function applyLanguage(lang) {
+        if (lang === 'en') {
+            setTranslateCookie('/ko/en');
+        } else {
+            clearTranslateCookie();
+        }
+
+        localStorage.setItem(STORAGE_KEY, lang);
+        updateToggleLabel(lang);
+        loadGoogleTranslate();
+
+        waitForTranslateCombo((combo) => {
+            if (combo.value !== lang) {
+                combo.value = lang;
+                combo.dispatchEvent(new Event('change'));
+            }
+        });
+
+        window.setTimeout(() => {
+            window.location.reload();
+        }, 250);
+    }
+
     const savedLang = localStorage.getItem(STORAGE_KEY) || 'ko';
     updateToggleLabel(savedLang);
-    if (savedLang === 'en') {
-        window.addEventListener('load', () => {
-            window.setTimeout(() => applyLanguage('en'), 400);
-        });
-    }
+    loadGoogleTranslate();
+
+    window.addEventListener('load', () => {
+        if (savedLang === 'en') {
+            setTranslateCookie('/ko/en');
+            waitForTranslateCombo((combo) => {
+                if (combo.value !== 'en') {
+                    combo.value = 'en';
+                    combo.dispatchEvent(new Event('change'));
+                }
+            });
+        } else {
+            clearTranslateCookie();
+        }
+    });
 
     if (langToggle) {
         langToggle.addEventListener('click', () => {
