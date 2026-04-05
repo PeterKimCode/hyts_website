@@ -82,6 +82,157 @@
 
 
 
+<style>
+    /* 전체 컨테이너 설정 */
+    .forum-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    }
+
+    /* 상단 안내 영역 스타일 */
+    .board-back-link {
+        display: inline-block;
+        text-decoration: none;
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    
+    .board-article {
+        background-color: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 40px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .board-article-meta {
+        color: #888;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .board-article h3 {
+        margin-top: 0;
+        color: #007bff;
+        font-size: 22px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    .board-article-content {
+        line-height: 1.6;
+        color: #444;
+    }
+
+    .board-article-content ul {
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+
+    /* 하단 교과목 리스트 스타일 */
+    .subject-header {
+        border-bottom: 2px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .subject-header h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .subject-header p {
+        color: #666;
+        margin: 0;
+    }
+
+    .subject-list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 15px;
+    }
+
+    .subject-list li {
+        flex: 0 1 calc(33.333% - 10px);
+        box-sizing: border-box;
+    }
+
+    .subject-link {
+        display: block;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-left: 4px solid #007bff;
+        text-decoration: none;
+        color: #333 !important;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        text-align: center;
+    }
+
+    .subject-link:hover {
+        background-color: #007bff;
+        color: #fff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 768px) {
+        .subject-list li {
+            flex: 0 1 100%;
+        }
+    }
+</style>
+
+<div class="forum-container">
+    <a href="../../board_research_forum.html" class="board-back-link">
+        <i class="ph-light ph-arrow-left"></i> 게시판으로 돌아가기
+    </a>
+    
+    <article class="board-article">
+        <div class="board-article-meta">2026-04-02</div>
+        <h3>연구자 포럼 자료 등록 안내</h3>
+        <div class="board-article-content">
+            <p>연구자 포럼은 교수진과 연구자들이 학술 자료를 공유하는 공간입니다.</p>
+            <ul>
+                <li>발표 자료는 PDF 기준으로 준비해 주세요.</li>
+                <li>논문 초안은 제목, 작성자, 요약을 함께 <a href="mailto:yjisc@naver.com" style="color: blue; text-decoration: underline;">yjisc@naver.com</a> 으로 제출해 주세요.</li>
+                <li>자료 검토 후 게시판에 반영됩니다.</li>
+            </ul>
+        </div>
+    </article>
+
+    <section class="subject-section">
+        <div class="subject-header">
+            <h1>교과목</h1>
+            <p>항목을 클릭하면 해당 자료를 다운로드하실 수 있습니다.</p>
+        </div>
+
+        <ul class="subject-list">
+            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/cUeCdUcrE" target="_blank" class="subject-link">김낙신박사 논문</a></li>
+            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/dtvnCySh2" target="_blank" class="subject-link">이광재박사 논문</a></li>
+            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/M7z4bH6jr" target="_blank" class="subject-link">우상용박사 논문</a></li>
+            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/589sC8V4M" target="_blank" class="subject-link">우상용박사 포럼</a></li>
+            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/XmUfF2Yqo" target="_blank" class="subject-link">우상용박사 포럼</a></li>
+            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/BHtK6Dop1" target="_blank" class="subject-link">우상용박사 포럼</a></li>
+        </ul>
+    </section>
+</div>
+
+
+
+
+
+
+    
     
 <style>
     .subject-container {
