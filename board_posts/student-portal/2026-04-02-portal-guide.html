@@ -129,167 +129,58 @@
             
             
 <div class="professor-container">
-  <div class="professor-grid">
-    <div class="professor-item">
-      <button type="button" class="lecture-btn" onclick="toggleList('list1', this)">
-        남궁선교수 <span class="arrow">▼</span>
-      </button>
-      <ul id="list1" class="link-list">
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제2강: 실전 프롬프트</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제3강: 교육 현장 적용</a></li>
-      </ul>
+  <div class="professor-grid" id="prof-grid">
     </div>
-
-    <div class="professor-item">
-      <button type="button" class="lecture-btn" onclick="toggleList('list2', this)">
-        우상용교수 <span class="arrow">▼</span>
-      </button>
-      <ul id="list2" class="link-list">
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제2강: 실전 프롬프트</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제3강: 교육 현장 적용</a></li>
-      </ul>
-    </div>
-
-    <div class="professor-item">
-      <button type="button" class="lecture-btn" onclick="toggleList('list3', this)">
-        이광재교수 <span class="arrow">▼</span>
-      </button>
-      <ul id="list3" class="link-list">
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제2강: 실전 프롬프트</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제3강: 교육 현장 적용</a></li>
-      </ul>
-    </div>
-
-    <div class="professor-item">
-      <button type="button" class="lecture-btn" onclick="toggleList('list4', this)">
-        김낙신교수 <span class="arrow">▼</span>
-      </button>
-      <ul id="list4" class="link-list">
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제2강: 실전 프롬프트</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제3강: 교육 현장 적용</a></li>
-      </ul>
-    </div>
-
-    <div class="professor-item">
-      <button type="button" class="lecture-btn" onclick="toggleList('list5', this)">
-        김시홍교수 <span class="arrow">▼</span>
-      </button>
-      <ul id="list5" class="link-list">
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제2강: 실전 프롬프트</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제3강: 교육 현장 적용</a></li>
-      </ul>
-    </div>
-
-    <div class="professor-item">
-      <button type="button" class="lecture-btn" onclick="toggleList('list6', this)">
-        유재봉교수 <span class="arrow">▼</span>
-      </button>
-      <ul id="list6" class="link-list">
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제2강: 실전 프롬프트</a></li>
-        <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제3강: 교육 현장 적용</a></li>
-      </ul>
-    </div>
-  </div>
 </div>
 
-<style>
-  /* 전체 컨테이너: 양쪽 빨간 선 간격을 꽉 채움 */
-  .professor-container {
-    width: 100%;
-    margin: 20px 0;
-  }
-
-  /* 6열 그리드 설정: 각 칸이 정확히 1/6씩 차지 */
-  .professor-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 2px; /* 버튼 사이의 미세한 간격 */
-  }
-
-  /* 버튼 디자인: 더 깔끔하고 전문적인 느낌 */
-  .lecture-btn {
-    width: 100%;
-    background-color: #fcfcfc;
-    border: 1px solid #e0e0e0;
-    border-top: 3px solid #0056b3; /* 위쪽에 포인트 선 */
-    padding: 15px 5px;
-    text-align: center;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: 700;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease;
-  }
-
-  .lecture-btn:hover {
-    background-color: #f0f5ff;
-    color: #0056b3;
-  }
-
-  /* 리스트 스타일: 버튼 바로 아래에 붙어서 나옴 */
-  .link-list {
-    display: none;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #e0e0e0;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-  }
-
-  .professor-item {
-    position: relative;
-  }
-
-  .link-list li a {
-    display: block;
-    padding: 12px 10px;
-    text-decoration: none;
-    color: #555;
-    font-size: 12px;
-    border-bottom: 1px solid #f0f0f0;
-    line-height: 1.4;
-  }
-
-  .link-list li a:hover {
-    background-color: #f8f9fa;
-    color: #0056b3;
-    padding-left: 15px; /* 호버 시 살짝 밀리는 효과 */
-  }
-
-  .arrow {
-    margin-left: 5px;
-    font-size: 10px;
-    color: #999;
-  }
-
-  /* 모바일 대응: 화면이 작아지면 3열 또는 2열로 조정 */
-  @media (max-width: 1100px) {
-    .professor-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  }
-  @media (max-width: 600px) {
-    .professor-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  }
-</style>
-
 <script>
+  // ★ 여기에 각 교수님 성함과 유튜브 영상 ID를 넣으세요 ★
+  // 예: https://www.youtube.com/watch?v=uWMxmNum9qA 이면 'uWMxmNum9qA'만 입력
+  const professorData = [
+    { name: "남궁선교수", videos: ["uWMxmNum9qA", "w5yROH52VBk", "vQCW92DjqS8"] },
+    { name: "우상용교수", videos: ["w5yROH52VBk", "uWMxmNum9qA", "vQCW92DjqS8"] },
+    { name: "이광재교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "김낙신교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "김시홍교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "유재봉교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "박영호교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "채희교수",   videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "최성규교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "임경수교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "조광석교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "권오윤교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "민경업교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "정인숙교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "최재영교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "한상진교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "이은혜교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] },
+    { name: "강호직교수", videos: ["uWMxmNum9qA", "uWMxmNum9qA", "uWMxmNum9qA"] }
+  ];
+
+  const grid = document.getElementById('prof-grid');
+
+  // 데이터에 기반하여 화면에 박스 생성
+  professorData.forEach((prof, index) => {
+    const item = document.createElement('div');
+    item.className = 'professor-item';
+    item.innerHTML = `
+      <button type="button" class="lecture-btn" onclick="toggleList('list${index}', this)">
+        ${prof.name} <span class="arrow">▼</span>
+      </button>
+      <ul id="list${index}" class="link-list">
+        <li><a href="https://www.youtube.com/watch?v=${prof.videos[0]}" target="_blank">🎥 제1강 보기</a></li>
+        <li><a href="https://www.youtube.com/watch?v=${prof.videos[1]}" target="_blank">🎥 제2강 보기</a></li>
+        <li><a href="https://www.youtube.com/watch?v=${prof.videos[2]}" target="_blank">🎥 제3강 보기</a></li>
+      </ul>
+    `;
+    grid.appendChild(item);
+  });
+
   function toggleList(listId, btn) {
     var list = document.getElementById(listId);
     var arrow = btn.querySelector('.arrow');
     
-    // 클릭한 것 외에 다른 리스트는 닫기 (선택 사항)
+    // 열려있는 다른 리스트 모두 닫기
     document.querySelectorAll('.link-list').forEach(function(el) {
       if (el.id !== listId) {
         el.style.display = 'none';
@@ -307,10 +198,87 @@
   }
 </script>
 
+<style>
+  /* 전체 컨테이너: 빨간 선 사이를 꽉 채우도록 설정 */
+  .professor-container {
+    width: 100%;
+    margin: 30px 0;
+  }
 
+  /* 6열 그리드: 가로 6개, 세로 3줄 자동 배치 */
+  .professor-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 15px 5px; /* 상하 간격 15px, 좌우 간격 5px */
+  }
 
-            
-</div>
+  /* 버튼 디자인: 전문적이고 깔끔한 스타일 */
+  .lecture-btn {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: 3px solid #0056b3;
+    padding: 18px 5px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+
+  .lecture-btn:hover {
+    background-color: #f0f5ff;
+    color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  /* 리스트 디자인: 클릭 시 나타나는 메뉴 */
+  .link-list {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .professor-item { position: relative; }
+
+  .link-list li a {
+    display: block;
+    padding: 12px 10px;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+  }
+
+  .link-list li a:hover {
+    background-color: #f8f9fa;
+    color: #0056b3;
+    padding-left: 15px;
+  }
+
+  .arrow { margin-left: 5px; font-size: 10px; color: #999; }
+
+  /* 반응형: 화면이 좁아지면 3열/2열로 자동 변경 */
+  @media (max-width: 1100px) {
+    .professor-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .professor-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
 
     </main>
     <footer class="modern-footer">
