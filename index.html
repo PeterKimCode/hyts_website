@@ -145,38 +145,42 @@
             </div>
             
             
-<div style="display: flex; gap: 25px; align-items: stretch; width: 100%; max-width: 1600px; margin: 0 auto 50px auto; padding: 0 20px;">
+<div style="display: flex; gap: 30px; width: 100%; max-width: 1600px; margin: 0 auto 50px auto; padding: 0 20px; align-items: stretch;">
 
-    <div class="bento-image-box" style="flex: 1; position: relative; overflow: hidden; border-radius: 25px; height: 600px; background: #f8f9fa; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-        <div id="mainSlider" style="display: flex; height: 100%; overflow-x: hidden; scroll-behavior: smooth;">
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/study.png" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_182852.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_183107.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250501_175925.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div style="flex: 1; display: flex; gap: 15px; background: #ffffff; border-radius: 25px; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        
+        <div style="flex: 1; position: relative; overflow: hidden; border-radius: 20px; height: 500px;">
+            <div id="slider1" style="display: flex; height: 100%; overflow-x: hidden; scroll-behavior: smooth;">
+                <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/study.png" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_182852.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+            </div>
+            <button onclick="moveS1(-1)" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 5;">&lt;</button>
+            <button onclick="moveS1(1)" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 5;">&gt;</button>
         </div>
-        <button onclick="sideMove(-1)" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 24px;">&lt;</button>
-        <button onclick="sideMove(1)" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 24px;">&gt;</button>
+
+        <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; height: 500px;">
+            <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="100%" style="border: none; border-radius: 12px;" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/-PGmZYouxNU" width="100%" height="100%" style="border: none; border-radius: 12px;" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 12px;" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 12px;" allowfullscreen></iframe>
+        </div>
     </div>
 
-    <div class="bento-video-grid" style="flex: 1.5; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; height: 600px;">
-        <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/-PGmZYouxNU" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" allowfullscreen></iframe>
+    <div style="flex: 1; background: #ffffff; border-radius: 25px; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;">
+        <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="500px" style="border: none; border-radius: 20px;" allowfullscreen></iframe>
     </div>
 
 </div>
 
 <script>
-    let sideIdx = 0;
-    const sContainer = document.getElementById('mainSlider');
-    function sideMove(dir) {
-        const slides = sContainer.querySelectorAll('.slide');
-        sideIdx = (sideIdx + dir + slides.length) % slides.length;
-        sContainer.scrollTo({ left: sideIdx * sContainer.clientWidth, behavior: 'smooth' });
+    let s1Idx = 0;
+    function moveS1(dir) {
+        const slider = document.getElementById('slider1');
+        const count = slider.querySelectorAll('.slide').length;
+        s1Idx = (s1Idx + dir + count) % count;
+        slider.scrollTo({ left: s1Idx * slider.clientWidth, behavior: 'smooth' });
     }
-    // 5초마다 자동 슬라이드
-    setInterval(() => sideMove(1), 5000);
+    setInterval(() => moveS1(1), 4000);
 </script>
             
         </main>
