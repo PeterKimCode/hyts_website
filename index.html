@@ -145,20 +145,20 @@
             </div>
             
             
-<div class="main-content-wrapper" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: stretch; margin-bottom: 20px;">
+<div style="display: flex; gap: 20px; align-items: stretch; flex-wrap: wrap; margin-bottom: 30px;">
 
-    <div class="bento-image-box animate-slide-up" style="flex: 1.2; min-width: 350px; position: relative; overflow: hidden; border-radius: 20px; height: 480px;">
+    <div class="bento-image-box animate-slide-up" style="flex: 1.2; min-width: 350px; position: relative; overflow: hidden; border-radius: 20px; height: 500px; background: #f8f9fa;">
         <div id="mainSlider" style="display: flex; height: 100%; overflow-x: hidden; scroll-behavior: smooth;">
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/study.png" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_182852.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_183107.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250501_175925.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
         </div>
-        <button onclick="navSlider(-1)" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 5;">&lt;</button>
-        <button onclick="navSlider(1)" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 5;">&gt;</button>
+        <button onclick="sideMove(-1)" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 10;">&lt;</button>
+        <button onclick="sideMove(1)" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 10;">&gt;</button>
     </div>
 
-    <div class="bento-video-grid" style="flex: 1; min-width: 350px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; height: 480px;">
+    <div class="bento-video-grid" style="flex: 1; min-width: 350px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 500px;">
         <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/-PGmZYouxNU" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
@@ -168,15 +168,15 @@
 </div>
 
 <script>
-    let curIdx = 0;
-    const mSlider = document.getElementById('mainSlider');
-    function navSlider(dir) {
-        const slides = document.querySelectorAll('.slide');
-        curIdx = (curIdx + dir + slides.length) % slides.length;
-        mSlider.scrollTo({ left: curIdx * mSlider.clientWidth, behavior: 'smooth' });
+    let sideIdx = 0;
+    const sContainer = document.getElementById('mainSlider');
+    function sideMove(dir) {
+        const slides = sContainer.querySelectorAll('.slide');
+        sideIdx = (sideIdx + dir + slides.length) % slides.length;
+        sContainer.scrollTo({ left: sideIdx * sContainer.clientWidth, behavior: 'smooth' });
     }
-    // 3초마다 자동 넘김
-    setInterval(() => navSlider(1), 3000);
+    // 4초마다 자동 슬라이드
+    setInterval(() => sideMove(1), 4000);
 </script>
 
         </main>
