@@ -129,68 +129,87 @@
 <div class="professor-grid">
   <div class="professor-item">
     <button type="button" class="lecture-btn" onclick="toggleList('list1', this)">
-      남궁선교수 강좌 <span class="arrow">▼</span>
+      남궁선교수 <span class="arrow">▼</span>
     </button>
     <ul id="list1" class="link-list">
-      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강 보기</a></li>
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
     </ul>
   </div>
 
   <div class="professor-item">
     <button type="button" class="lecture-btn" onclick="toggleList('list2', this)">
-      우상용교수 강좌 <span class="arrow">▼</span>
+      우상용교수 <span class="arrow">▼</span>
     </button>
     <ul id="list2" class="link-list">
-      <li><a href="https://www.youtube.com/watch?v=영상ID" target="_blank">🎥 강의 리스트 준비중</a></li>
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
     </ul>
   </div>
 
   <div class="professor-item">
     <button type="button" class="lecture-btn" onclick="toggleList('list3', this)">
-      이광재교수 강좌 <span class="arrow">▼</span>
+      이광재교수 <span class="arrow">▼</span>
     </button>
     <ul id="list3" class="link-list">
-      <li><a href="https://www.youtube.com/watch?v=영상ID" target="_blank">🎥 강의 리스트 준비중</a></li>
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
     </ul>
   </div>
 
   <div class="professor-item">
     <button type="button" class="lecture-btn" onclick="toggleList('list4', this)">
-      김낙신교수 강좌 <span class="arrow">▼</span>
+      김낙신교수 <span class="arrow">▼</span>
     </button>
     <ul id="list4" class="link-list">
-      <li><a href="https://www.youtube.com/watch?v=영상ID" target="_blank">🎥 강의 리스트 준비중</a></li>
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
+    </ul>
+  </div>
+
+  <div class="professor-item">
+    <button type="button" class="lecture-btn" onclick="toggleList('list5', this)">
+      김시홍교수 <span class="arrow">▼</span>
+    </button>
+    <ul id="list5" class="link-list">
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
+    </ul>
+  </div>
+
+  <div class="professor-item">
+    <button type="button" class="lecture-btn" onclick="toggleList('list6', this)">
+      유재봉교수 <span class="arrow">▼</span>
+    </button>
+    <ul id="list6" class="link-list">
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강: AI 활용 방법</a></li>
     </ul>
   </div>
 </div>
 
 <style>
-  /* 전체 그리드 설정 (가로 4개 배치) */
+  /* 6개 칸 가로 배치 설정 */
   .professor-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4개의 같은 크기 칸 */
-    gap: 15px; /* 칸 사이 간격 */
+    grid-template-columns: repeat(6, 1fr); /* 6개의 동일한 비율 칸 */
+    gap: 10px; /* 칸 사이 간격 */
     margin-top: 20px;
+    align-items: start;
   }
 
-  /* 버튼 디자인 (이미지 스타일 복제) */
+  /* 버튼 디자인 */
   .lecture-btn {
     width: 100%;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-left: 4px solid #0056b3;
-    padding: 15px 10px;
+    padding: 12px 5px;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
   }
 
-  /* 리스트 숨기기 디자인 */
+  /* 리스트 스타일 (기본 숨김) */
   .link-list {
     display: none;
     list-style: none;
@@ -198,6 +217,14 @@
     margin: 5px 0 0 0;
     border: 1px solid #dee2e6;
     background-color: #fff;
+    position: absolute; /* 리스트가 열릴 때 다른 칸을 밀어내지 않으려면 해제 가능 */
+    width: inherit;
+    z-index: 10;
+  }
+
+  /* 실제 리스트가 칸 안에서 보이도록 설정 */
+  .professor-item {
+    position: relative;
   }
 
   .link-list li a {
@@ -205,8 +232,11 @@
     padding: 10px;
     text-decoration: none;
     color: #444;
-    font-size: 13px;
+    font-size: 12px;
     border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .link-list li a:hover {
@@ -214,11 +244,12 @@
     color: #0056b3;
   }
 
-  /* 화면이 작을 때 (모바일 대응) */
-  @media (max-width: 768px) {
-    .professor-grid {
-      grid-template-columns: repeat(2, 1fr); /* 모바일에선 2개씩 */
-    }
+  /* 태블릿/모바일 대응 (화면이 좁아지면 3열 -> 2열로 변경) */
+  @media (max-width: 1024px) {
+    .professor-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .professor-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 
@@ -227,6 +258,9 @@
     var list = document.getElementById(listId);
     var arrow = btn.querySelector('.arrow');
     
+    // 다른 열려있는 리스트를 닫고 싶다면 아래 주석을 해제하세요.
+    // document.querySelectorAll('.link-list').forEach(el => { if(el.id !== listId) el.style.display = 'none'; });
+
     if (list.style.display === "block") {
       list.style.display = "none";
       arrow.innerHTML = "▼";
@@ -236,26 +270,6 @@
     }
   }
 </script>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/dtvnCySh2" target="_blank" class="subject-link">우상용교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/M7z4bH6jr" target="_blank" class="subject-link">이광재교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/589sC8V4M" target="_blank" class="subject-link">김낙신교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/XmUfF2Yqo" target="_blank" class="subject-link">박영훈교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/BHtK6Dop1" target="_blank" class="subject-link">채훈교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/ehKoWXsPX" target="_blank" class="subject-link">채진희교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/6G4lf64OP" target="_blank" class="subject-link">오세호교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/f8gmpVvDh" target="_blank" class="subject-link">신상철교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/4jbLH62Gf" target="_blank" class="subject-link">최규석교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/GyoriafML" target="_blank" class="subject-link">김시홍교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/rZH9EBKPZ" target="_blank" class="subject-link">유재봉교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/ghvJFp6kX" target="_blank" class="subject-link">권미경교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/aeJpJIua6" target="_blank" class="subject-link">황순옥고수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/s9PaoCmVq" target="_blank" class="subject-link">권순덕교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/XxSlXzZ4H" target="_blank" class="subject-link">유재봉교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/LsJbLbNnZ" target="_blank" class="subject-link">유재봉교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/qr6A4A4Nh" target="_blank" class="subject-link">유재봉교수</a></li>
-            <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/MKCg5MZra" target="_blank" class="subject-link">유재봉교수</a></li>
-        </ul>
-    </article>
 </div>
 
     </main>
