@@ -144,41 +144,67 @@
                 </ul>
             </div>
             
-            
-<div style="display: flex; gap: 20px; align-items: stretch; width: 100%; max-width: 1200px; margin: 0 auto 50px auto; padding: 0 15px;">
-
-    <div style="flex: 1; background: #ffffff; border-radius: 25px; overflow: hidden; height: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); position: relative;">
-        <div id="section3Slider" style="display: flex; height: 100%; overflow-x: hidden; scroll-behavior: smooth;">
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/study.png" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_182852.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250501_175925.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+<div class="bento-image-box animate-slide-up" style="animation-delay: 0.8s; overflow: hidden; position: relative;">
+    <div class="image-slider" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
+        
+        <div style="flex: 0 0 100%; scroll-snap-align: start;">
+            <img src="assets/images/study.png" alt="도서관 공부 1" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
-        <button onclick="move3(-1)" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">&lt;</button>
-        <button onclick="move3(1)" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">&gt;</button>
+
+        <div style="flex: 0 0 100%; scroll-snap-align: start;">
+            <img src="assets/images/study2.png" alt="도서관 공부 2" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div style="flex: 0 0 100%; scroll-snap-align: start;">
+            <img src="assets/images/study3.png" alt="도서관 공부 3" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
     </div>
 
-    <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 450px;">
-        <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/-PGmZYouxNU" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
+    <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.5); color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">
+        ← 좌우로 밀어서 보기 →
     </div>
+</div>
+
+
+<div class="bento-video-box animate-slide-up" style="animation-delay: 0.9s; flex: 1; min-width: 300px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px;">
+    
+    <iframe 
+        src="https://www.youtube.com/embed/0r8-C88cW78" 
+        title="모세오경 1강" 
+        width="100%" height="100%" 
+        style="border: none; border-radius: 10px;" 
+        allowfullscreen>
+    </iframe>
+
+    <iframe 
+        src="https://www.youtube.com/embed/0r8-C88cW78" 
+        title="모세오경 2강" 
+        width="100%" height="100%" 
+        style="border: none; border-radius: 10px;" 
+        allowfullscreen>
+    </iframe>
+
+    <iframe 
+        src="https://www.youtube.com/embed/0r8-C88cW78" 
+        title="모세오경 3강" 
+        width="100%" height="100%" 
+        style="border: none; border-radius: 10px;" 
+        allowfullscreen>
+    </iframe>
+
+    <iframe 
+        src="https://www.youtube.com/embed/0r8-C88cW78" 
+        title="모세오경 4강" 
+        width="100%" height="100%" 
+        style="border: none; border-radius: 10px;" 
+        allowfullscreen>
+    </iframe>
 
 </div>
 
-<script>
-    let idx3 = 0;
-    function move3(dir) {
-        const slider = document.getElementById('section3Slider');
-        const slides = slider.querySelectorAll('.slide');
-        if (!slides.length) return;
-        idx3 = (idx3 + dir + slides.length) % slides.length;
-        slider.scrollTo({ left: idx3 * slider.clientWidth, behavior: 'smooth' });
-    }
-    // 4초 자동 슬라이드
-    setInterval(() => move3(1), 4000);
-</script>
-            
+
+           
         </main>
        <footer class="modern-footer">
         <div class="container">
