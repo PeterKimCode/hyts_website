@@ -134,10 +134,9 @@
 </div>
 
 <script>
-  /* [데이터 수정 가이드]
-    - name: 교수님 성함
-    - videos: 15개의 강의 주소를 순서대로 넣으세요. (쉼표로 구분)
-    - 현재는 모든 교수님께 15개의 샘플 링크가 기본으로 들어가 있습니다.
+  /* [수정 방법]
+    1. 해당 교수님의 'videos' 부분에 있는 "주소"를 실제 유튜브 링크로 바꾸세요.
+    2. 주소와 주소 사이에는 반드시 쉼표(,)가 있어야 합니다.
   */
   const professorData = [
     { name: "남궁선교수", videos: Array(15).fill("https://www.youtube.com/watch?v=uWMxmNum9qA") },
@@ -162,15 +161,13 @@
 
   const grid = document.getElementById('prof-grid');
 
-  // 교수별 박스 생성 루프
   professorData.forEach((prof, pIdx) => {
     const item = document.createElement('div');
     item.className = 'professor-item';
     
-    // 15개 강의 리스트 HTML 생성
-    let listItems = '';
+    let listHtml = '';
     prof.videos.forEach((url, vIdx) => {
-      listItems += `<li><a href="${url}" target="_blank">🎥 제${vIdx + 1}강 강의보기</a></li>`;
+      listHtml += `<li><a href="${url}" target="_blank">🎥 제${vIdx + 1}강 강의보기</a></li>`;
     });
 
     item.innerHTML = `
@@ -178,19 +175,17 @@
         ${prof.name} <span class="arrow">▼</span>
       </button>
       <ul id="list${pIdx}" class="link-list">
-        ${listItems}
+        ${listHtml}
       </ul>
     `;
     grid.appendChild(item);
   });
 
-  // 클릭 이벤트 함수
   function toggleList(listId, btn) {
     const list = document.getElementById(listId);
     const arrow = btn.querySelector('.arrow');
     const isVisible = list.style.display === "block";
 
-    // 다른 리스트는 자동으로 닫기 (깔끔한 화면 유지)
     document.querySelectorAll('.link-list').forEach(el => {
       el.style.display = 'none';
       el.previousElementSibling.querySelector('.arrow').innerHTML = "▼";
@@ -204,25 +199,22 @@
 </script>
 
 <style>
-  /* 전체 레이아웃 */
-  .professor-container { width: 100%; margin: 40px 0; font-family: 'Malgun Gothic', sans-serif; }
-
-  /* 6열 그리드 (이미지 빨간선 사이 간격 최적화) */
+  .professor-container { width: 100%; margin: 30px 0; font-family: 'Malgun Gothic', sans-serif; }
+  
   .professor-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr); 
-    gap: 20px 8px; /* 위아래 20px, 좌우 8px */
+    gap: 15px 6px;
   }
 
   .professor-item { position: relative; }
 
-  /* 교수님 버튼 디자인 */
   .lecture-btn {
     width: 100%;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-top: 4px solid #0056b3; /* 상단 포인트 선 */
-    padding: 20px 5px;
+    border-top: 4px solid #0056b3;
+    padding: 18px 5px;
     text-align: center;
     font-size: 14px;
     cursor: pointer;
@@ -232,16 +224,10 @@
     justify-content: center;
     align-items: center;
     transition: 0.2s;
-    border-radius: 0 0 4px 4px;
   }
 
-  .lecture-btn:hover {
-    background-color: #f0f5ff;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
+  .lecture-btn:hover { background-color: #f0f5ff; transform: translateY(-2px); }
 
-  /* 15개 강의 리스트 (스크롤 적용) */
   .link-list {
     display: none;
     list-style: none;
@@ -249,45 +235,38 @@
     margin: 0;
     border: 1px solid #ddd;
     background-color: #fff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     position: absolute;
     width: 100%;
     z-index: 100;
-    max-height: 250px; /* 강의 15개가 너무 길지 않게 높이 제한 */
-    overflow-y: auto;  /* 높이 넘치면 스크롤바 */
+    max-height: 250px; /* 15강 스크롤용 높이 제한 */
+    overflow-y: auto;
   }
 
-  /* 스크롤바 디자인 */
-  .link-list::-webkit-scrollbar { width: 6px; }
+  /* 스크롤바 세련되게 수정 */
+  .link-list::-webkit-scrollbar { width: 5px; }
   .link-list::-webkit-scrollbar-thumb { background: #0056b3; border-radius: 10px; }
-  .link-list::-webkit-scrollbar-track { background: #f1f1f1; }
 
-  /* 리스트 항목 디자인 */
   .link-list li a {
     display: block;
-    padding: 12px 10px;
+    padding: 10px 12px;
     text-decoration: none;
-    color: #444;
+    color: #555;
     font-size: 12px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f1f5f9;
     text-align: left;
-    transition: 0.2s;
   }
 
-  .link-list li a:hover {
-    background-color: #0056b3;
-    color: #fff;
-    padding-left: 15px;
-  }
+  .link-list li a:hover { background-color: #f8f9fa; color: #0056b3; padding-left: 15px; }
 
-  .arrow { margin-left: 6px; font-size: 10px; color: #999; }
+  .arrow { margin-left: 5px; font-size: 10px; color: #999; }
 
-  /* 반응형 처리 */
   @media (max-width: 1200px) { .professor-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 600px) { .professor-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
-</div>            
 
+            
+</div>            
     </main>
     <footer class="modern-footer">
         <div class="container">
