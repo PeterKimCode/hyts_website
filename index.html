@@ -145,38 +145,38 @@
             </div>
             
             
-<div style="display: flex; gap: 20px; align-items: stretch; flex-wrap: wrap; margin-bottom: 30px;">
+<div style="display: flex; gap: 20px; align-items: stretch; width: 100%; max-width: 1200px; margin: 0 auto 50px auto; padding: 0 15px;">
 
-    <div class="bento-image-box animate-slide-up" style="flex: 1.2; min-width: 350px; position: relative; overflow: hidden; border-radius: 20px; height: 500px; background: #f8f9fa;">
-        <div id="mainSlider" style="display: flex; height: 100%; overflow-x: hidden; scroll-behavior: smooth;">
+    <div style="flex: 1; background: #ffffff; border-radius: 25px; overflow: hidden; height: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); position: relative;">
+        <div id="section3Slider" style="display: flex; height: 100%; overflow-x: hidden; scroll-behavior: smooth;">
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/study.png" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_182852.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250429_183107.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="slide" style="flex: 0 0 100%; height: 100%;"><img src="assets/images/20250501_175925.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
         </div>
-        <button onclick="sideMove(-1)" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 10;">&lt;</button>
-        <button onclick="sideMove(1)" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 10;">&gt;</button>
+        <button onclick="move3(-1)" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">&lt;</button>
+        <button onclick="move3(1)" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">&gt;</button>
     </div>
 
-    <div class="bento-video-grid" style="flex: 1; min-width: 350px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 500px;">
-        <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/-PGmZYouxNU" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 15px;" allowfullscreen></iframe>
+    <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 450px;">
+        <iframe src="https://www.youtube.com/embed/chunzfo5__I" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/-PGmZYouxNU" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/0r8-C88cW78" width="100%" height="100%" style="border: none; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" allowfullscreen></iframe>
     </div>
 
 </div>
 
 <script>
-    let sideIdx = 0;
-    const sContainer = document.getElementById('mainSlider');
-    function sideMove(dir) {
-        const slides = sContainer.querySelectorAll('.slide');
-        sideIdx = (sideIdx + dir + slides.length) % slides.length;
-        sContainer.scrollTo({ left: sideIdx * sContainer.clientWidth, behavior: 'smooth' });
+    let idx3 = 0;
+    function move3(dir) {
+        const slider = document.getElementById('section3Slider');
+        const slides = slider.querySelectorAll('.slide');
+        if (!slides.length) return;
+        idx3 = (idx3 + dir + slides.length) % slides.length;
+        slider.scrollTo({ left: idx3 * slider.clientWidth, behavior: 'smooth' });
     }
-    // 4초마다 자동 슬라이드
-    setInterval(() => sideMove(1), 4000);
+    // 4초 자동 슬라이드
+    setInterval(() => move3(1), 4000);
 </script>
             
         </main>
