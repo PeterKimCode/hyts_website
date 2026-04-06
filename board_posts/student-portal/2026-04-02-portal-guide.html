@@ -126,19 +126,98 @@
 
         <ul class="subject-list">
             
-<li>
-  <span class="subject-link" style="display: block; margin-bottom: 10px;">남궁선교수 강좌</span>
-  <div style="width: 100%; max-width: 560px; aspect-ratio: 16/9;">
-    <iframe
-      src="https://www.youtube.com/embed/uWMxmNum9qA"
-      title="남궁선교수 강좌 영상"
-      width="100%"
-      height="100%"
-      style="border: none; border-radius: 10px;"
-      allowfullscreen>
-    </iframe>
-  </div>
-</li>
+<div class="professor-section">
+  <button type="button" class="lecture-btn" onclick="toggleList()">
+    남궁선교수 강좌 <span id="arrow">▼</span>
+  </button>
+
+  <ul id="lecture-list" class="link-list" style="display: none;">
+    <li>
+      <a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">
+        🎥 제1강: AI와 대화하며 사용하는 방법
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=영상ID2" target="_blank">
+        🎥 제2강: 교육 현장에서의 AI 활용 실제
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=영상ID3" target="_blank">
+        🎥 제3강: 미래 교육의 방향과 과제
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+  /* 버튼 스타일 (이미지의 회색 박스 느낌 유지) */
+  .lecture-btn {
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-left: 4px solid #0056b3; /* 왼쪽 포인트 선 */
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .lecture-btn:hover {
+    background-color: #e9ecef;
+  }
+
+  /* 리스트 스타일 */
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    border: 1px solid #dee2e6;
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
+
+  .link-list li {
+    border-bottom: 1px solid #eee;
+  }
+
+  .link-list li:last-child {
+    border-bottom: none;
+  }
+
+  .link-list a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: 0.2s;
+  }
+
+  .link-list a:hover {
+    background-color: #f1f3f5;
+    color: #0056b3;
+    padding-left: 20px; /* 호버 시 살짝 움직이는 효과 */
+  }
+</style>
+
+<script>
+  // 리스트를 보였다 안보였다 하게 만드는 기능
+  function toggleList() {
+    var list = document.getElementById("lecture-list");
+    var arrow = document.getElementById("arrow");
+    
+    if (list.style.display === "none") {
+      list.style.display = "block";
+      arrow.innerHTML = "▲";
+    } else {
+      list.style.display = "none";
+      arrow.innerHTML = "▼";
+    }
+  }
+</script>
             <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/dtvnCySh2" target="_blank" class="subject-link">우상용교수</a></li>
             <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/M7z4bH6jr" target="_blank" class="subject-link">이광재교수</a></li>
             <li><a href="http://yfloavmotj9hz8g2ivvxyqpfin2ciap.quickconnect.to/sharing/589sC8V4M" target="_blank" class="subject-link">김낙신교수</a></li>
