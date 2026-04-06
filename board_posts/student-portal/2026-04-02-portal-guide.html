@@ -126,95 +126,113 @@
 
         <ul class="subject-list">
             
-<div class="professor-section">
-  <button type="button" class="lecture-btn" onclick="toggleList()">
-    남궁선교수 강좌 <span id="arrow">▼</span>
-  </button>
+<div class="professor-grid">
+  <div class="professor-item">
+    <button type="button" class="lecture-btn" onclick="toggleList('list1', this)">
+      남궁선교수 강좌 <span class="arrow">▼</span>
+    </button>
+    <ul id="list1" class="link-list">
+      <li><a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">🎥 제1강 보기</a></li>
+    </ul>
+  </div>
 
-  <ul id="lecture-list" class="link-list" style="display: none;">
-    <li>
-      <a href="https://www.youtube.com/watch?v=uWMxmNum9qA" target="_blank">
-        🎥 제1강: AI와 대화하며 사용하는 방법
-      </a>
-    </li>
-    <li>
-      <a href="https://www.youtube.com/watch?v=영상ID2" target="_blank">
-        🎥 제2강: 교육 현장에서의 AI 활용 실제
-      </a>
-    </li>
-    <li>
-      <a href="https://www.youtube.com/watch?v=영상ID3" target="_blank">
-        🎥 제3강: 미래 교육의 방향과 과제
-      </a>
-    </li>
-  </ul>
+  <div class="professor-item">
+    <button type="button" class="lecture-btn" onclick="toggleList('list2', this)">
+      우상용교수 강좌 <span class="arrow">▼</span>
+    </button>
+    <ul id="list2" class="link-list">
+      <li><a href="https://www.youtube.com/watch?v=영상ID" target="_blank">🎥 강의 리스트 준비중</a></li>
+    </ul>
+  </div>
+
+  <div class="professor-item">
+    <button type="button" class="lecture-btn" onclick="toggleList('list3', this)">
+      이광재교수 강좌 <span class="arrow">▼</span>
+    </button>
+    <ul id="list3" class="link-list">
+      <li><a href="https://www.youtube.com/watch?v=영상ID" target="_blank">🎥 강의 리스트 준비중</a></li>
+    </ul>
+  </div>
+
+  <div class="professor-item">
+    <button type="button" class="lecture-btn" onclick="toggleList('list4', this)">
+      김낙신교수 강좌 <span class="arrow">▼</span>
+    </button>
+    <ul id="list4" class="link-list">
+      <li><a href="https://www.youtube.com/watch?v=영상ID" target="_blank">🎥 강의 리스트 준비중</a></li>
+    </ul>
+  </div>
 </div>
 
 <style>
-  /* 버튼 스타일 (이미지의 회색 박스 느낌 유지) */
+  /* 전체 그리드 설정 (가로 4개 배치) */
+  .professor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 같은 크기 칸 */
+    gap: 15px; /* 칸 사이 간격 */
+    margin-top: 20px;
+  }
+
+  /* 버튼 디자인 (이미지 스타일 복제) */
   .lecture-btn {
     width: 100%;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
-    border-left: 4px solid #0056b3; /* 왼쪽 포인트 선 */
-    padding: 15px;
+    border-left: 4px solid #0056b3;
+    padding: 15px 10px;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
   }
 
-  .lecture-btn:hover {
-    background-color: #e9ecef;
-  }
-
-  /* 리스트 스타일 */
+  /* 리스트 숨기기 디자인 */
   .link-list {
+    display: none;
     list-style: none;
     padding: 0;
-    margin: 10px 0 0 0;
+    margin: 5px 0 0 0;
     border: 1px solid #dee2e6;
-    background-color: #ffffff;
-    border-radius: 5px;
+    background-color: #fff;
   }
 
-  .link-list li {
+  .link-list li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #444;
+    font-size: 13px;
     border-bottom: 1px solid #eee;
   }
 
-  .link-list li:last-child {
-    border-bottom: none;
-  }
-
-  .link-list a {
-    display: block;
-    padding: 12px 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    transition: 0.2s;
-  }
-
-  .link-list a:hover {
+  .link-list li a:hover {
     background-color: #f1f3f5;
     color: #0056b3;
-    padding-left: 20px; /* 호버 시 살짝 움직이는 효과 */
+  }
+
+  /* 화면이 작을 때 (모바일 대응) */
+  @media (max-width: 768px) {
+    .professor-grid {
+      grid-template-columns: repeat(2, 1fr); /* 모바일에선 2개씩 */
+    }
   }
 </style>
 
 <script>
-  // 리스트를 보였다 안보였다 하게 만드는 기능
-  function toggleList() {
-    var list = document.getElementById("lecture-list");
-    var arrow = document.getElementById("arrow");
+  function toggleList(listId, btn) {
+    var list = document.getElementById(listId);
+    var arrow = btn.querySelector('.arrow');
     
-    if (list.style.display === "none") {
-      list.style.display = "block";
-      arrow.innerHTML = "▲";
-    } else {
+    if (list.style.display === "block") {
       list.style.display = "none";
       arrow.innerHTML = "▼";
+    } else {
+      list.style.display = "block";
+      arrow.innerHTML = "▲";
     }
   }
 </script>
