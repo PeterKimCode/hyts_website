@@ -1880,10 +1880,12 @@ a {
     }
     .nav-dropdown-menu {
         top: calc(100% + 8px);
-        left: 50%;
+        left: 0;
+        right: auto;
+        transform: none;
         min-width: 160px;
         width: max-content;
-        max-width: calc(100vw - 40px);
+        max-width: calc(100vw - 32px);
     }
     .icon-box {
         width: 42px;
