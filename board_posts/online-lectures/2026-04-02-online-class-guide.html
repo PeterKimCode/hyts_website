@@ -76,70 +76,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
 
   <style>
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-    .serif-title {
-      font-family: 'Playfair Display', serif;
-    }
-
-    /* 3D 책 시각화 효과 */
-    .book-card {
-      perspective: 1000px;
-      transition: all 0.3s ease;
-    }
+    body { font-family: 'Noto Sans KR', sans-serif; }
+    .book-card { perspective: 1000px; transition: all 0.3s ease; }
     .book-inner {
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       transform-style: preserve-3d;
       border-radius: 4px 12px 12px 4px;
-      box-shadow: -5px 8px 15px rgba(0, 0, 0, 0.15), 
-                  inset 4px 0 6px rgba(255, 255, 255, 0.3);
+      box-shadow: -5px 8px 15px rgba(0, 0, 0, 0.15), inset 4px 0 6px rgba(255, 255, 255, 0.3);
     }
     .book-card:hover .book-inner {
       transform: translateY(-8px) rotateY(-8px);
-      box-shadow: -10px 15px 25px rgba(0, 0, 0, 0.25), 
-                  inset 4px 0 8px rgba(255, 255, 255, 0.4);
+      box-shadow: -10px 15px 25px rgba(0, 0, 0, 0.25), inset 4px 0 8px rgba(255, 255, 255, 0.4);
     }
-    /* 책 옆면 바인딩 선 효과 */
     .book-spine-line {
-      position: absolute;
-      left: 10px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: rgba(0, 0, 0, 0.15);
-      box-shadow: 1px 0 1px rgba(255, 255, 255, 0.2);
+      position: absolute; left: 10px; top: 0; bottom: 0; width: 2px;
+      background: rgba(0, 0, 0, 0.15); box-shadow: 1px 0 1px rgba(255, 255, 255, 0.2);
     }
-
-    /* 원목 선반 받침대 효과 */
     .shelf-wood {
       background: linear-gradient(180deg, #8B5A2B 0%, #5C3A17 100%);
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.2);
     }
-
-    /* 모달 애니메이션 */
-    .modal-backdrop {
-      background-color: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-    }
-    .modal-content {
-      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    .modal-backdrop { background-color: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); }
+    .modal-content { animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes modalSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- 헤더 / 네비게이션 -->
+  <!-- 헤더 -->
   <header class="bg-slate-900 text-white sticky top-0 z-30 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
@@ -151,102 +118,66 @@
           <p class="text-xs text-slate-400">Theological Digital Library</p>
         </div>
       </div>
-      
       <div class="flex items-center space-x-4 text-sm font-medium text-slate-300">
         <span class="inline-block"><i class="fa-solid fa-layer-group mr-1.5 text-indigo-400"></i>총 <strong id="total-books-count" class="text-white">0</strong>권</span>
       </div>
     </div>
   </header>
 
-  <!-- 메인 콘텐츠 영역 -->
+  <!-- 메인 영역 -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    
-    <!-- 타이틀 & 검색/필터 바 -->
     <section class="mb-8">
       <div class="text-center max-w-2xl mx-auto mb-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">총회신학 학술 연구원 도서관</h2>
         <p class="text-slate-600 text-sm sm:text-base">원하는 교재를 검색하거나 카테고리별로 서가에서 확인해보세요.</p>
       </div>
 
-      <!-- 검색창 및 카테고리 태그 -->
       <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200/80 mb-6">
         <div class="flex flex-col md:flex-row gap-4 mb-4">
-          <!-- 검색 입력 -->
           <div class="relative flex-grow">
             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-            <input 
-              type="text" 
-              id="search-input"
-              placeholder="교재명, 저자, 판매처 등으로 검색하세요..." 
-              class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm"
-            />
+            <input type="text" id="search-input" placeholder="교재명, 저자, 판매처 등으로 검색하세요..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm" />
           </div>
         </div>
 
-        <!-- 카테고리 필터 버튼 -->
         <div class="flex items-center gap-2 overflow-x-auto pb-1 text-sm scrollbar-none" id="category-filters">
-          <button data-category="all" class="filter-btn active px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium shadow-sm transition-all whitespace-nowrap">
-            전체
-          </button>
-          <button data-category="성서학" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            성서학 (구약/신약)
-          </button>
-          <button data-category="조직/역사" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            조직/역사신학
-          </button>
-          <button data-category="실천/목회" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            실천/목회신학
-          </button>
-          <button data-category="선교/상담" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            선교/상담/음악
-          </button>
+          <button data-category="all" class="filter-btn active px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium shadow-sm transition-all whitespace-nowrap">전체</button>
+          <button data-category="성서학" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">성서학 (구약/신약)</button>
+          <button data-category="조직/역사" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">조직/역사신학</button>
+          <button data-category="실천/목회" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">실천/목회신학</button>
+          <button data-category="선교/상담" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">선교/상담/음악</button>
         </div>
       </div>
     </section>
 
-    <!-- 도서 서가 그리드 영역 -->
+    <!-- 서가 그리드 -->
     <section class="relative">
-      <!-- 검색 결과 없음 메시지 -->
       <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
         <i class="fa-solid fa-book-open text-4xl text-slate-300 mb-3"></i>
         <h3 class="text-lg font-bold text-slate-700">검색 결과가 없습니다</h3>
-        <p class="text-slate-500 text-sm mt-1">다른 검색어를 입력해 보세요.</p>
       </div>
-
-      <!-- 서가 그리드 -->
-      <div id="bookshelf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 pb-12">
-        <!-- JavaScript를 통해 Dynamic 랜더링 -->
-      </div>
+      <div id="bookshelf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 pb-12"></div>
     </section>
-
   </main>
 
-  <!-- 도서 상세 모달 (Modal Window) -->
+  <!-- 상세 모달 -->
   <div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
     <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden modal-content relative flex flex-col md:flex-row max-h-[90vh]">
-      
-      <!-- 모달 닫기 버튼 -->
-      <button id="modal-close-btn" class="absolute top-4 right-4 z-10 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
+      <button id="modal-close-btn" class="absolute top-4 right-4 z-10 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
-      <!-- 왼쪽: 책 커버 이미지 영역 -->
       <div id="modal-cover-bg" class="w-full md:w-5/12 p-8 flex items-center justify-center relative overflow-hidden">
         <div class="relative z-10 w-36 aspect-[3/4] rounded-r-lg shadow-2xl overflow-hidden border-l-4 border-black/20">
           <img id="modal-cover-img" src="" alt="Book Cover" class="w-full h-full object-cover" />
         </div>
       </div>
 
-      <!-- 오른쪽: 상세 정보 및 서점 연결 버튼 -->
       <div class="w-full md:w-7/12 p-6 flex flex-col justify-between overflow-y-auto">
         <div>
           <div class="flex items-center space-x-2 mb-2">
-            <span id="modal-category" class="px-2.5 py-1 text-xs font-semibold bg-indigo-100 text-indigo-700 rounded-full">
-              카테고리
-            </span>
-            <span id="modal-store-tag" class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-600 rounded-full">
-              판매처
-            </span>
+            <span id="modal-category" class="px-2.5 py-1 text-xs font-semibold bg-indigo-100 text-indigo-700 rounded-full">카테고리</span>
+            <span id="modal-store-tag" class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-600 rounded-full">판매처</span>
           </div>
 
           <h3 id="modal-title" class="text-xl font-bold text-slate-900 mb-2 leading-snug">도서 제목</h3>
@@ -254,8 +185,8 @@
 
           <div class="border-t border-slate-100 pt-4 mb-4">
             <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">교재 안내</h4>
-            <p id="modal-description" class="text-sm text-slate-600 leading-relaxed">
-              본 교재는 신학 및 목회 실무를 위한 전문 서적으로, 하단 구매 버튼을 클릭하시면 해당 서점(쿠팡, 교보문고, 부크크)으로 연결됩니다.
+            <p class="text-sm text-slate-600 leading-relaxed">
+              본 교재는 신학 및 목회 실무를 위한 전문 서적으로, 하단 구매 버튼을 클릭하시면 해당 서점으로 연결됩니다.
             </p>
           </div>
         </div>
@@ -268,26 +199,20 @@
           </a>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- 푸터 -->
   <footer class="bg-slate-900 text-slate-400 py-8 mt-auto border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 text-center text-sm">
       <p>© 총회신학 학술연구원 디지털 도서관. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- JavaScript 동적 기능 구현 -->
   <script>
-    // =========================================================================
-    // 📚 도서 목록 데이터 (이곳에서 name, url, author를 자유롭게 수정하세요!)
-    // =========================================================================
     const rawBooks = [
-      { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056?itemId=28681500261&vendorItemId=95623142676&q=%EC%84%A0%EA%B5%90%ED%95%99+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=4418a56f26228432&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv6x7j1", author: "김낙신 저" },
-      { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133?itemId=28681545916&vendorItemId=95623186574&q=%EA%B9%80%EB%82%99%EC%8B%A0+%EC%8B%A0%EC%95%BD%EA%B0%9C%EB%A1%A0&searchId=6802d06014431066&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv72stn", author: "김낙신 저" },
-      { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788?itemId=28681569211&vendorItemId=95623209193&q=%EA%B5%AC%EC%95%BD%EA%B0%9C%EB%A1%A0+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=18a32de22143879&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv76490", author: "김낙신 저" },
+      { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056", author: "김낙신 저" },
+      { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133", author: "김낙신 저" },
+      { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788", author: "김낙신 저" },
       { id: 4, name: "실천신학", url: "https://product.kyobobook.co.kr/detail/S000220846094", author: "김낙신 저" },
       { id: 5, name: "공관복음", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5", author: "김낙신 저" },
       { id: 6, name: "기독교영성", url: "https://product.kyobobook.co.kr/detail/S000220931824", author: "김낙신 저" },
@@ -296,8 +221,8 @@
       { id: 9, name: "역사신학", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a", author: "김낙신 저" },
       { id: 10, name: "현대신학", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8", author: "김낙신 저" },
       { id: 11, name: "교회사", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c", author: "김낙신 저" },
-      { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471?itemId=28809412715&vendorItemId=95744507250&q=%EC%9D%B4%EC%98%81%ED%9D%AC+%EA%B8%B0%EB%8F%85%EA%B5%90%EC%83%81%EB%8B%B4%ED%95%99&searchId=ab4e6f9d2068936&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mt7583bn", author: "이영희 저" },
-      { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469", author: "백만숙 저" },
+      { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471", author: "이영희 저" },
+      { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469", author: "이영희 저" },
       { id: 14, name: "조직신학개론", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4", author: "김낙신 저" },
       { id: 15, name: "예배학개론", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f", author: "김낙신 저" },
       { id: 16, name: "설교학개론", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6", author: "김낙신 저" },
@@ -310,11 +235,9 @@
       { id: 23, name: "한국교회 역사와 영성", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25", author: "김낙신 저" },
       { id: 24, name: "장로교 행정론", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08", author: "김낙신 저" },
       { id: 25, name: "개혁주의 조직신학 입문 2", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144", author: "김낙신 저" },
-      { id: 26, name: "통합상담의기술", url: "https://product.kyobobook.co.kr/detail/S000220517101", author: "김혜지 저" }
-      { id: 26, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9638766519?itemId=28798315502&vendorItemId=95740967253&q=%EC%9D%B4%EC%98%81%ED%9D%AC&searchId=95906eb22119911&sourceType=search&itemsCount=60&searchRank=2&rank=2&traceId=mu6qn8ls", author: "이영희 저" }      
+      { id: 26, name: "통합상담의기술", url: "https://product.kyobobook.co.kr/detail/S000220517101", author: "이영희 저" }
     ];
 
-    // 색상 그래디언트 팔레트
     const colors = [
       "from-blue-700 to-indigo-900",
       "from-amber-700 to-stone-900",
@@ -325,16 +248,11 @@
       "from-sky-700 to-indigo-950"
     ];
 
-    // 도서 카테고리 매핑 및 서점 태그 지정
     const booksData = rawBooks.map((book, index) => {
       let category = "실천/목회";
-      if (["구약개론", "신약개론", "공관복음", "모세오경", "예언서주해", "신약성서학 개론"].some(k => book.name.includes(k))) {
-        category = "성서학";
-      } else if (["조직신학개론", "역사신학", "현대신학", "교회사", "장로교회의사상과 역사", "개혁신학", "한국교회 역사와 영성", "개혁주의 조직신학 입문 2"].some(k => book.name.includes(k))) {
-        category = "조직/역사";
-      } else if (["선교학", "기독교상담학", "목회상담학", "교회음악개론", "기독교영성", "통합상담의기술"].some(k => book.name.includes(k))) {
-        category = "선교/상담";
-      }
+      if (["구약개론", "신약개론", "공관복음", "모세오경", "예언서주해", "신약성서학 개론"].some(k => book.name.includes(k))) category = "성서학";
+      else if (["조직신학개론", "역사신학", "현대신학", "교회사", "장로교회의사상과 역사", "개혁신학", "한국교회 역사와 영성", "개혁주의 조직신학 입문 2"].some(k => book.name.includes(k))) category = "조직/역사";
+      else if (["선교학", "기독교상담학", "목회상담학", "교회음악개론", "기독교영성", "통합상담의기술"].some(k => book.name.includes(k))) category = "선교/상담";
 
       let store = "부크크";
       if (book.url.includes("coupang")) store = "쿠팡";
@@ -345,42 +263,42 @@
         title: book.name,
         category: category,
         store: store,
-        author: book.author || "김낙신 저", // 설정된 저자 이름 사용
+        author: book.author,
         coverColor: colors[index % colors.length],
         icon: "fa-book"
       };
     });
 
-    // DOM 요소 선택
-    const bookshelfGrid = document.getElementById('bookshelf-grid');
-    const searchInput = document.getElementById('search-input');
-    const categoryFilters = document.getElementById('category-filters');
-    const noResults = document.getElementById('no-results');
-    const totalBooksCount = document.getElementById('total-books-count');
-
-    // 모달 관련 DOM
-    const bookModal = document.getElementById('book-modal');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-    const modalCoverBg = document.getElementById('modal-cover-bg');
-    const modalCoverImg = document.getElementById('modal-cover-img');
-    const modalCategory = document.getElementById('modal-category');
-    const modalStoreTag = document.getElementById('modal-store-tag');
-    const modalTitle = document.getElementById('modal-title');
-    const modalAuthor = document.getElementById('modal-author');
-    const modalBuyBtn = document.getElementById('modal-buy-btn');
+    let bookshelfGrid, searchInput, categoryFilters, noResults, totalBooksCount;
+    let bookModal, modalCloseBtn, modalCoverBg, modalCoverImg, modalCategory, modalStoreTag, modalTitle, modalAuthor, modalBuyBtn;
 
     let currentCategory = 'all';
     let currentSearchTerm = '';
 
-    // 초기화
     function init() {
-      totalBooksCount.textContent = booksData.length;
+      bookshelfGrid = document.getElementById('bookshelf-grid');
+      searchInput = document.getElementById('search-input');
+      categoryFilters = document.getElementById('category-filters');
+      noResults = document.getElementById('no-results');
+      totalBooksCount = document.getElementById('total-books-count');
+
+      bookModal = document.getElementById('book-modal');
+      modalCloseBtn = document.getElementById('modal-close-btn');
+      modalCoverBg = document.getElementById('modal-cover-bg');
+      modalCoverImg = document.getElementById('modal-cover-img');
+      modalCategory = document.getElementById('modal-category');
+      modalStoreTag = document.getElementById('modal-store-tag');
+      modalTitle = document.getElementById('modal-title');
+      modalAuthor = document.getElementById('modal-author');
+      modalBuyBtn = document.getElementById('modal-buy-btn');
+
+      if (totalBooksCount) totalBooksCount.textContent = booksData.length;
       renderBooks();
       setupEventListeners();
     }
 
-    // 도서 목록 랜더링
     function renderBooks() {
+      if (!bookshelfGrid) return;
       const filteredBooks = booksData.filter(book => {
         const matchesCategory = currentCategory === 'all' || book.category === currentCategory;
         const matchesSearch = book.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
@@ -392,17 +310,15 @@
       bookshelfGrid.innerHTML = '';
 
       if (filteredBooks.length === 0) {
-        noResults.classList.remove('hidden');
+        if (noResults) noResults.classList.remove('hidden');
       } else {
-        noResults.classList.add('hidden');
+        if (noResults) noResults.classList.add('hidden');
         filteredBooks.forEach(book => {
-          const bookElement = createBookCard(book);
-          bookshelfGrid.appendChild(bookElement);
+          bookshelfGrid.appendChild(createBookCard(book));
         });
       }
     }
 
-    // 개별 도서 카드 HTML 생성
     function createBookCard(book) {
       const card = document.createElement('div');
       card.className = 'book-card cursor-pointer group';
@@ -410,46 +326,31 @@
 
       card.innerHTML = `
         <div class="relative mb-3">
-          <!-- 3D 책 커버 -->
           <div class="book-inner aspect-[3/4] w-full bg-gradient-to-br ${book.coverColor} p-3.5 flex flex-col justify-between text-white relative overflow-hidden">
             <div class="book-spine-line"></div>
-            
             <div class="flex justify-between items-start pl-2 z-10">
-              <span class="text-[10px] font-semibold uppercase tracking-wider opacity-90 bg-black/30 px-1.5 py-0.5 rounded">
-                ${book.store}
-              </span>
+              <span class="text-[10px] font-semibold uppercase tracking-wider opacity-90 bg-black/30 px-1.5 py-0.5 rounded">${book.store}</span>
               <i class="fa-solid ${book.icon} text-xs opacity-70"></i>
             </div>
-
             <div class="pl-2 my-auto z-10">
-              <h3 class="font-bold text-sm leading-tight drop-shadow-md line-clamp-2 mb-1">
-                ${book.title}
-              </h3>
+              <h3 class="font-bold text-sm leading-tight drop-shadow-md line-clamp-2 mb-1">${book.title}</h3>
               <p class="text-[10px] opacity-80 font-light truncate">${book.author}</p>
             </div>
-
             <div class="pl-2 flex justify-between items-end text-[10px] opacity-80 z-10">
               <span class="text-[9px] bg-white/20 px-1 rounded">${book.category}</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:scale-125 transition-transform"></i>
             </div>
           </div>
-
-          <!-- 원목 선반 받침대 -->
           <div class="shelf-wood h-3 w-[106%] -ml-[3%] rounded-sm mt-1"></div>
         </div>
-
         <div class="text-center px-1">
-          <h4 class="font-medium text-xs text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
-            ${book.title}
-          </h4>
+          <h4 class="font-medium text-xs text-slate-800 truncate group-hover:text-indigo-600 transition-colors">${book.title}</h4>
           <p class="text-[11px] text-slate-400 truncate">${book.author}</p>
         </div>
       `;
-
       return card;
     }
 
-    // 모달 열기
     function openModal(book) {
       modalCategory.textContent = book.category;
       modalStoreTag.textContent = book.store;
@@ -457,23 +358,18 @@
       modalAuthor.textContent = `저자: ${book.author}`;
       modalBuyBtn.href = book.url;
 
-      // 배경 색상
       modalCoverBg.className = `w-full md:w-5/12 p-8 flex items-center justify-center bg-gradient-to-br ${book.coverColor} relative overflow-hidden`;
-      
-      // Canvas 동적 표지 생성
+
       const canvas = document.createElement('canvas');
       canvas.width = 300;
       canvas.height = 400;
       const ctx = canvas.getContext('2d');
-      
       ctx.fillStyle = '#0f172a';
       ctx.fillRect(0, 0, 300, 400);
-      
       ctx.fillStyle = '#ffffff';
       ctx.font = 'bold 22px "Noto Sans KR"';
       ctx.textAlign = 'center';
-      
-      // 제목 줄바꿈
+
       const words = book.title.split(' ');
       let line = '';
       let y = 180;
@@ -494,52 +390,60 @@
       ctx.fillText(book.author, 150, y + 40);
 
       modalCoverImg.src = canvas.toDataURL();
-
       bookModal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
 
-    // 모달 닫기
     function closeModal() {
       bookModal.classList.add('hidden');
       document.body.style.overflow = '';
     }
 
-    // 이벤트 리스너
     function setupEventListeners() {
-      searchInput.addEventListener('input', (e) => {
-        currentSearchTerm = e.target.value.trim();
-        renderBooks();
-      });
-
-      categoryFilters.addEventListener('click', (e) => {
-        const btn = e.target.closest('.filter-btn');
-        if (!btn) return;
-
-        document.querySelectorAll('.filter-btn').forEach(b => {
-          b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
-          b.classList.add('bg-slate-100', 'text-slate-600');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearchTerm = e.target.value.trim();
+          renderBooks();
         });
+      }
 
-        btn.classList.remove('bg-slate-100', 'text-slate-600');
-        btn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+      if (categoryFilters) {
+        categoryFilters.addEventListener('click', (e) => {
+          const btn = e.target.closest('.filter-btn');
+          if (!btn) return;
 
-        currentCategory = btn.getAttribute('data-category');
-        renderBooks();
-      });
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+            b.classList.add('bg-slate-100', 'text-slate-600');
+          });
 
-      modalCloseBtn.addEventListener('click', closeModal);
-      bookModal.addEventListener('click', (e) => {
-        if (e.target === bookModal) closeModal();
-      });
+          btn.classList.remove('bg-slate-100', 'text-slate-600');
+          btn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+
+          currentCategory = btn.getAttribute('data-category');
+          renderBooks();
+        });
+      }
+
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+      if (bookModal) {
+        bookModal.addEventListener('click', (e) => {
+          if (e.target === bookModal) closeModal();
+        });
+      }
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !bookModal.classList.contains('hidden')) {
+        if (e.key === 'Escape' && bookModal && !bookModal.classList.contains('hidden')) {
           closeModal();
         }
       });
     }
 
-    document.addEventListener('DOMContentLoaded', init);
+    // 문서 로드 완료 시 즉시 실행 및 지연 실행 모두 보장
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
 </html>
