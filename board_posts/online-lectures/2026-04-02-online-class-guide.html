@@ -67,7 +67,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>온라인 전자 도서관 & 서가</title>
+  <title>총회신학 학술연구원 디지털 도서관</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -250,7 +250,7 @@
           </div>
 
           <h3 id="modal-title" class="text-xl font-bold text-slate-900 mb-2 leading-snug">도서 제목</h3>
-          <p id="modal-author" class="text-sm text-slate-600 font-medium mb-4">저자: 김낙신 / 신학 연구진</p>
+          <p id="modal-author" class="text-sm text-slate-600 font-medium mb-4">저자: 저자명</p>
 
           <div class="border-t border-slate-100 pt-4 mb-4">
             <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">교재 안내</h4>
@@ -281,36 +281,37 @@
 
   <!-- JavaScript 동적 기능 구현 -->
   <script>
-    // 입력받은 25권 도서 데이터 세팅
+    // =========================================================================
+    // 📚 도서 목록 데이터 (이곳에서 name, url, author를 자유롭게 수정하세요!)
+    // =========================================================================
     const rawBooks = [
-      { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056?itemId=28681500261&vendorItemId=95623142676&q=%EC%84%A0%EA%B5%90%ED%95%99+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=4418a56f26228432&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv6x7j1" },
-      { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133?itemId=28681545916&vendorItemId=95623186574&q=%EA%B9%80%EB%82%99%EC%8B%A0+%EC%8B%A0%EC%95%BD%EA%B0%9C%EB%A1%A0&searchId=6802d06014431066&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv72stn" },
-      { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788?itemId=28681569211&vendorItemId=95623209193&q=%EA%B5%AC%EC%95%BD%EA%B0%9C%EB%A1%A0+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=18a32de22143879&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv76490" },
-      { id: 4, name: "실천신학", url: "https://product.kyobobook.co.kr/detail/S000220846094" },
-      { id: 5, name: "공관복음", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5" },
-      { id: 6, name: "기독교영성", url: "https://product.kyobobook.co.kr/detail/S000220931824" },
-      { id: 7, name: "목회학개론", url: "https://bookk.co.kr/bookStore/6a8455692286b9745a62407f" },
-      { id: 8, name: "모세오경", url: "https://bookk.co.kr/bookStore/6a87c7e3dcad018dec3c5075" },
-      { id: 9, name: "역사신학", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a" },
-      { id: 10, name: "현대신학", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8" },
-      { id: 11, name: "교회사", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c" },
-      { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471?itemId=28809412715&vendorItemId=95744507250&q=%EC%9D%B4%EC%98%81%ED%9D%AC+%EA%B8%B0%EB%8F%85%EA%B5%90%EC%83%81%EB%8B%B4%ED%95%99&searchId=ab4e6f9d2068936&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mt7583bn" },
-      { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469" },
-      { id: 14, name: "조직신학개론", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4" },
-      { id: 15, name: "예배학개론", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f" },
-      { id: 16, name: "설교학개론", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6" },
-      { id: 17, name: "교회음악개론", url: "https://bookk.co.kr/bookStore/6a8e3d72488b034a8ec8b14e" },
-      { id: 18, name: "장로교회의사상과 역사", url: "https://bookk.co.kr/bookStore/6a9deed3080f8576245bf820" },
-      { id: 19, name: "예언서주해", url: "https://bookk.co.kr/bookStore/6a9deb2332f0a0a48d1c4bc4" },
-      { id: 20, name: "신약성서학 개론", url: "https://bookk.co.kr/bookStore/6a8e3ad1dfbe6133a1e01543" },
-      { id: 21, name: "목회학", url: "https://bookk.co.kr/bookStore/6aa0b24d353fa6864af39076" },
-      { id: 22, name: "개혁신학", url: "https://bookk.co.kr/bookStore/6aa1f034b5fa6270efc89955" },
-      { id: 23, name: "한국교회 역사와 영성", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25" },
-      { id: 24, name: "장로교 행정론", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08" },
-      { id: 25, name: "개혁주의 조직신학 입문 2", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144" }
-      { id: 25, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469" }
-      { id: 25, name: "통합상담의기술", url: "https://product.kyobobook.co.kr/detail/S000220517101" }
-      { id: 25, name: "교회음악개론", url: "https://bookk.co.kr/search?keywords=%EC%9D%B4%EC%9E%90%EA%B2%BD" }
+      { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056?itemId=28681500261&vendorItemId=95623142676&q=%EC%84%A0%EA%B5%90%ED%95%99+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=4418a56f26228432&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv6x7j1", author: "김낙신 저" },
+      { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133?itemId=28681545916&vendorItemId=95623186574&q=%EA%B9%80%EB%82%99%EC%8B%A0+%EC%8B%A0%EC%95%BD%EA%B0%9C%EB%A1%A0&searchId=6802d06014431066&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv72stn", author: "김낙신 저" },
+      { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788?itemId=28681569211&vendorItemId=95623209193&q=%EA%B5%AC%EC%95%BD%EA%B0%9C%EB%A1%A0+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=18a32de22143879&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv76490", author: "김낙신 저" },
+      { id: 4, name: "실천신학", url: "https://product.kyobobook.co.kr/detail/S000220846094", author: "김낙신 저" },
+      { id: 5, name: "공관복음", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5", author: "김낙신 저" },
+      { id: 6, name: "기독교영성", url: "https://product.kyobobook.co.kr/detail/S000220931824", author: "김낙신 저" },
+      { id: 7, name: "목회학개론", url: "https://bookk.co.kr/bookStore/6a8455692286b9745a62407f", author: "김낙신 저" },
+      { id: 8, name: "모세오경", url: "https://bookk.co.kr/bookStore/6a87c7e3dcad018dec3c5075", author: "김낙신 저" },
+      { id: 9, name: "역사신학", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a", author: "김낙신 저" },
+      { id: 10, name: "현대신학", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8", author: "김낙신 저" },
+      { id: 11, name: "교회사", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c", author: "김낙신 저" },
+      { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471?itemId=28809412715&vendorItemId=95744507250&q=%EC%9D%B4%EC%98%81%ED%9D%AC+%EA%B8%B0%EB%8F%85%EA%B5%90%EC%83%81%EB%8B%B4%ED%95%99&searchId=ab4e6f9d2068936&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mt7583bn", author: "이영희 저" },
+      { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469", author: "백만숙 저" },
+      { id: 14, name: "조직신학개론", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4", author: "김낙신 저" },
+      { id: 15, name: "예배학개론", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f", author: "김낙신 저" },
+      { id: 16, name: "설교학개론", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6", author: "김낙신 저" },
+      { id: 17, name: "교회음악개론", url: "https://bookk.co.kr/bookStore/6a8e3d72488b034a8ec8b14e", author: "이자경 저" },
+      { id: 18, name: "장로교회의사상과 역사", url: "https://bookk.co.kr/bookStore/6a9deed3080f8576245bf820", author: "김낙신 저" },
+      { id: 19, name: "예언서주해", url: "https://bookk.co.kr/bookStore/6a9deb2332f0a0a48d1c4bc4", author: "김낙신 저" },
+      { id: 20, name: "신약성서학 개론", url: "https://bookk.co.kr/bookStore/6a8e3ad1dfbe6133a1e01543", author: "김낙신 저" },
+      { id: 21, name: "목회학", url: "https://bookk.co.kr/bookStore/6aa0b24d353fa6864af39076", author: "김낙신 저" },
+      { id: 22, name: "개혁신학", url: "https://bookk.co.kr/bookStore/6aa1f034b5fa6270efc89955", author: "김낙신 저" },
+      { id: 23, name: "한국교회 역사와 영성", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25", author: "김낙신 저" },
+      { id: 24, name: "장로교 행정론", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08", author: "김낙신 저" },
+      { id: 25, name: "개혁주의 조직신학 입문 2", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144", author: "김낙신 저" },
+      { id: 26, name: "통합상담의기술", url: "https://product.kyobobook.co.kr/detail/S000220517101", author: "김혜지 저" }
+      { id: 26, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9638766519?itemId=28798315502&vendorItemId=95740967253&q=%EC%9D%B4%EC%98%81%ED%9D%AC&searchId=95906eb22119911&sourceType=search&itemsCount=60&searchRank=2&rank=2&traceId=mu6qn8ls", author: "이영희 저" }      
     ];
 
     // 색상 그래디언트 팔레트
@@ -331,7 +332,7 @@
         category = "성서학";
       } else if (["조직신학개론", "역사신학", "현대신학", "교회사", "장로교회의사상과 역사", "개혁신학", "한국교회 역사와 영성", "개혁주의 조직신학 입문 2"].some(k => book.name.includes(k))) {
         category = "조직/역사";
-      } else if (["선교학", "기독교상담학", "목회상담학", "교회음악개론", "기독교영성"].some(k => book.name.includes(k))) {
+      } else if (["선교학", "기독교상담학", "목회상담학", "교회음악개론", "기독교영성", "통합상담의기술"].some(k => book.name.includes(k))) {
         category = "선교/상담";
       }
 
@@ -344,7 +345,7 @@
         title: book.name,
         category: category,
         store: store,
-        author: (book.id === 12) ? "이영희 저" : "김낙신 저",
+        author: book.author || "김낙신 저", // 설정된 저자 이름 사용
         coverColor: colors[index % colors.length],
         icon: "fa-book"
       };
@@ -441,7 +442,7 @@
           <h4 class="font-medium text-xs text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
             ${book.title}
           </h4>
-          <p class="text-[11px] text-slate-400 truncate">${book.store}</p>
+          <p class="text-[11px] text-slate-400 truncate">${book.author}</p>
         </div>
       `;
 
@@ -542,7 +543,6 @@
   </script>
 </body>
 </html>
-
 
       
       </div>
