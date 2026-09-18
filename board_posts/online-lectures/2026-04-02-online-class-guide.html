@@ -3,312 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>교과목 다운로드 | 총회신학학술연구원</title>
-
-    <!-- 폰트 및 아이콘 CDN -->
+    <title>조직도 | 총회신학학술연구원</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <style>
-        /* 기본 리셋 & Pretendard 폰트 설정 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
-            color: #333;
-            background-color: #fcfbf9;
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        ul, li {
-            list-style: none;
-        }
-        button, input {
-            font-family: inherit;
-            border: none;
-            outline: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        /* 1. 상단 헤더 (Top Nav) */
-        .top-nav {
-            background-color: #ffffff;
-            border-bottom: 1px solid #f0f0f0;
-            padding: 16px 0;
-        }
-        .top-nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .main-logo-image {
-            width: 44px;
-            height: 44px;
-            object-fit: contain;
-        }
-        .logo-text h1 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a2b4c;
-            line-height: 1.2;
-        }
-        .logo-text span {
-            font-size: 11px;
-            color: #888888;
-            display: block;
-            margin-top: 2px;
-        }
-
-        .top-links-area {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-        .top-links {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 13px;
-            color: #666666;
-            font-weight: 500;
-        }
-        .top-links a:hover {
-            color: #1a2b4c;
-        }
-        .lang-selector {
-            color: #aaa;
-            padding-left: 8px;
-            border-left: 1px solid #eee;
-            cursor: pointer;
-        }
-
-        /* 검색창 */
-        .search-wrap {
-            display: flex;
-            align-items: center;
-            background-color: #f5f6f8;
-            border-radius: 20px;
-            padding: 6px 14px;
-            width: 220px;
-        }
-        .search-wrap input {
-            background: transparent;
-            font-size: 12px;
-            color: #333;
-            width: 100%;
-        }
-        .search-wrap input::placeholder {
-            color: #aaa;
-        }
-        .search-wrap button {
-            background: transparent;
-            cursor: pointer;
-            color: #666;
-            display: flex;
-            align-items: center;
-            font-size: 15px;
-        }
-
-        /* 2. 메인 카테고리 내비게이션 (Main Category Nav) */
-        .main-category-nav {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .nav-icons-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 18px 0;
-        }
-        .nav-item {
-            position: relative;
-        }
-        .nav-icon-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-        .nav-icon-link .icon-box {
-            font-size: 26px;
-            color: #4a5568;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .nav-icon-link span {
-            font-size: 13px;
-            font-weight: 600;
-            color: #2d3748;
-        }
-        .nav-icon-link:hover .icon-box,
-        .nav-icon-link:hover span {
-            color: #1a2b4c;
-        }
-
-        /* 드롭다운 (HTML details/summary 지원) */
-        details.nav-dropdown summary {
-            list-style: none;
-        }
-        details.nav-dropdown summary::-webkit-details-marker {
-            display: none;
-        }
-        .nav-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 10px;
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            min-width: 150px;
-            padding: 8px 0;
-            z-index: 100;
-        }
-        .nav-dropdown-menu a {
-            display: block;
-            padding: 8px 16px;
-            font-size: 12px;
-            color: #4a5568;
-            white-space: nowrap;
-            transition: background 0.2s;
-        }
-        .nav-dropdown-menu a:hover {
-            background-color: #f7fafc;
-            color: #1a2b4c;
-            font-weight: 600;
-        }
-
-        /* 3. 본문 컨텐츠 영역 */
-        main {
-            flex: 1;
-            padding: 40px 0;
-        }
-
-        /* 4. 푸터 영역 (Modern Footer) */
-        .modern-footer {
-            background-color: #111827;
-            color: #9ca3af;
-            padding: 50px 0 20px 0;
-            margin-top: auto;
-            font-size: 13px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1.2fr;
-            gap: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #1f2937;
-        }
-        .f-col h6 {
-            color: #6b7280;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-        .f-brand {
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .f-col p {
-            line-height: 1.6;
-            margin-bottom: 4px;
-        }
-        .f-col strong {
-            color: #d1d5db;
-        }
-        
-        /* Quick Links */
-        .f-links ul {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .f-links a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #d1d5db;
-            transition: color 0.2s;
-        }
-        .f-links a:hover {
-            color: #ffffff;
-        }
-
-        /* Connect Button */
-        .f-connect p {
-            margin-bottom: 16px;
-        }
-        .btn-primary {
-            display: inline-block;
-            background-color: #2563eb;
-            color: #ffffff !important;
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 12px;
-            transition: background-color 0.2s;
-        }
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Footer Bottom */
-        .footer-bottom {
-            padding-top: 20px;
-            text-align: center;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .nav-icons-wrap {
-                overflow-x: auto;
-                justify-content: flex-start;
-                gap: 20px;
-            }
-        }
-    </style>
+    <link rel="icon" type="image/png" href="assets/images/site-logo.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <!-- 1. Header Navigation -->
     <header class="top-nav">
-        <div class="container top-nav-inner">
-            <a class="logo-area" href="../../index.html">
-                <img src="../../assets/images/site-logo.png" alt="학교 로고" class="main-logo-image" onerror="this.src='https://via.placeholder.com/44?text=LOGO'">
+        <div class="container top-nav-inner flex-between">
+            <a class="logo-area" href="index.html">
+                <img src="assets/images/site-logo.png" alt="학교 로고" class="main-logo-image">
                 <div class="logo-text">
                     <h1>총회신학학술연구원</h1>
                     <span>대한예수교장로회(한영)총회신학학술연구원</span>
@@ -316,21 +21,15 @@
             </a>
             <div class="top-links-area">
                 <nav class="top-links">
-                    <a href="../../index.html">Home</a>
-                    <a href="../../sitemap.html">사이트맵</a>
-                    <span class="lang-selector">ENG</span>
+                    <a href="index.html">Home</a>
+                    <a href="sitemap.html">사이트맵</a>
+                    <button type="button" class="lang-selector" data-lang-toggle aria-label="영어 번역 전환">ENG</button>
                 </nav>
-                <div class="search-wrap">
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button type="button" aria-label="검색">
-                        <i class="ph-light ph-magnifying-glass"></i>
-                    </button>
-                </div>
             </div>
         </div>
+        <div id="google_translate_element" class="translate-widget" aria-hidden="true"></div>
     </header>
 
-    <!-- 2. Main Category Navigation -->
     <nav class="main-category-nav">
         <div class="container nav-icons-wrap">
             <details class="nav-item nav-dropdown">
@@ -349,59 +48,463 @@
                     <a href="intro_school.html">인준신학교</a>
                 </div>
             </details>
-
-            <a href="../../admissions_guideline.html" class="nav-icon-link">
+            <a href="admissions_guideline.html" class="nav-icon-link">
                 <div class="icon-box"><i class="ph-light ph-graduation-cap"></i></div>
                 <span>입학안내</span>
             </a>
-            <a href="../../degree_bachelor.html" class="nav-icon-link">
+            <a href="degree_bachelor.html" class="nav-icon-link">
                 <div class="icon-box"><i class="ph-light ph-student"></i></div>
                 <span>학과소개</span>
             </a>
-            <a href="../../academic_info.html" class="nav-icon-link">
+            <a href="academic_info.html" class="nav-icon-link">
                 <div class="icon-box"><i class="ph-light ph-calendar-blank"></i></div>
                 <span>학사안내</span>
             </a>
-            <a href="../../campus_life.html" class="nav-icon-link">
+            <a href="campus_life.html" class="nav-icon-link">
                 <div class="icon-box"><i class="ph-light ph-users"></i></div>
                 <span>대학생활</span>
             </a>
-            <a href="../../research_intro.html" class="nav-icon-link">
+            <a href="research_intro.html" class="nav-icon-link">
                 <div class="icon-box"><i class="ph-light ph-microscope"></i></div>
                 <span>학술연구</span>
             </a>
-            <a href="../../online_service.html" class="nav-icon-link">
+            <a href="online_service.html" class="nav-icon-link">
                 <div class="icon-box"><i class="ph-light ph-desktop"></i></div>
                 <span>온라인서비스</span>
             </a>
-        </div> 
+        </div>
     </nav>
 
-    <!-- 3. Main Contents Placeholder -->
-    <main class="container">
-        <!-- 본문 내용이 들어갈 위치입니다 -->
-    </main>
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; }
+    .book-card { perspective: 1000px; transition: all 0.3s ease; }
+    .book-inner {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+      border-radius: 4px 12px 12px 4px;
+      box-shadow: -5px 8px 15px rgba(0, 0, 0, 0.15), inset 4px 0 6px rgba(255, 255, 255, 0.3);
+    }
+    .book-card:hover .book-inner {
+      transform: translateY(-8px) rotateY(-8px);
+      box-shadow: -10px 15px 25px rgba(0, 0, 0, 0.25), inset 4px 0 8px rgba(255, 255, 255, 0.4);
+    }
+    .book-spine-line {
+      position: absolute; left: 10px; top: 0; bottom: 0; width: 2px;
+      background: rgba(0, 0, 0, 0.15); box-shadow: 1px 0 1px rgba(255, 255, 255, 0.2);
+    }
+    .shelf-wood {
+      background: linear-gradient(180deg, #8B5A2B 0%, #5C3A17 100%);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.2);
+    }
+    .modal-backdrop { background-color: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); }
+    .modal-content { animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <!-- 4. Modern Footer -->
-    <footer class="modern-footer">
+  <!-- 헤더 -->
+  <header class="bg-slate-900 text-white sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-lg">
+          <i class="fa-solid fa-book-open text-xl"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight">총회신학(한영) 디지털 도서관</h1>
+          <p class="text-xs text-slate-400">General Assembly Theological Seminary (Hanyoung) Digital Library</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4 text-sm font-medium text-slate-300">
+        <span class="inline-block"><i class="fa-solid fa-layer-group mr-1.5 text-indigo-400"></i>총 <strong id="total-books-count" class="text-white">0</strong>권</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 영역 -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="mb-8">
+      <div class="text-center max-w-2xl mx-auto mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">총회신학 학술 연구원 도서관</h2>
+        <p class="text-slate-600 text-sm sm:text-base">원하는 교재를 검색하거나 카테고리별로 확인해보세요.</p>
+      </div>
+
+      <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200/80 mb-6">
+        <div class="flex flex-col md:flex-row gap-4 mb-4">
+          <div class="relative flex-grow">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" id="search-input" placeholder="교재명, 저자, 판매처 등으로 검색하세요..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm" />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-sm scrollbar-none" id="category-filters">
+          <button data-category="all" class="filter-btn active px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium shadow-sm transition-all whitespace-nowrap">전체</button>
+          <button data-category="성서학" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">성서학 (구약/신약)</button>
+          <button data-category="조직/역사" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">조직/역사신학</button>
+          <button data-category="실천/목회" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">실천/목회신학</button>
+          <button data-category="선교/상담" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">선교/상담/음악</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 서가 그리드 -->
+    <section class="relative">
+      <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
+        <i class="fa-solid fa-book-open text-4xl text-slate-300 mb-3"></i>
+        <h3 class="text-lg font-bold text-slate-700">검색 결과가 없습니다</h3>
+      </div>
+      <div id="bookshelf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 pb-12"></div>
+    </section>
+  </main>
+
+  <!-- 상세 모달 -->
+  <div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
+    <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden modal-content relative flex flex-col md:flex-row max-h-[90vh]">
+      <button id="modal-close-btn" class="absolute top-4 right-4 z-10 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div id="modal-cover-bg" class="w-full md:w-5/12 p-8 flex items-center justify-center relative overflow-hidden">
+        <div class="relative z-10 w-36 aspect-[3/4] rounded-r-lg shadow-2xl overflow-hidden border-l-4 border-black/20">
+          <img id="modal-cover-img" src="" alt="Book Cover" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <div class="w-full md:w-7/12 p-6 flex flex-col justify-between overflow-y-auto">
+        <div>
+          <div class="flex items-center space-x-2 mb-2">
+            <span id="modal-category" class="px-2.5 py-1 text-xs font-semibold bg-indigo-100 text-indigo-700 rounded-full">카테고리</span>
+            <span id="modal-store-tag" class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-600 rounded-full">판매처</span>
+          </div>
+
+          <h3 id="modal-title" class="text-xl font-bold text-slate-900 mb-2 leading-snug">도서 제목</h3>
+          <p id="modal-author" class="text-sm text-slate-600 font-medium mb-4">저자: 저자명</p>
+
+          <div class="border-t border-slate-100 pt-4 mb-4">
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">교재 안내</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              본 교재는 신학 및 목회 실무를 위한 전문 서적으로, 하단 구매 버튼을 클릭하시면 해당 서점으로 연결됩니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center space-x-3">
+          <a id="modal-buy-btn" href="#" target="_blank" rel="noopener noreferrer" class="flex-grow py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="modal-buy-btn-text">도서 구매 및 상세보기</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-slate-900 text-slate-400 py-8 mt-auto border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+      <p>© 총회신학 학술연구원 디지털 도서관. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ================================================================
+    // 도서 목록 설정 (store 항목을 직접 수정/지정할 수 있습니다)
+    // store 항목이 없거나 빈값("")일 경우 URL 링크에 따라 자동 판별됩니다.
+    // 사용 가능한 판매처 종류 예시: "부크크", "쿠팡", "교보문고", "YES24", "알라딘", "네이버스토어" 등
+    // ================================================================
+    const rawBooks = [
+      { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056", author: "김낙신 저", store: "쿠팡" },
+      { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133", author: "김낙신 저", store: "쿠팡" },
+      { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788", author: "김낙신 저", store: "쿠팡" },
+      { id: 4, name: "실천신학", url: "https://product.kyobobook.co.kr/detail/S000220846094", author: "김낙신 저", store: "교보문고" },
+      { id: 5, name: "공관복음", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5", author: "김낙신 저", store: "부크크" },
+      { id: 5, name: "청소년 영성 상담학", url: "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=397732434&srsltid=AU7gw4XnRr9wp0KHpodXO-A0hneEjpeuuI5qBXm_PL2PsJIIvkJbXGVO", author: "김동수 저", store: "알라딘" },
+      { id: 6, name: "기독교영성", url: "https://product.kyobobook.co.kr/detail/S000220931824", author: "김낙신 저", store: "교보문고" },
+      { id: 7, name: "목회학개론", url: "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401128981&srsltid=AU7gw4X1q1h75z7dWVjfDJvL7IXKBfytnj488z6k9Tg0BfeeGolrX_-F", author: "김낙신 저", store: "알라딘" },
+      { id: 8, name: "모세오경", url: "https://www.yes24.com/product/goods/195817473", author: "김낙신 저", store: "YES24" },
+      { id: 9, name: "역사신학", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a", author: "김낙신 저", store: "부크크" },
+      { id: 10, name: "현대신학", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8", author: "김낙신 저", store: "부크크" },
+      { id: 11, name: "교회사", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c", author: "김낙신 저", store: "부크크" },
+      { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471", author: "이영희 저", store: "쿠팡" },
+      { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469", author: "백만숙 저", store: "교보문고" },
+      { id: 14, name: "조직신학개론", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4", author: "김낙신 저", store: "부크크" },
+      { id: 15, name: "예배학개론", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f", author: "김낙신 저", store: "부크크" },
+      { id: 16, name: "설교학개론", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6", author: "김낙신 저", store: "부크크" },
+      { id: 17, name: "교회음악개론", url: "https://bookk.co.kr/bookStore/6a8e3d72488b034a8ec8b14e", author: "이자경 저", store: "부크크" },
+      { id: 18, name: "장로교회의사상과 역사", url: "https://bookk.co.kr/bookStore/6a9deed3080f8576245bf820", author: "김낙신 저", store: "부크크" },
+      { id: 19, name: "예언서주해", url: "https://bookk.co.kr/bookStore/6a9deb2332f0a0a48d1c4bc4", author: "김낙신 저", store: "부크크" },
+      { id: 20, name: "신약성서학 개론", url: "https://bookk.co.kr/bookStore/6a8e3ad1dfbe6133a1e01543", author: "김낙신 저", store: "부크크" },
+      { id: 20, name: "함께 키우는 영유아 돌봄", url: "https://www.coupang.com/vp/products/9478819215", author: "최세라 저", store: "쿠팡" },
+      { id: 21, name: "목회학", url: "https://bookk.co.kr/bookStore/6aa0b24d353fa6864af39076", author: "김낙신 저", store: "부크크" },
+      { id: 22, name: "개혁신학", url: "https://bookk.co.kr/bookStore/6aa1f034b5fa6270efc89955", author: "김낙신 저", store: "부크크" },
+      { id: 23, name: "한국교회 역사와 영성", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25", author: "김낙신 저", store: "부크크" },
+      { id: 24, name: "장로교 행정론", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08", author: "김낙신 저", store: "부크크" },
+      { id: 25, name: "개혁주의 조직신학 입문 2", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144", author: "김낙신 저", store: "부크크" },
+      { id: 26, name: "통합상담의기술", url: "https://product.kyobobook.co.kr/detail/S000220517101", author: "김혜지 저", store: "교보문고" }
+    ];
+
+    // 판매처별 스타일 배지 설정
+    const storeBadgeStyles = {
+      "부크크": "bg-emerald-600/80 text-white",
+      "쿠팡": "bg-red-600/80 text-white",
+      "교보문고": "bg-sky-600/80 text-white",
+      "YES24": "bg-blue-600/80 text-white",
+      "알라딘": "bg-pink-600/80 text-white",
+      "기타": "bg-slate-700/80 text-white"
+    };
+
+    const colors = [
+      "from-blue-700 to-indigo-900",
+      "from-amber-700 to-stone-900",
+      "from-emerald-700 to-teal-950",
+      "from-purple-700 to-slate-900",
+      "from-rose-700 to-red-950",
+      "from-cyan-700 to-slate-900",
+      "from-sky-700 to-indigo-950"
+    ];
+
+    // URL을 파싱하여 판매처 자동 판별 함수
+    function detectStore(url) {
+      if (!url) return "판매처";
+      const lUrl = url.toLowerCase();
+      if (lUrl.includes("coupang")) return "쿠팡";
+      if (lUrl.includes("kyobobook")) return "교보문고";
+      if (lUrl.includes("yes24")) return "YES24";
+      if (lUrl.includes("aladin")) return "알라딘";
+      if (lUrl.includes("bookk")) return "부크크";
+      return "기타";
+    }
+
+    const booksData = rawBooks.map((book, index) => {
+      let category = "실천/목회";
+      if (["구약개론", "신약개론", "공관복음", "모세오경", "예언서주해", "신약성서학 개론"].some(k => book.name.includes(k))) category = "성서학";
+      else if (["조직신학개론", "역사신학", "현대신학", "교회사", "장로교회의사상과 역사", "개혁신학", "한국교회 역사와 영성", "개혁주의 조직신학 입문 2"].some(k => book.name.includes(k))) category = "조직/역사";
+      else if (["선교학", "기독교상담학", "목회상담학", "교회음악개론", "기독교영성", "통합상담의기술"].some(k => book.name.includes(k))) category = "선교/상담";
+
+      // 지정된 store 값이 없으면 URL로 자동 판별
+      const storeName = book.store && book.store.trim() !== "" ? book.store : detectStore(book.url);
+      const storeBadgeClass = storeBadgeStyles[storeName] || storeBadgeStyles["기타"];
+
+      return {
+        ...book,
+        title: book.name,
+        category: category,
+        store: storeName,
+        storeBadgeClass: storeBadgeClass,
+        author: book.author,
+        coverColor: colors[index % colors.length],
+        icon: "fa-book"
+      };
+    });
+
+    let bookshelfGrid, searchInput, categoryFilters, noResults, totalBooksCount;
+    let bookModal, modalCloseBtn, modalCoverBg, modalCoverImg, modalCategory, modalStoreTag, modalTitle, modalAuthor, modalBuyBtn, modalBuyBtnText;
+
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+
+    function init() {
+      bookshelfGrid = document.getElementById('bookshelf-grid');
+      searchInput = document.getElementById('search-input');
+      categoryFilters = document.getElementById('category-filters');
+      noResults = document.getElementById('no-results');
+      totalBooksCount = document.getElementById('total-books-count');
+
+      bookModal = document.getElementById('book-modal');
+      modalCloseBtn = document.getElementById('modal-close-btn');
+      modalCoverBg = document.getElementById('modal-cover-bg');
+      modalCoverImg = document.getElementById('modal-cover-img');
+      modalCategory = document.getElementById('modal-category');
+      modalStoreTag = document.getElementById('modal-store-tag');
+      modalTitle = document.getElementById('modal-title');
+      modalAuthor = document.getElementById('modal-author');
+      modalBuyBtn = document.getElementById('modal-buy-btn');
+      modalBuyBtnText = document.getElementById('modal-buy-btn-text');
+
+      if (totalBooksCount) totalBooksCount.textContent = booksData.length;
+      renderBooks();
+      setupEventListeners();
+    }
+
+    function renderBooks() {
+      if (!bookshelfGrid) return;
+      const filteredBooks = booksData.filter(book => {
+        const matchesCategory = currentCategory === 'all' || book.category === currentCategory;
+        const matchesSearch = book.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+                              book.author.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+                              book.store.toLowerCase().includes(currentSearchTerm.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      bookshelfGrid.innerHTML = '';
+
+      if (filteredBooks.length === 0) {
+        if (noResults) noResults.classList.remove('hidden');
+      } else {
+        if (noResults) noResults.classList.add('hidden');
+        filteredBooks.forEach(book => {
+          bookshelfGrid.appendChild(createBookCard(book));
+        });
+      }
+    }
+
+    function createBookCard(book) {
+      const card = document.createElement('div');
+      card.className = 'book-card cursor-pointer group';
+      card.onclick = () => openModal(book);
+
+      card.innerHTML = `
+        <div class="relative mb-3">
+          <div class="book-inner aspect-[3/4] w-full bg-gradient-to-br ${book.coverColor} p-3.5 flex flex-col justify-between text-white relative overflow-hidden">
+            <div class="book-spine-line"></div>
+            <div class="flex justify-between items-start pl-2 z-10">
+              <span class="text-[10px] font-semibold uppercase tracking-wider ${book.storeBadgeClass} px-1.5 py-0.5 rounded shadow-sm">${book.store}</span>
+              <i class="fa-solid ${book.icon} text-xs opacity-70"></i>
+            </div>
+            <div class="pl-2 my-auto z-10">
+              <h3 class="font-bold text-sm leading-tight drop-shadow-md line-clamp-2 mb-1">${book.title}</h3>
+              <p class="text-[10px] opacity-80 font-light truncate">${book.author}</p>
+            </div>
+            <div class="pl-2 flex justify-between items-end text-[10px] opacity-80 z-10">
+              <span class="text-[9px] bg-white/20 px-1 rounded">${book.category}</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:scale-125 transition-transform"></i>
+            </div>
+          </div>
+          <div class="shelf-wood h-3 w-[106%] -ml-[3%] rounded-sm mt-1"></div>
+        </div>
+        <div class="text-center px-1">
+          <h4 class="font-medium text-xs text-slate-800 truncate group-hover:text-indigo-600 transition-colors">${book.title}</h4>
+          <p class="text-[11px] text-slate-400 truncate">${book.author}</p>
+        </div>
+      `;
+      return card;
+    }
+
+    function openModal(book) {
+      modalCategory.textContent = book.category;
+      modalStoreTag.textContent = book.store;
+      modalTitle.textContent = book.title;
+      modalAuthor.textContent = `저자: ${book.author}`;
+      modalBuyBtn.href = book.url;
+      if (modalBuyBtnText) {
+        modalBuyBtnText.textContent = `${book.store}에서 구매하기`;
+      }
+
+      modalCoverBg.className = `w-full md:w-5/12 p-8 flex items-center justify-center bg-gradient-to-br ${book.coverColor} relative overflow-hidden`;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 300;
+      canvas.height = 400;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 300, 400);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 22px "Noto Sans KR"';
+      ctx.textAlign = 'center';
+
+      const words = book.title.split(' ');
+      let line = '';
+      let y = 180;
+      for (let n = 0; n < words.length; n++) {
+        let testLine = line + words[n] + ' ';
+        if (testLine.length > 8 && n > 0) {
+          ctx.fillText(line, 150, y);
+          line = words[n] + ' ';
+          y += 30;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, 150, y);
+
+      ctx.font = '13px "Noto Sans KR"';
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText(book.author, 150, y + 40);
+
+      modalCoverImg.src = canvas.toDataURL();
+      bookModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      bookModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function setupEventListeners() {
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearchTerm = e.target.value.trim();
+          renderBooks();
+        });
+      }
+
+      if (categoryFilters) {
+        categoryFilters.addEventListener('click', (e) => {
+          const btn = e.target.closest('.filter-btn');
+          if (!btn) return;
+
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+            b.classList.add('bg-slate-100', 'text-slate-600');
+          });
+
+          btn.classList.remove('bg-slate-100', 'text-slate-600');
+          btn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+
+          currentCategory = btn.getAttribute('data-category');
+          renderBooks();
+        });
+      }
+
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+      if (bookModal) {
+        bookModal.addEventListener('click', (e) => {
+          if (e.target === bookModal) closeModal();
+        });
+      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && bookModal && !bookModal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
+      
+      </div>
+    </div>
+  </article>
+</div>
+</main>
+<footer class="modern-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="f-col">
                     <h6>OUR CAMPUS</h6>
                     <h3 class="f-brand">총회신학학술연구원</h3>
                     <p>대한예수교장로회(한영)<br>총회신학학술연구원</p>
-                    <p style="margin-top: 10px;"><strong>Address:</strong> (08227) 서울 구로구 중앙로1길 42 (고척동, 일이삼전자타운) 1동 608호</p>
+                    <p><strong>Address:</strong>(08227) 서울 구로구 중앙로1길 42 (고척동, 일이삼전자타운) 1동 608호</p>
                     <p><strong>Phone:</strong> (031) 677-8428</p>
                     <p><strong>Email:</strong> hanyoungcc@naver.com</p>
                 </div>
                 <div class="f-col f-links">
                     <h6>QUICK LINKS</h6>
                     <ul>
-                        <li><a href="http://www.hypck.org/" target="_blank">한영총회 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="http://gtcc.edu.ph/" target="_blank">GTCC대학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="https://myyoungji.com/" target="_blank">영지국제학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="https://www.ptu.ac.kr/" target="_blank">평택대학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="https://www.dtu.ac.kr/" target="_blank">대한신학대학원대학교 <i class="ph-light ph-arrow-right"></i></a></li>
+                        <li><a href="http://www.hypck.org/">한영총회 <i class="ph-light ph-arrow-right"></i></a></li>
+                        <li><a href="http://gtcc.edu.ph/">GTCC대학교 <i class="ph-light ph-arrow-right"></i></a></li>
+                        <li><a href="https://myyoungji.com/">영지국제학교 <i class="ph-light ph-arrow-right"></i></a></li>
+                        <li><a href="https://www.ptu.ac.kr/">평택대학교 <i class="ph-light ph-arrow-right"></i></a></li>
+                        <li><a href="https://www.dtu.ac.kr/">대한신학대학원대학교 <i class="ph-light ph-arrow-right"></i></a></li>
                     </ul>
                 </div>
                 <div class="f-col f-connect">
@@ -415,6 +518,6 @@
             </div>
         </div>
     </footer>
-
+    
 </body>
 </html>
