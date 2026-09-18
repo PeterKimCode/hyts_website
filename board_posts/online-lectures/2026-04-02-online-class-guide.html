@@ -346,114 +346,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>도서관 교재 서가</title>
+<title>총회신학학술연구원 도서관</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR', sans-serif; background-color: #f4f1ea; padding: 20px; }
-
-  /* 타이틀 */
-  .shelf-title {
-    background-color: #0056b3;
-    color: #ffffff;
-    padding: 12px 20px;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
-    margin-bottom: 25px;
-    display: inline-block;
+  body { 
+    font-family: 'Noto Sans KR', sans-serif; 
+    background-color: #2b1d14; 
+    background-image: radial-gradient(#3a271b 1px, transparent 0);
+    background-size: 24px 24px;
+    padding: 30px 15px; 
+    color: #333;
   }
 
-  /* 도서관 책장 스티일 */
   .library-container {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 0 auto;
   }
 
-  .bookshelf {
-    background: #5c3a21;
-    border: 12px solid #3d2312;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    padding: 15px 15px 0 15px;
-    margin-bottom: 30px;
+  /* 헤더 영역 */
+  .header-box {
+    text-align: center;
+    margin-bottom: 25px;
   }
 
+  .library-badge {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    color: #ffffff;
+    padding: 8px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+  }
+
+  .library-main-title {
+    color: #f3f4f6;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .shelf-sub-title {
+    color: #d1d5db;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /* 원목 도서관 책장 스티일 */
+  .bookshelf {
+    background: #3b2314;
+    border: 16px solid #231309;
+    border-radius: 12px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 20px 40px rgba(0,0,0,0.6);
+    padding: 20px 20px 5px 20px;
+    position: relative;
+  }
+
+  /* 선반 */
   .shelf-row {
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    gap: 8px;
-    height: 220px;
-    border-bottom: 16px solid #3d2312; /* 책장 선반 */
-    padding-bottom: 0px;
-    margin-bottom: 15px;
+    gap: 10px;
+    height: 230px;
+    border-bottom: 20px solid #24140a; /* 두꺼운 원목 선반 */
+    box-shadow: inset 0 -4px 8px rgba(0,0,0,0.5), 0 6px 12px rgba(0,0,0,0.4);
+    padding: 0 10px;
+    margin-bottom: 25px;
     overflow-x: auto;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent 30%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent 40%);
   }
+
+  /* 커스텀 스크롤바 */
+  .shelf-row::-webkit-scrollbar { height: 8px; }
+  .shelf-row::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 4px; }
+  .shelf-row::-webkit-scrollbar-thumb { background: #8d5b36; border-radius: 4px; }
 
   /* 꽂혀있는 책 (책 척추 - Spine) */
   .book-spine {
-    width: 38px;
-    height: 180px;
-    background: linear-gradient(90deg, #004085 0%, #007bff 50%, #004085 100%);
+    width: 65px; /* 더 두껍게 */
+    height: 200px; /* 동일한 높이 */
     color: #ffffff;
-    border-radius: 3px 5px 5px 3px;
+    border-radius: 4px 6px 6px 4px;
     cursor: pointer;
-    box-shadow: 3px 0 5px rgba(0,0,0,0.3);
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.5), 4px 0 6px rgba(255,255,255,0.1) inset;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 5px;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 12px 4px;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
     user-select: none;
     flex-shrink: 0;
+    position: relative;
   }
 
   .book-spine:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 5px 10px 15px rgba(0,0,0,0.4);
-    background: linear-gradient(90deg, #002752 0%, #0056b3 50%, #002752 100%);
+    transform: translateY(-16px) scale(1.03);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.6), 0 0 15px rgba(255,255,255,0.2);
+    z-index: 10;
   }
 
+  /* 권수 (Top) */
   .book-spine .book-code {
-    font-size: 10px;
-    opacity: 0.8;
+    font-size: 11px;
+    font-weight: 800;
+    background: rgba(0,0,0,0.3);
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
     writing-mode: horizontal-tb;
-    background: rgba(255,255,255,0.2);
-    padding: 2px 4px;
-    border-radius: 3px;
+    margin-bottom: 4px;
   }
 
-  /* 색상 다채롭게 변형 */
-  .book-spine:nth-child(2n) { height: 190px; background: linear-gradient(90deg, #1b4332 0%, #2d6a4f 50%, #1b4332 100%); }
-  .book-spine:nth-child(3n) { height: 175px; background: linear-gradient(90deg, #4a154b 0%, #6b21a8 50%, #4a154b 100%); }
-  .book-spine:nth-child(5n) { height: 185px; background: linear-gradient(90deg, #7f1d1d 0%, #991b1b 50%, #7f1d1d 100%); }
+  /* 세로 방향 + 중간 위치 정렬 텍스트 */
+  .book-title-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 6px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  }
+
+  /* 금색 띠장식 (Bottom) */
+  .book-spine-bottom {
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(90deg, #fef08a, #ca8a04, #fef08a);
+    border-radius: 2px;
+    margin-top: 4px;
+  }
+
+  /* 책 색상 패턴 다양화 */
+  .color-1 { background: linear-gradient(90deg, #1e3a8a, #3b82f6 50%, #1e3a8a); }
+  .color-2 { background: linear-gradient(90deg, #14532d, #22c55e 50%, #14532d); }
+  .color-3 { background: linear-gradient(90deg, #581c87, #a855f7 50%, #581c87); }
+  .color-4 { background: linear-gradient(90deg, #7f1d1d, #ef4444 50%, #7f1d1d); }
+  .color-5 { background: linear-gradient(90deg, #713f12, #eab308 50%, #713f12); }
 
   /* 팝업 모달 */
   .modal-overlay {
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0, 0, 0, 0.75);
     z-index: 1000;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(4px);
   }
 
   .modal-card {
     background: #ffffff;
     width: 90%;
-    max-width: 420px;
-    border-radius: 12px;
+    max-width: 440px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    animation: slideUp 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
     position: relative;
   }
 
@@ -462,64 +523,111 @@
     to { transform: translateY(0); opacity: 1; }
   }
 
-  /* 책 겉표지 스타일 */
   .cover-preview {
-    height: 220px;
-    background: linear-gradient(135deg, #0056b3, #002752);
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     text-align: center;
-    border-bottom: 4px solid #004085;
+    border-bottom: 4px solid #3b82f6;
     position: relative;
-    box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2);
   }
 
-  .cover-preview::before {
-    content: '';
-    position: absolute;
-    left: 15px; top: 0; bottom: 0; width: 4px;
-    background: rgba(255,255,255,0.3);
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  .cover-badge { 
+    font-size: 12px; 
+    background: rgba(59, 130, 246, 0.3); 
+    border: 1px solid #3b82f6;
+    padding: 4px 12px; 
+    border-radius: 12px; 
+    margin-bottom: 12px;
+    color: #93c5fd;
   }
 
-  .cover-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; word-break: keep-all; }
-  .cover-badge { font-size: 12px; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; }
+  .cover-title { 
+    font-size: 24px; 
+    font-weight: 800; 
+    word-break: keep-all; 
+    line-height: 1.3;
+  }
 
-  .modal-body { padding: 20px; text-align: center; }
-  .modal-desc { font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.5; }
+  .modal-body { padding: 24px 20px; }
+
+  .info-section {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 20px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+  }
+
+  .info-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .info-text {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+  }
 
   .btn-buy {
     display: block;
     width: 100%;
-    padding: 12px 0;
-    background-color: #0056b3;
+    padding: 14px 0;
+    background-color: #2563eb;
     color: white;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 6px;
-    transition: background 0.2s;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   }
-  .btn-buy:hover { background-color: #003d82; }
+
+  .btn-buy:hover { background-color: #1d4ed8; }
+  .btn-buy:active { transform: scale(0.98); }
 
   .close-btn {
     position: absolute;
-    top: 10px; right: 15px;
-    background: none; border: none;
-    color: white; font-size: 24px;
-    cursor: pointer; opacity: 0.8;
+    top: 12px; right: 16px;
+    background: rgba(255,255,255,0.1); 
+    border: none;
+    color: white; 
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
   }
-  .close-btn:hover { opacity: 1; }
+
+  .close-btn:hover { background: rgba(255,255,255,0.3); }
 </style>
 </head>
 <body>
 
 <div class="library-container">
-  <div class="shelf-title">📖 도서관 교재 서가 (책을 클릭하면 표지가 보입니다)</div>
+  <!-- 헤더 영역 -->
+  <div class="header-box">
+    <div class="library-badge">🏛️ 총회신학학술연구원 도서관</div>
+    <h1 class="library-main-title">전자교재 도서관</h1>
+    <p class="shelf-sub-title">원하시는 서적을 클릭하시면 교재상세내용 및 구매링크를 확인하실수 있습니다</p>
+  </div>
 
+  <!-- 원목 책장 서가 -->
   <div class="bookshelf">
     <!-- 1층 선반 -->
     <div class="shelf-row" id="shelf-1"></div>
@@ -530,60 +638,72 @@
   </div>
 </div>
 
-<!-- 상세 팝업 (모달) -->
+<!-- 교재 상세 팝업 모달 -->
 <div class="modal-overlay" id="bookModal">
   <div class="modal-card">
     <button class="close-btn" onclick="closeModal()">&times;</button>
     <div class="cover-preview">
-      <span class="cover-badge">교재 상세보기</span>
+      <span class="cover-badge">📖 교재 상세 정보</span>
       <h2 class="cover-title" id="modalTitle">[교재명]</h2>
     </div>
     <div class="modal-body">
-      <p class="modal-desc">선택하신 교재의 상세보기 및 온라인 구매 페이지로 이동합니다.</p>
-      <a href="#" id="modalBuyBtn" target="_blank" class="btn-buy">📖 교재 구매하기</a>
+      <div class="info-section">
+        <div class="info-title">💡 교재 내용 안내</div>
+        <div class="info-text" id="modalSummary">본 교재는 총회신학학술연구원의 정규 교육과정을 바탕으로 작성된 핵심 학술 서적입니다. 신학적 깊이와 실천적 응용을 다룹니다.</div>
+      </div>
+
+      <a href="#" id="modalBuyBtn" target="_blank" class="btn-buy">🛒 교재 구매하기 (상세보기)</a>
     </div>
   </div>
 </div>
 
 <script>
-  // 교재 데이터 목록
+  // 교재 데이터 목록 (개요 설명 추가)
   const books = [
-    { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056?itemId=28681500261&vendorItemId=95623142676&q=%EC%84%A0%EA%B5%90%ED%95%99+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=4418a56f26228432&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv6x7j1" },
-    { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133?itemId=28681545916&vendorItemId=95623186574&q=%EA%B9%80%EB%82%99%EC%8B%A0+%EC%8B%A0%EC%95%BD%EA%B0%9C%EB%A1%A0&searchId=6802d06014431066&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv72stn" },
-    { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788?itemId=28681569211&vendorItemId=95623209193&q=%EA%B5%AC%EC%95%BD%EA%B0%9C%EB%A1%A0+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=18a32de22143879&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv76490" },
-    { id: 4, name: "실천신학", url: "https://product.kyobobook.co.kr/detail/S000220846094" },
-    { id: 5, name: "공관복음", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5" },
-    { id: 6, name: "기독교영성", url: "https://product.kyobobook.co.kr/detail/S000220931824" },
-    { id: 7, name: "목회학개론", url: "https://bookk.co.kr/bookStore/6a8455692286b9745a62407f" },
-    { id: 8, name: "모세오경", url: "https://bookk.co.kr/bookStore/6a87c7e3dcad018dec3c5075" },
-    { id: 9, name: "역사신학", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a" },
-    { id: 10, name: "현대신학", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8" },
-    { id: 11, name: "교회사", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c" },
-    { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471?itemId=28809412715&vendorItemId=95744507250&q=%EC%9D%B4%EC%98%81%ED%9D%AC+%EA%B8%B0%EB%8F%85%EA%B5%90%EC%83%81%EB%8B%B4%ED%95%99&searchId=ab4e6f9d2068936&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mt7583bn" },
-    { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469" },
-    { id: 14, name: "조직신학개론", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4" },
-    { id: 15, name: "예배학개론", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f" },
-    { id: 16, name: "설교학개론", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6" },
-    { id: 17, name: "교회음악개론", url: "https://bookk.co.kr/bookStore/6a8e3d72488b034a8ec8b14e" },
-    { id: 18, name: "장로교회의사상과 역사", url: "https://bookk.co.kr/bookStore/6a9deed3080f8576245bf820" },
-    { id: 19, name: "예언서주해", url: "https://bookk.co.kr/bookStore/6a9deb2332f0a0a48d1c4bc4" },
-    { id: 20, name: "신약성서학 개론", url: "https://bookk.co.kr/bookStore/6a8e3ad1dfbe6133a1e01543" },
-    { id: 21, name: "목회학", url: "https://bookk.co.kr/bookStore/6aa0b24d353fa6864af39076" },
-    { id: 22, name: "개혁신학", url: "https://bookk.co.kr/bookStore/6aa1f034b5fa6270efc89955" },
-    { id: 23, name: "한국교회 역사와 영성", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25" },
-    { id: 24, name: "장로교 행정론", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08" },
-    { id: 25, name: "개혁주의 조직신학 입문 2", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144" }
+    { id: 1, name: "선교학", summary: "선교의 성서적, 역사적, 신학적 기초를 체계적으로 정립하고 현대 선교 전략을 연구하는 필독서입니다.", url: "https://www.coupang.com/vp/products/9607317056?itemId=28681500261&vendorItemId=95623142676&q=%EC%84%A0%EA%B5%90%ED%95%99+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=4418a56f26228432&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv6x7j1" },
+    { id: 2, name: "신약개론", summary: "신약성서 27권의 배경, 형성 역사, 핵심 메시지 및 구속사적 의미를 심도 있게 다룹니다.", url: "https://www.coupang.com/vp/products/9607328133?itemId=28681545916&vendorItemId=95623186574&q=%EA%B9%80%EB%82%99%EC%8B%A0+%EC%8B%A0%EC%95%BD%EA%B0%9C%EB%A1%A0&searchId=6802d06014431066&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv72stn" },
+    { id: 3, name: "구약개론", summary: "구약성서의 구조, 신학적 주제, 각 권의 원문적 맥락을 명쾌하게 해설하는 개론서입니다.", url: "https://www.coupang.com/vp/products/9607333788?itemId=28681569211&vendorItemId=95623209193&q=%EA%B5%AC%EC%95%BD%EA%B0%9C%EB%A1%A0+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=18a32de22143879&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv76490" },
+    { id: 4, name: "실천신학", summary: "목회 현장에서 필요한 이론과 실무, 교회 행정 및 사역 응용력을 길러주는 실천 가이드입니다.", url: "https://product.kyobobook.co.kr/detail/S000220846094" },
+    { id: 5, name: "공관복음", summary: "마태, 마가, 누가복음의 병행 구절 분석과 각 복음서의 독창적인 신학적 관점을 다룹니다.", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5" },
+    { id: 6, name: "기독교영성", summary: "역사 속 기독교 영성가들의 삶과 신학을 다루며 올바른 영성 형성을 다루는 정통 교재입니다.", url: "https://product.kyobobook.co.kr/detail/S000220931824" },
+    { id: 7, name: "목회학개론", summary: "목회자의 자질, 사명, 영성 관리 및 사목 전반에 관한 기독교 목회학 입문서입니다.", url: "https://bookk.co.kr/bookStore/6a8455692286b9745a62407f" },
+    { id: 8, name: "모세오경", summary: "창세기부터 신명기까지 오경의 구속사적 흐름과 율법, 약약 신학을 다룹니다.", url: "https://bookk.co.kr/bookStore/6a87c7e3dcad018dec3c5075" },
+    { id: 9, name: "역사신학", summary: "기독교 교리와 신학 사상이 초대교회부터 현대까지 발전해 온 역사를 연구합니다.", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a" },
+    { id: 10, name: "현대신학", summary: "19세기 이후 전개된 다양한 현대 신학 사조와 흐름을 개혁주의 관점에서 비판 분석합니다.", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8" },
+    { id: 11, name: "교회사", summary: "세계 교회의 발자취와 변천사를 통전적으로 이해하는 교회사 종합 기본서입니다.", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c" },
+    { id: 12, name: "기독교상담학", summary: "성경적 원리에 기반하여 마음의 치유와 회복을 돕는 기독교 상담 이론과 실제입니다.", url: "https://www.coupang.com/vp/products/9641561471?itemId=28809412715&vendorItemId=95744507250&q=%EC%9D%B4%EC%98%81%ED%9D%AC+%EA%B8%B0%EB%8F%85%EA%B5%90%EC%83%81%EB%8B%B4%ED%95%99&searchId=ab4e6f9d2068936&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mt7583bn" },
+    { id: 13, name: "목회상담학", summary: "목양적 돌봄을 위한 상담 기법과 성도들의 삶의 문제를 신앙적으로 조력하는 가이드입니다.", url: "https://product.kyobobook.co.kr/detail/S000221049469" },
+    { id: 14, name: "조직신학개론", summary: "기독교 주요 교리(신론, 인간론, 구원론 등)를 체계적이고 논리적으로 정립합니다.", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4" },
+    { id: 15, name: "예배학개론", summary: "성경적 예배의 본질, 역사, 개혁주의 예배학의 기초를 배우는 필수 서적입니다.", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f" },
+    { id: 16, name: "설교학개론", summary: "성경 본문 연구부터 작성, 전달에 이르기까지 강해설교의 이론과 실무를 익힙니다.", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6" },
+    { id: 17, name: "교회음악개론", summary: "찬송과 예배 음악의 역사적 발전과 성경적 음악관을 정립해 주는 전문 교재입니다.", url: "https://bookk.co.kr/bookStore/6a8e3d72488b034a8ec8b14e" },
+    { id: 18, name: "장로교회의 사상과 역사", summary: "장로교 신학의 뿌리가 되는 개혁주의 사상과 전통 교회의 역사를 살핍니다.", url: "https://bookk.co.kr/bookStore/6a9deed3080f8576245bf820" },
+    { id: 19, name: "예언서주해", summary: "구약 대예언서와 소예언서의 메시지를 정교한 석의와 해석으로 풀어냅니다.", url: "https://bookk.co.kr/bookStore/6a9deb2332f0a0a48d1c4bc4" },
+    { id: 20, name: "신약성서학 개론", summary: "신약성서 연구의 역사와 최신 주해 방법론을 종합 정리한 학술 연구서입니다.", url: "https://bookk.co.kr/bookStore/6a8e3ad1dfbe6133a1e01543" },
+    { id: 21, name: "목회학", summary: "목회자의 영적 리더십과 현대 목회 환경에 적합한 사역 모델을 종합 제시합니다.", url: "https://bookk.co.kr/bookStore/6aa0b24d353fa6864af39076" },
+    { id: 22, name: "개혁신학", summary: "칼뱅주의와 정통 개혁주의 신학 체계를 폭넓게 탐구하는 고전적 학술서입니다.", url: "https://bookk.co.kr/bookStore/6aa1f034b5fa6270efc89955" },
+    { id: 23, name: "한국교회 역사와 영성", summary: "한국 기독교 전래부터 현재까지의 초기 영성과 발전사를 다루는 연구서입니다.", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25" },
+    { id: 24, name: "장로교 행정론", summary: "헌법과 헌규, 교회의 합리적이고 은혜로운 운영을 다루는 행정 실무 교재입니다.", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08" },
+    { id: 25, name: "개혁주의 조직신학 입문 2", summary: "조직신학 심화 과정으로 구원론, 교회론, 종말론을 밀도 있게 해설합니다.", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144" }
   ];
 
-  // 서가에 책 배치 (1선반당 최대 9권씩 분할)
+  const colors = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5'];
+
+  // 서가에 책 동적 배치 (1선반당 최대 9권씩)
   books.forEach((book, index) => {
     const shelfIndex = Math.floor(index / 9) + 1;
     const shelf = document.getElementById(`shelf-${shelfIndex}`);
 
     if (shelf) {
       const bookEl = document.createElement('div');
-      bookEl.className = 'book-spine';
-      bookEl.innerHTML = `<span class="book-code">VOL.${index + 1}</span><span>${book.name}</span>`;
+      const colorClass = colors[index % colors.length];
+      
+      bookEl.className = `book-spine ${colorClass}`;
+      bookEl.innerHTML = `
+        <span class="book-code">VOL.${index + 1}</span>
+        <div class="book-title-vertical">${book.name}</div>
+        <div class="book-spine-bottom"></div>
+      `;
       bookEl.onclick = () => openModal(book);
       shelf.appendChild(bookEl);
     }
@@ -592,6 +712,7 @@
   // 모달 열기
   function openModal(book) {
     document.getElementById('modalTitle').innerText = book.name;
+    document.getElementById('modalSummary').innerText = book.summary || "본 교재의 상세 내용 및 목차는 아래 구매 링크에서 확인하실 수 있습니다.";
     document.getElementById('modalBuyBtn').href = book.url;
     document.getElementById('bookModal').style.display = 'flex';
   }
@@ -601,7 +722,7 @@
     document.getElementById('bookModal').style.display = 'none';
   }
 
-  // 바깥 영역 클릭 시 모달 닫기
+  // 모달 바깥 배경 클릭 시 닫기
   window.onclick = function(event) {
     const modal = document.getElementById('bookModal');
     if (event.target === modal) {
