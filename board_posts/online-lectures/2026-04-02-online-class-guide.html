@@ -5,24 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>디지털 도서관 | 총회신학학술연구원</title>
     
-    <!-- 폰트 및 아이콘 CDN -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- 기본 사이트 스타일 -->
-    <link rel="icon" type="image/png" href="assets/images/site-logo.png">
-    <link rel="stylesheet" href="css/style.css">
-
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 폰트 및 아이콘 CDN -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Pretendard 및 Noto Sans KR 기본 적용 */
         body { font-family: 'Noto Sans KR', 'Pretendard Variable', 'Pretendard', sans-serif; }
         
-        /* 도서관 카드 3D 효과 스타일 */
+        /* 도서관 카드 3D 효과 */
         .book-card { perspective: 1000px; transition: all 0.3s ease; }
         .book-inner {
             transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -48,109 +42,112 @@
             from { opacity: 0; transform: translateY(20px) scale(0.97); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
+        
+        /* 드롭다운 호버 처리 */
+        .dropdown-container:hover .dropdown-menu { display: block; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <!-- 1. 상단 최상단 헤더 -->
-    <header class="top-nav">
-        <div class="container top-nav-inner flex-between">
-            <a class="logo-area" href="index.html">
-                <img src="assets/images/site-logo.png" alt="학교 로고" class="main-logo-image">
-                <div class="logo-text">
-                    <h1>총회신학학술연구원</h1>
-                    <span>대한예수교장로회(한영)총회신학학술연구원</span>
+    <!-- 1. 상단 로고 및 유틸리티 헤더 -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 bg-indigo-900 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-sm">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">총회신학학술연구원</h1>
+                    <p class="text-xs text-slate-500">대한예수교장로회(한영)총회신학학술연구원</p>
                 </div>
             </a>
-            <div class="top-links-area">
-                <nav class="top-links">
-                    <a href="index.html">Home</a>
-                    <a href="sitemap.html">사이트맵</a>
-                    <button type="button" class="lang-selector" data-lang-toggle aria-label="영어 번역 전환">ENG</button>
-                </nav>
+            <div class="flex items-center space-x-6 text-sm font-medium text-slate-600">
+                <a href="index.html" class="hover:text-indigo-600 transition-colors">Home</a>
+                <a href="sitemap.html" class="hover:text-indigo-600 transition-colors">사이트맵</a>
+                <span class="px-2 py-0.5 text-xs bg-slate-100 hover:bg-slate-200 rounded text-slate-700 cursor-pointer transition-colors">ENG</span>
             </div>
         </div>
-        <div id="google_translate_element" class="translate-widget" aria-hidden="true"></div>
     </header>
 
-    <!-- 2. 주요 카테고리 네비게이션 -->
-    <nav class="main-category-nav">
-        <div class="container nav-icons-wrap">
-            <details class="nav-item nav-dropdown">
-                <summary class="nav-icon-link nav-dropdown-toggle">
-                    <div class="icon-box"><i class="ph-light ph-bank"></i></div>
-                    <span>학교소개</span>
-                </summary>
-                <div class="nav-dropdown-menu">
-                    <a href="intro_chairman.html">총회장 인사말</a>
-                    <a href="intro_greeting.html">총장 인사말</a>
-                    <a href="intro_ideology.html">교육이념</a>
-                    <a href="intro_history.html">연혁</a>
-                    <a href="intro_org.html">조직도</a>
-                    <a href="intro_faculty.html">교수 소개</a>
-                    <a href="intro_sap.html">특임교수 소개</a>
-                    <a href="intro_school.html">인준신학교</a>
+    <!-- 2. Main Navigation Bar -->
+    <nav class="bg-slate-900 text-slate-200 text-sm font-medium shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-x-auto scrollbar-none">
+            <div class="flex items-center space-x-1">
+                <!-- 드롭다운 메뉴 -->
+                <div class="relative dropdown-container">
+                    <a href="#" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors">
+                        <i class="fa-solid fa-building text-slate-400"></i>
+                        <span>학교소개</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-slate-500 ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu hidden absolute top-full left-0 w-48 bg-white text-slate-800 shadow-xl rounded-b-lg border border-slate-100 py-2 z-50">
+                        <a href="intro_chairman.html" class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600 text-xs">총회장 인사말</a>
+                        <a href="intro_greeting.html" class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600 text-xs">총장 인사말</a>
+                        <a href="intro_ideology.html" class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600 text-xs">교육이념</a>
+                        <a href="intro_history.html" class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600 text-xs">연혁</a>
+                        <a href="intro_org.html" class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600 text-xs">조직도</a>
+                        <a href="intro_faculty.html" class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600 text-xs">교수 소개</a>
+                    </div>
                 </div>
-            </details>
-            <a href="admissions_guideline.html" class="nav-icon-link">
-                <div class="icon-box"><i class="ph-light ph-graduation-cap"></i></div>
-                <span>입학안내</span>
-            </a>
-            <a href="degree_bachelor.html" class="nav-icon-link">
-                <div class="icon-box"><i class="ph-light ph-student"></i></div>
-                <span>학과소개</span>
-            </a>
-            <a href="academic_info.html" class="nav-icon-link">
-                <div class="icon-box"><i class="ph-light ph-calendar-blank"></i></div>
-                <span>학사안내</span>
-            </a>
-            <a href="campus_life.html" class="nav-icon-link">
-                <div class="icon-box"><i class="ph-light ph-users"></i></div>
-                <span>대학생활</span>
-            </a>
-            <a href="research_intro.html" class="nav-icon-link">
-                <div class="icon-box"><i class="ph-light ph-microscope"></i></div>
-                <span>학술연구</span>
-            </a>
-            <a href="online_service.html" class="nav-icon-link">
-                <div class="icon-box"><i class="ph-light ph-desktop"></i></div>
-                <span>온라인서비스</span>
-            </a>
+
+                <a href="admissions_guideline.html" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-user-graduate text-slate-400"></i>
+                    <span>입학안내</span>
+                </a>
+                <a href="degree_bachelor.html" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-book-bookmark text-slate-400"></i>
+                    <span>학과소개</span>
+                </a>
+                <a href="academic_info.html" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-calendar-days text-slate-400"></i>
+                    <span>학사안내</span>
+                </a>
+                <a href="campus_life.html" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-users text-slate-400"></i>
+                    <span>대학생활</span>
+                </a>
+                <a href="research_intro.html" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-flask text-slate-400"></i>
+                    <span>학술연구</span>
+                </a>
+                <a href="online_service.html" class="px-4 py-3.5 flex items-center space-x-2 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-desktop text-slate-400"></i>
+                    <span>온라인서비스</span>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- 3. 도서관 타이틀 서브 헤더 -->
-    <header class="bg-slate-900 text-white sticky top-0 z-30 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- 3. 도서관 전용 타이틀 바 -->
+    <section class="bg-indigo-900 text-white shadow-lg relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-lg">
+                <div class="w-10 h-10 rounded-lg bg-indigo-600/80 flex items-center justify-center text-white shadow-inner">
                     <i class="fa-solid fa-book-open text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg leading-tight">총회신학(한영) 디지털 도서관</h1>
-                    <p class="text-xs text-slate-400">General Assembly Theological Seminary (Hanyoung) Digital Library</p>
+                    <h2 class="font-bold text-lg leading-tight">총회신학(한영) 디지털 도서관</h2>
+                    <p class="text-xs text-indigo-200">General Assembly Theological Seminary Digital Library</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-4 text-sm font-medium text-slate-300">
-                <span class="inline-block"><i class="fa-solid fa-layer-group mr-1.5 text-indigo-400"></i>총 <strong id="total-books-count" class="text-white">0</strong>권</span>
+            <div class="text-sm font-medium text-indigo-100 bg-indigo-950/50 px-3 py-1.5 rounded-lg border border-indigo-700/50">
+                <span><i class="fa-solid fa-layer-group mr-1.5 text-indigo-400"></i>총 <strong id="total-books-count" class="text-white">0</strong>권</span>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- 4. 본문 영역 (검색 및 도서관 서가) -->
+    <!-- 4. Main Contents (검색 및 서가 영역) -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <section class="mb-8">
             <div class="text-center max-w-2xl mx-auto mb-6">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">총회신학 학술 연구원 도서관</h2>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">총회신학 학술 연구원 도서관</h3>
                 <p class="text-slate-600 text-sm sm:text-base">원하는 교재를 검색하거나 카테고리별로 확인해보세요.</p>
             </div>
 
-            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200/80 mb-6">
-                <div class="flex flex-col md:flex-row gap-4 mb-4">
-                    <div class="relative flex-grow">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="search-input" placeholder="교재명, 저자, 판매처 등으로 검색하세요..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm">
-                    </div>
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 mb-6">
+                <div class="relative mb-4">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="search-input" placeholder="교재명, 저자, 판매처 등으로 검색하세요..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm">
                 </div>
 
                 <div class="flex items-center gap-2 overflow-x-auto pb-1 text-sm scrollbar-none" id="category-filters">
@@ -163,17 +160,17 @@
             </div>
         </section>
 
-        <!-- 서가 그리드 -->
+        <!-- 도서 서가 그리드 -->
         <section class="relative">
             <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
                 <i class="fa-solid fa-book-open text-4xl text-slate-300 mb-3"></i>
-                <h3 class="text-lg font-bold text-slate-700">검색 결과가 없습니다</h3>
+                <h4 class="text-lg font-bold text-slate-700">검색 결과가 없습니다</h4>
             </div>
             <div id="bookshelf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 pb-12"></div>
         </section>
     </main>
 
-    <!-- 5. 상세보기 팝업 모달 -->
+    <!-- 5. Modal Popup -->
     <div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
         <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden modal-content relative flex flex-col md:flex-row max-h-[90vh]">
             <button id="modal-close-btn" class="absolute top-4 right-4 z-10 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center">
@@ -215,41 +212,38 @@
         </div>
     </div>
 
-    <!-- 6. 하단 푸터 -->
-    <footer class="modern-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="f-col">
-                    <h6>OUR CAMPUS</h6>
-                    <h3 class="f-brand">총회신학학술연구원</h3>
-                    <p>대한예수교장로회(한영)<br>총회신학학술연구원</p>
-                    <p><strong>Address:</strong> (08227) 서울 구로구 중앙로1길 42 (고척동, 일이삼전자타운) 1동 608호</p>
-                    <p><strong>Phone:</strong> (031) 677-8428</p>
-                    <p><strong>Email:</strong> hanyoungcc@naver.com</p>
-                </div>
-                <div class="f-col f-links">
-                    <h6>QUICK LINKS</h6>
-                    <ul>
-                        <li><a href="http://www.hypck.org/">한영총회 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="http://gtcc.edu.ph/">GTCC대학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="https://myyoungji.com/">영지국제학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="https://www.ptu.ac.kr/">평택대학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                        <li><a href="https://www.dtu.ac.kr/">대한신학대학원대학교 <i class="ph-light ph-arrow-right"></i></a></li>
-                    </ul>
-                </div>
-                <div class="f-col f-connect">
-                    <h6>CONNECT</h6>
-                    <p>개혁주의 신학의 토대 위에 교회와 세계를 섬기는 목회자와 지도자를 세우는 신학 공동체입니다.</p>
-                    <a href="admissions_guideline.html" class="btn-primary">입학 안내 확인하기</a>
-                </div>
+    <!-- 6. Footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Our Campus</span>
+                <h3 class="text-white text-lg font-bold mt-1 mb-2">총회신학학술연구원</h3>
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">대한예수교장로회(한영)<br>총회신학학술연구원</p>
+                <p class="text-xs text-slate-400"><strong>주소:</strong> (08227) 서울 구로구 중앙로1길 42 1동 608호</p>
+                <p class="text-xs text-slate-400"><strong>전화:</strong> (031) 677-8428</p>
+                <p class="text-xs text-slate-400"><strong>이메일:</strong> hanyoungcc@naver.com</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 대한예수교장로회(한영)총회신학학술연구원. All rights reserved.</p>
+            <div>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Quick Links</span>
+                <ul class="mt-3 space-y-2 text-xs">
+                    <li><a href="http://www.hypck.org/" target="_blank" class="hover:text-white transition-colors flex items-center justify-between">한영총회 <i class="fa-solid fa-arrow-right text-[10px]"></i></a></li>
+                    <li><a href="http://gtcc.edu.ph/" target="_blank" class="hover:text-white transition-colors flex items-center justify-between">GTCC대학교 <i class="fa-solid fa-arrow-right text-[10px]"></i></a></li>
+                    <li><a href="https://myyoungji.com/" target="_blank" class="hover:text-white transition-colors flex items-center justify-between">영지국제학교 <i class="fa-solid fa-arrow-right text-[10px]"></i></a></li>
+                    <li><a href="https://www.ptu.ac.kr/" target="_blank" class="hover:text-white transition-colors flex items-center justify-between">평택대학교 <i class="fa-solid fa-arrow-right text-[10px]"></i></a></li>
+                </ul>
             </div>
+            <div>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Connect</span>
+                <p class="text-xs text-slate-400 mt-3 mb-4 leading-relaxed">개혁주의 신학의 토대 위에 교회와 세계를 섬기는 목회자와 지도자를 세우는 신학 공동체입니다.</p>
+                <a href="admissions_guideline.html" class="inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium transition-colors">입학 안내 확인하기</a>
+            </div>
+        </div>
+        <div class="bg-slate-950 py-4 border-t border-slate-800/80 text-center text-xs text-slate-500">
+            <p>&copy; 2026 대한예수교장로회(한영)총회신학학술연구원. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- 7. 도서 동적 렌더링 스크립트 -->
+    <!-- 7. Dynamic Books Script -->
     <script>
         const rawBooks = [
             { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056", author: "김낙신 저", store: "쿠팡" },
