@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>교과목 다운로드 |총회신학학술연구원</title>
+    <title>조직도 | 총회신학학술연구원</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="icon" type="image/png" href="../../assets/images/site-logo.png">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/site-logo.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="top-nav">
         <div class="container top-nav-inner flex-between">
-            <a class="logo-area" href="../../index.html">
-                <img src="../../assets/images/site-logo.png" alt="학교 로고" class="main-logo-image">
+            <a class="logo-area" href="index.html">
+                <img src="assets/images/site-logo.png" alt="학교 로고" class="main-logo-image">
                 <div class="logo-text">
                     <h1>총회신학학술연구원</h1>
                     <span>대한예수교장로회(한영)총회신학학술연구원</span>
@@ -21,19 +21,15 @@
             </a>
             <div class="top-links-area">
                 <nav class="top-links">
-                    <a href="../../index.html">Home</a>
-                    <a href="../../sitemap.html">사이트맵</a>
-                    <span class="lang-selector">ENG</span>
+                    <a href="index.html">Home</a>
+                    <a href="sitemap.html">사이트맵</a>
+                    <button type="button" class="lang-selector" data-lang-toggle aria-label="영어 번역 전환">ENG</button>
                 </nav>
-                <div class="search-wrap">
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button type="button" aria-label="검색">
-                        <i class="ph-light ph-magnifying-glass"></i>
-                    </button>
-                </div>
             </div>
         </div>
+        <div id="google_translate_element" class="translate-widget" aria-hidden="true"></div>
     </header>
+
     <nav class="main-category-nav">
         <div class="container nav-icons-wrap">
             <details class="nav-item nav-dropdown">
@@ -52,13 +48,31 @@
                     <a href="intro_school.html">인준신학교</a>
                 </div>
             </details>
-            <a href="../../admissions_guideline.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-graduation-cap"></i></div><span>입학안내</span></a>
-            <a href="../../degree_bachelor.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-student"></i></div><span>학과소개</span></a>
-            <a href="../../academic_info.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-calendar-blank"></i></div><span>학사안내</span></a>
-            <a href="../../campus_life.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-users"></i></div><span>대학생활</span></a>
-            <a href="../../research_intro.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-microscope"></i></div><span>학술연구</span></a>
-            <a href="../../online_service.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-desktop"></i></div><span>온라인서비스</span></a>
-        </div> 
+            <a href="admissions_guideline.html" class="nav-icon-link">
+                <div class="icon-box"><i class="ph-light ph-graduation-cap"></i></div>
+                <span>입학안내</span>
+            </a>
+            <a href="degree_bachelor.html" class="nav-icon-link">
+                <div class="icon-box"><i class="ph-light ph-student"></i></div>
+                <span>학과소개</span>
+            </a>
+            <a href="academic_info.html" class="nav-icon-link">
+                <div class="icon-box"><i class="ph-light ph-calendar-blank"></i></div>
+                <span>학사안내</span>
+            </a>
+            <a href="campus_life.html" class="nav-icon-link">
+                <div class="icon-box"><i class="ph-light ph-users"></i></div>
+                <span>대학생활</span>
+            </a>
+            <a href="research_intro.html" class="nav-icon-link">
+                <div class="icon-box"><i class="ph-light ph-microscope"></i></div>
+                <span>학술연구</span>
+            </a>
+            <a href="online_service.html" class="nav-icon-link">
+                <div class="icon-box"><i class="ph-light ph-desktop"></i></div>
+                <span>온라인서비스</span>
+            </a>
+        </div>
     </nav>
 
 <!DOCTYPE html>
