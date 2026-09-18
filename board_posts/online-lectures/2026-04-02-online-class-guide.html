@@ -61,6 +61,7 @@
         </div> 
     </nav>
 
+HTML
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -110,7 +111,7 @@
       box-shadow: 1px 0 1px rgba(255, 255, 255, 0.2);
     }
 
-    /* 원목 서반 받침대 선 */
+    /* 원목 선반 받침대 효과 */
     .shelf-wood {
       background: linear-gradient(180deg, #8B5A2B 0%, #5C3A17 100%);
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.2);
@@ -143,16 +144,16 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-lg">
-          <i class="fa-solid me-0 fa-book-open text-xl"></i>
+          <i class="fa-solid fa-book-open text-xl"></i>
         </div>
         <div>
-          <h1 class="font-bold text-lg leading-tight">디지털 라이브러리</h1>
-          <p class="text-xs text-slate-400">Digital Interactive Library</p>
+          <h1 class="font-bold text-lg leading-tight">신학 전문 디지털 라이브러리</h1>
+          <p class="text-xs text-slate-400">Theological Digital Library</p>
         </div>
       </div>
       
       <div class="flex items-center space-x-4 text-sm font-medium text-slate-300">
-        <span class="hidden sm:inline-block"><i class="fa-solid fa-layer-group mr-1.5 text-indigo-400"></i>총 <strong id="total-books-count" class="text-white">0</strong>권 보유</span>
+        <span class="inline-block"><i class="fa-solid fa-layer-group mr-1.5 text-indigo-400"></i>총 <strong id="total-books-count" class="text-white">0</strong>권</span>
       </div>
     </div>
   </header>
@@ -161,10 +162,10 @@
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
     
     <!-- 타이틀 & 검색/필터 바 -->
-    <section class="mb-10">
-      <div class="text-center max-w-2xl mx-auto mb-8">
-        <h2 class="text-3xl font-bold text-slate-900 mb-2">도서 검색 및 탐색</h2>
-        <p class="text-slate-600">원하는 도서를 선택하여 상세 정보를 확인하거나 읽기 모드를 열람해보세요.</p>
+    <section class="mb-8">
+      <div class="text-center max-w-2xl mx-auto mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">신학 교재 및 도서 탐색</h2>
+        <p class="text-slate-600 text-sm sm:text-base">원하는 교재를 검색하거나 카테고리별로 서가에서 확인해보세요.</p>
       </div>
 
       <!-- 검색창 및 카테고리 태그 -->
@@ -176,7 +177,7 @@
             <input 
               type="text" 
               id="search-input"
-              placeholder="도서 제목, 저자, 키워드로 검색하세요..." 
+              placeholder="교재명, 저자, 판매처 등으로 검색하세요..." 
               class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm"
             />
           </div>
@@ -187,20 +188,17 @@
           <button data-category="all" class="filter-btn active px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium shadow-sm transition-all whitespace-nowrap">
             전체
           </button>
-          <button data-category="컴퓨터/IT" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            컴퓨터/IT
+          <button data-category="성서학" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
+            성서학 (구약/신약)
           </button>
-          <button data-category="인문/철학" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            인문/철학
+          <button data-category="조직/역사" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
+            조직/역사신학
           </button>
-          <button data-category="자기계발" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            자기계발
+          <button data-category="실천/목회" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
+            실천/목회신학
           </button>
-          <button data-category="소설/문학" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            소설/문학
-          </button>
-          <button data-category="경영/경제" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
-            경영/경제
+          <button data-category="선교/상담" class="filter-btn px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium transition-all whitespace-nowrap">
+            선교/상담/음악
           </button>
         </div>
       </div>
@@ -212,12 +210,12 @@
       <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
         <i class="fa-solid fa-book-open text-4xl text-slate-300 mb-3"></i>
         <h3 class="text-lg font-bold text-slate-700">검색 결과가 없습니다</h3>
-        <p class="text-slate-500 text-sm mt-1">다른 검색어를 입력하거나 필터를 변경해 보세요.</p>
+        <p class="text-slate-500 text-sm mt-1">다른 검색어를 입력해 보세요.</p>
       </div>
 
       <!-- 서가 그리드 -->
-      <div id="bookshelf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-8 pb-12">
-        <!-- JavaScript를 통해 dynamic 랜더링 됨 -->
+      <div id="bookshelf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 pb-12">
+        <!-- JavaScript를 통해 Dynamic 랜더링 -->
       </div>
     </section>
 
@@ -225,7 +223,7 @@
 
   <!-- 도서 상세 모달 (Modal Window) -->
   <div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden modal-content relative flex flex-col md:flex-row max-h-[90vh]">
+    <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden modal-content relative flex flex-col md:flex-row max-h-[90vh]">
       
       <!-- 모달 닫기 버튼 -->
       <button id="modal-close-btn" class="absolute top-4 right-4 z-10 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
@@ -233,39 +231,41 @@
       </button>
 
       <!-- 왼쪽: 책 커버 이미지 영역 -->
-      <div id="modal-cover-bg" class="w-full md:w-5/12 p-8 flex items-center justify-center bg-slate-100 relative overflow-hidden">
-        <div class="relative z-10 w-36 sm:w-44 aspect-[3/4] rounded-r-lg shadow-2xl overflow-hidden border-l-4 border-black/20">
+      <div id="modal-cover-bg" class="w-full md:w-5/12 p-8 flex items-center justify-center relative overflow-hidden">
+        <div class="relative z-10 w-36 aspect-[3/4] rounded-r-lg shadow-2xl overflow-hidden border-l-4 border-black/20">
           <img id="modal-cover-img" src="" alt="Book Cover" class="w-full h-full object-cover" />
         </div>
       </div>
 
-      <!-- 오른쪽: 상세 정보 및 읽기 버튼 -->
-      <div class="w-full md:w-7/12 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+      <!-- 오른쪽: 상세 정보 및 서점 연결 버튼 -->
+      <div class="w-full md:w-7/12 p-6 flex flex-col justify-between overflow-y-auto">
         <div>
           <div class="flex items-center space-x-2 mb-2">
             <span id="modal-category" class="px-2.5 py-1 text-xs font-semibold bg-indigo-100 text-indigo-700 rounded-full">
               카테고리
             </span>
-            <span class="text-xs text-slate-400">|</span>
-            <span id="modal-year" class="text-xs text-slate-500">2026</span>
+            <span id="modal-store-tag" class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-600 rounded-full">
+              판매처
+            </span>
           </div>
 
-          <h3 id="modal-title" class="text-2xl font-bold text-slate-900 mb-2 leading-snug">도서 제목</h3>
-          <p id="modal-author" class="text-sm text-slate-600 font-medium mb-4">저자명</p>
+          <h3 id="modal-title" class="text-xl font-bold text-slate-900 mb-2 leading-snug">도서 제목</h3>
+          <p id="modal-author" class="text-sm text-slate-600 font-medium mb-4">저자: 김낙신 / 신학 연구진</p>
 
           <div class="border-t border-slate-100 pt-4 mb-4">
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">도서 소개</h4>
-            <p id="modal-description" class="text-sm text-slate-600 leading-relaxed max-h-40 overflow-y-auto pr-1">
-              상세 설명이 들어갑니다.
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">교재 안내</h4>
+            <p id="modal-description" class="text-sm text-slate-600 leading-relaxed">
+              본 교재는 신학 및 목회 실무를 위한 전문 서적으로, 하단 구매 버튼을 클릭하시면 해당 서점(쿠팡, 교보문고, 부크크)으로 연결됩니다.
             </p>
           </div>
         </div>
 
         <div class="pt-4 border-t border-slate-100 flex items-center space-x-3">
-          <button id="modal-read-btn" class="flex-grow py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-book-open-reader"></i>
-            <span>도서 바로 읽기</span>
-          </button>
+          <a id="modal-buy-btn" href="#" target="_blank" rel="noopener noreferrer" class="flex-grow py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>도서 구매 및 상세보기</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+          </a>
         </div>
       </div>
 
@@ -275,95 +275,77 @@
   <!-- 푸터 -->
   <footer class="bg-slate-900 text-slate-400 py-8 mt-auto border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-      <p>© 2026 디지털 라이브러리. All rights reserved.</p>
+      <p>© 디지털 신학 도서관. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- JavaScript 동적 기능 구현 -->
   <script>
-    // 도서 데이터 배열 (샘플 데이터)
-    const booksData = [
-      {
-        id: 1,
-        title: "생성형 AI 프롬프트 엔지니어링",
-        author: "김낙신 저",
-        category: "컴퓨터/IT",
-        year: "2026",
-        description: "최신 LLM 모델 구조 파악부터 업무 자동화, 인프라 연동 및 최적의 커스텀 프롬프트를 작성하는 실전 안내서입니다.",
-        coverColor: "from-blue-600 to-indigo-900",
-        icon: "fa-brain"
-      },
-      {
-        id: 2,
-        title: "웹 현대화 & 클라우드 구축",
-        author: "박영진 저",
-        category: "컴퓨터/IT",
-        year: "2025",
-        description: "React, Vite, Vercel 환경을 활용하여 현대적인 인터랙티브 웹 애플리케이션을 구축하고 배포하는 가이드.",
-        coverColor: "from-cyan-600 to-blue-800",
-        icon: "fa-code"
-      },
-      {
-        id: 3,
-        title: "현대 사회와 행정 정보 공개",
-        author: "이정호 저",
-        category: "인문/철학",
-        year: "2026",
-        description: "공공기관의 정보공개에 관한 법률 및 실무 행정 유권해석의 절차와 실제 적용 사례를 정밀하게 분석합니다.",
-        coverColor: "from-amber-700 to-orange-950",
-        icon: "fa-scale-balanced"
-      },
-      {
-        id: 4,
-        title: "디지털 워크플로우와 생산성",
-        author: "최수민 저",
-        category: "자기계발",
-        year: "2025",
-        description: "반복적인 행정 및 업무 프로세스를 자동화하여 개인이 창의적 작업에 집중할 수 있도록 돕는 디지털 가이드.",
-        coverColor: "from-emerald-600 to-teal-900",
-        icon: "fa-gears"
-      },
-      {
-        id: 5,
-        title: "국제 자격 검증과 교육 과정",
-        author: "조나린 저",
-        category: "인문/철학",
-        year: "2026",
-        description: "글로벌 학위 및 자격 검증 프레임워크와 국제 교육 과정 설계를 위한 다각적 연구서.",
-        coverColor: "from-purple-600 to-slate-900",
-        icon: "fa-graduation-cap"
-      },
-      {
-        id: 6,
-        title: "시선너머의 기억",
-        author: "김낙신 시집",
-        category: "소설/문학",
-        year: "2026",
-        description: "일상의 소중한 순간들과 지나온 시간을 감성적인 언어로 담아낸 자작 시 및 서정 가사집.",
-        coverColor: "from-rose-600 to-pink-900",
-        icon: "fa-feather"
-      },
-      {
-        id: 7,
-        title: "벤처 경영과 리더십 혁신",
-        author: "김낙신 저",
-        category: "경영/경제",
-        year: "2025",
-        description: "급변하는 시장 환경 속에서 벤처 기업의 지속 가능한 성장을 이끌어내는 종합 경영 전략 가이드.",
-        coverColor: "from-slate-700 to-slate-950",
-        icon: "fa-chart-line"
-      },
-      {
-        id: 8,
-        title: "사탐과 자격인증 제도 실무",
-        author: "정현우 저",
-        category: "경영/경제",
-        year: "2026",
-        description: "민간 자격증 및 탐정사 교육 과정의 설계, 법률적 검토 및 운영 전반을 다룬 안내서.",
-        coverColor: "from-stone-600 to-stone-900",
-        icon: "fa-user-shield"
-      }
+    // 입력받은 25권 도서 데이터 세팅
+    const rawBooks = [
+      { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056?itemId=28681500261&vendorItemId=95623142676&q=%EC%84%A0%EA%B5%90%ED%95%99+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=4418a56f26228432&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv6x7j1" },
+      { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133?itemId=28681545916&vendorItemId=95623186574&q=%EA%B9%80%EB%82%99%EC%8B%A0+%EC%8B%A0%EC%95%BD%EA%B0%9C%EB%A1%A0&searchId=6802d06014431066&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv72stn" },
+      { id: 3, name: "구약개론", url: "https://www.coupang.com/vp/products/9607333788?itemId=28681569211&vendorItemId=95623209193&q=%EA%B5%AC%EC%95%BD%EA%B0%9C%EB%A1%A0+%EA%B9%80%EB%82%99%EC%8B%A0&searchId=18a32de22143879&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=msv76490" },
+      { id: 4, name: "실천신학", url: "https://product.kyobobook.co.kr/detail/S000220846094" },
+      { id: 5, name: "공관복음", url: "https://bookk.co.kr/bookStore/6a7c72fead34f1436e69b4d5" },
+      { id: 6, name: "기독교영성", url: "https://product.kyobobook.co.kr/detail/S000220931824" },
+      { id: 7, name: "목회학개론", url: "https://bookk.co.kr/bookStore/6a8455692286b9745a62407f" },
+      { id: 8, name: "모세오경", url: "https://bookk.co.kr/bookStore/6a87c7e3dcad018dec3c5075" },
+      { id: 9, name: "역사신학", url: "https://bookk.co.kr/bookStore/6a87c949d758179124805b9a" },
+      { id: 10, name: "현대신학", url: "https://bookk.co.kr/bookStore/6a87ca7aaa98b26c8765a6b8" },
+      { id: 11, name: "교회사", url: "https://bookk.co.kr/bookStore/6a87cbee483b5341920d3f2c" },
+      { id: 12, name: "기독교상담학", url: "https://www.coupang.com/vp/products/9641561471?itemId=28809412715&vendorItemId=95744507250&q=%EC%9D%B4%EC%98%81%ED%9D%AC+%EA%B8%B0%EB%8F%85%EA%B5%90%EC%83%81%EB%8B%B4%ED%95%99&searchId=ab4e6f9d2068936&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mt7583bn" },
+      { id: 13, name: "목회상담학", url: "https://product.kyobobook.co.kr/detail/S000221049469" },
+      { id: 14, name: "조직신학개론", url: "https://bookk.co.kr/bookStore/6a8e3bc0dfbe6133a1e017c4" },
+      { id: 15, name: "예배학개론", url: "https://bookk.co.kr/bookStore/6a8e39bb699b7758873f7b7f" },
+      { id: 16, name: "설교학개론", url: "https://bookk.co.kr/bookStore/6a8e38a159ddc74af1b64fe6" },
+      { id: 17, name: "교회음악개론", url: "https://bookk.co.kr/bookStore/6a8e3d72488b034a8ec8b14e" },
+      { id: 18, name: "장로교회의사상과 역사", url: "https://bookk.co.kr/bookStore/6a9deed3080f8576245bf820" },
+      { id: 19, name: "예언서주해", url: "https://bookk.co.kr/bookStore/6a9deb2332f0a0a48d1c4bc4" },
+      { id: 20, name: "신약성서학 개론", url: "https://bookk.co.kr/bookStore/6a8e3ad1dfbe6133a1e01543" },
+      { id: 21, name: "목회학", url: "https://bookk.co.kr/bookStore/6aa0b24d353fa6864af39076" },
+      { id: 22, name: "개혁신학", url: "https://bookk.co.kr/bookStore/6aa1f034b5fa6270efc89955" },
+      { id: 23, name: "한국교회 역사와 영성", url: "https://bookk.co.kr/bookStore/6aa1ef040c4bf855eb448b25" },
+      { id: 24, name: "장로교 행정론", url: "https://bookk.co.kr/bookStore/6aa1edb9b9da803a0d048f08" },
+      { id: 25, name: "개혁주의 조직신학 입문 2", url: "https://bookk.co.kr/bookStore/6aab3f04550dd177e3755144" }
     ];
+
+    // 색상 그래디언트 팔레트
+    const colors = [
+      "from-blue-700 to-indigo-900",
+      "from-amber-700 to-stone-900",
+      "from-emerald-700 to-teal-950",
+      "from-purple-700 to-slate-900",
+      "from-rose-700 to-red-950",
+      "from-cyan-700 to-slate-900",
+      "from-sky-700 to-indigo-950"
+    ];
+
+    // 도서 카테고리 매핑 및 서점 태그 지정
+    const booksData = rawBooks.map((book, index) => {
+      let category = "실천/목회";
+      if (["구약개론", "신약개론", "공관복음", "모세오경", "예언서주해", "신약성서학 개론"].some(k => book.name.includes(k))) {
+        category = "성서학";
+      } else if (["조직신학개론", "역사신학", "현대신학", "교회사", "장로교회의사상과 역사", "개혁신학", "한국교회 역사와 영성", "개혁주의 조직신학 입문 2"].some(k => book.name.includes(k))) {
+        category = "조직/역사";
+      } else if (["선교학", "기독교상담학", "목회상담학", "교회음악개론", "기독교영성"].some(k => book.name.includes(k))) {
+        category = "선교/상담";
+      }
+
+      let store = "부크크";
+      if (book.url.includes("coupang")) store = "쿠팡";
+      else if (book.url.includes("kyobobook")) store = "교보문고";
+
+      return {
+        ...book,
+        title: book.name,
+        category: category,
+        store: store,
+        author: (book.id === 12) ? "이영희 저" : "김낙신 저",
+        coverColor: colors[index % colors.length],
+        icon: "fa-book"
+      };
+    });
 
     // DOM 요소 선택
     const bookshelfGrid = document.getElementById('bookshelf-grid');
@@ -378,16 +360,15 @@
     const modalCoverBg = document.getElementById('modal-cover-bg');
     const modalCoverImg = document.getElementById('modal-cover-img');
     const modalCategory = document.getElementById('modal-category');
-    const modalYear = document.getElementById('modal-year');
+    const modalStoreTag = document.getElementById('modal-store-tag');
     const modalTitle = document.getElementById('modal-title');
     const modalAuthor = document.getElementById('modal-author');
-    const modalDescription = document.getElementById('modal-description');
-    const modalReadBtn = document.getElementById('modal-read-btn');
+    const modalBuyBtn = document.getElementById('modal-buy-btn');
 
     let currentCategory = 'all';
     let currentSearchTerm = '';
 
-    // 초기화 함수
+    // 초기화
     function init() {
       totalBooksCount.textContent = booksData.length;
       renderBooks();
@@ -400,7 +381,7 @@
         const matchesCategory = currentCategory === 'all' || book.category === currentCategory;
         const matchesSearch = book.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
                               book.author.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
-                              book.description.toLowerCase().includes(currentSearchTerm.toLowerCase());
+                              book.store.toLowerCase().includes(currentSearchTerm.toLowerCase());
         return matchesCategory && matchesSearch;
       });
 
@@ -425,31 +406,31 @@
 
       card.innerHTML = `
         <div class="relative mb-3">
-          <!-- 3D 책 모양 커버 -->
-          <div class="book-inner aspect-[3/4] w-full bg-gradient-to-br ${book.coverColor} p-4 flex flex-col justify-between text-white relative overflow-hidden">
+          <!-- 3D 책 커버 -->
+          <div class="book-inner aspect-[3/4] w-full bg-gradient-to-br ${book.coverColor} p-3.5 flex flex-col justify-between text-white relative overflow-hidden">
             <div class="book-spine-line"></div>
             
             <div class="flex justify-between items-start pl-2 z-10">
-              <span class="text-[10px] font-semibold uppercase tracking-wider opacity-80 bg-black/20 px-1.5 py-0.5 rounded">
-                ${book.category}
+              <span class="text-[10px] font-semibold uppercase tracking-wider opacity-90 bg-black/30 px-1.5 py-0.5 rounded">
+                ${book.store}
               </span>
-              <i class="fa-solid ${book.icon} text-sm opacity-60"></i>
+              <i class="fa-solid ${book.icon} text-xs opacity-70"></i>
             </div>
 
             <div class="pl-2 my-auto z-10">
-              <h3 class="font-bold text-sm sm:text-base leading-tight drop-shadow-md line-clamp-3 mb-1">
+              <h3 class="font-bold text-sm leading-tight drop-shadow-md line-clamp-2 mb-1">
                 ${book.title}
               </h3>
-              <p class="text-[11px] opacity-80 font-light truncate">${book.author}</p>
+              <p class="text-[10px] opacity-80 font-light truncate">${book.author}</p>
             </div>
 
-            <div class="pl-2 flex justify-between items-end text-[10px] opacity-70 z-10">
-              <span>${book.year}</span>
-              <i class="fa-solid fa-circle-info text-xs group-hover:scale-125 transition-transform"></i>
+            <div class="pl-2 flex justify-between items-end text-[10px] opacity-80 z-10">
+              <span class="text-[9px] bg-white/20 px-1 rounded">${book.category}</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:scale-125 transition-transform"></i>
             </div>
           </div>
 
-          <!-- 서가 원목 받침대 효과 -->
+          <!-- 원목 선반 받침대 -->
           <div class="shelf-wood h-3 w-[106%] -ml-[3%] rounded-sm mt-1"></div>
         </div>
 
@@ -457,7 +438,7 @@
           <h4 class="font-medium text-xs text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
             ${book.title}
           </h4>
-          <p class="text-[11px] text-slate-400 truncate">${book.author}</p>
+          <p class="text-[11px] text-slate-400 truncate">${book.store}</p>
         </div>
       `;
 
@@ -467,58 +448,51 @@
     // 모달 열기
     function openModal(book) {
       modalCategory.textContent = book.category;
-      modalYear.textContent = book.year;
+      modalStoreTag.textContent = book.store;
       modalTitle.textContent = book.title;
-      modalAuthor.textContent = book.author;
-      modalDescription.textContent = book.description;
+      modalAuthor.textContent = `저자: ${book.author}`;
+      modalBuyBtn.href = book.url;
 
-      // 모달 커버 배경 및 이미지 설정 (가상 플레이스홀더 커버 생성)
+      // 배경 색상
       modalCoverBg.className = `w-full md:w-5/12 p-8 flex items-center justify-center bg-gradient-to-br ${book.coverColor} relative overflow-hidden`;
       
-      // Canvas를 활용하여 동적 커버 이미지 세팅
+      // Canvas 동적 표지 생성
       const canvas = document.createElement('canvas');
       canvas.width = 300;
       canvas.height = 400;
       const ctx = canvas.getContext('2d');
       
-      // 배경 그리기
-      ctx.fillStyle = '#1e293b';
+      ctx.fillStyle = '#0f172a';
       ctx.fillRect(0, 0, 300, 400);
       
-      // 텍스트 그리기
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 20px "Noto Sans KR"';
+      ctx.font = 'bold 22px "Noto Sans KR"';
       ctx.textAlign = 'center';
       
-      // 제목 줄바꿈 처리
+      // 제목 줄바꿈
       const words = book.title.split(' ');
       let line = '';
       let y = 180;
       for (let n = 0; n < words.length; n++) {
         let testLine = line + words[n] + ' ';
-        if (testLine.length > 10 && n > 0) {
+        if (testLine.length > 8 && n > 0) {
           ctx.fillText(line, 150, y);
           line = words[n] + ' ';
-          y += 28;
+          y += 30;
         } else {
           line = testLine;
         }
       }
       ctx.fillText(line, 150, y);
 
-      ctx.font = '14px "Noto Sans KR"';
+      ctx.font = '13px "Noto Sans KR"';
       ctx.fillStyle = '#94a3b8';
       ctx.fillText(book.author, 150, y + 40);
 
       modalCoverImg.src = canvas.toDataURL();
 
-      // 읽기 버튼 동작
-      modalReadBtn.onclick = () => {
-        alert(`'${book.title}' 도서 열람 페이지로 이동합니다.`);
-      };
-
       bookModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // 스크롤 방지
+      document.body.style.overflow = 'hidden';
     }
 
     // 모달 닫기
@@ -527,15 +501,13 @@
       document.body.style.overflow = '';
     }
 
-    // 이벤트 리스너 등록
+    // 이벤트 리스너
     function setupEventListeners() {
-      // 검색어 입력
       searchInput.addEventListener('input', (e) => {
         currentSearchTerm = e.target.value.trim();
         renderBooks();
       });
 
-      // 카테고리 필터 클릭
       categoryFilters.addEventListener('click', (e) => {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -552,7 +524,6 @@
         renderBooks();
       });
 
-      // 모달 닫기 이벤트
       modalCloseBtn.addEventListener('click', closeModal);
       bookModal.addEventListener('click', (e) => {
         if (e.target === bookModal) closeModal();
@@ -564,7 +535,6 @@
       });
     }
 
-    // 페이지 로드 후 실행
     document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
