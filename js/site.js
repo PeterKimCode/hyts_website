@@ -75,9 +75,11 @@
                 status.dataset.state = 'success';
                 status.textContent = '입학상담 신청이 정상적으로 접수되었습니다.\n확인 후 빠른 시간 내에 연락드리겠습니다.';
                 consultForm.reset();
+                window.alert(status.textContent);
             } catch {
                 status.dataset.state = 'error';
                 status.textContent = '상담 신청을 전송하지 못했습니다.\n잠시 후 다시 시도해주세요.';
+                window.alert(status.textContent);
             } finally {
                 clearTimeout(timeout);
                 sending = false;
