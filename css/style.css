@@ -1,5 +1,40 @@
 ﻿@charset "UTF-8";
 
+.simple-footer {
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    padding: 40px 0 28px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+.simple-footer-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 100%;
+    color: #1f2937;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+.simple-footer-brand img { object-fit: contain; }
+.simple-footer p, .simple-footer address { margin: 0 0 10px; font-style: normal; }
+.simple-footer .simple-footer-copyright { margin: 18px 0 0; font-size: 13px; color: #94a3b8; }
+.simple-footer a:focus-visible { outline: 2px solid #1c3c6f; outline-offset: 4px; }
+.consult-error { display: block; color: #b91c1c; font-size: 12px; }
+.consult-error:empty, .consult-status:empty { display: none; }
+.consult-status { white-space: pre-line; font-size: 14px; line-height: 1.6; }
+.consult-status[data-state="success"] { color: #166534; }
+.consult-status[data-state="error"] { color: #b91c1c; }
+.consult-form [aria-invalid="true"] { border-color: #b91c1c; }
+.consult-form button:disabled { opacity: 0.65; cursor: wait; }
+@media (max-width: 600px) {
+    .simple-footer-brand { flex-direction: column; font-size: 18px; }
+}
+
 :root {
     --primary-blue: #1c3c6f;
     --hover-blue: #2d5a9e;
