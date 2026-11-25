@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,68 +9,65 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="icon" type="image/png" href="../../assets/images/site-logo.png">
     <link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-<style>
-    .subject-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
-        font-family: 'Malgun Gothic', sans-serif;
-    }
-
-    .subject-header {
-        border-bottom: 2px solid #333;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
-
-    /* 가로 3등분을 위한 Flexbox 설정 */
-    .subject-list {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        gap: 15px; /* 항목 간 간격 */
-    }
-
-    .subject-list li {
-        /* 전체 너비에서 간격을 제외하고 3등분 (약 33.3%) */
-        flex: 0 1 calc(33.333% - 10px);
-        box-sizing: border-box;
-    }
-
-    .subject-link {
-        display: block;
-        padding: 12px 15px;
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-left: 4px solid #007bff; /* 포인트 컬러 */
-        text-decoration: none;
-        color: #333 !important;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        text-align: center;
-    }
-
-    .subject-link:hover {
-        background-color: #007bff;
-        color: #fff !important;
-        border-color: #007bff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    /* 모바일 대응: 화면이 작아지면 1열로 변경 */
-    @media (max-width: 768px) {
-        .subject-list li {
-            flex: 0 1 100%;
+    <style>
+        .subject-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Malgun Gothic', sans-serif;
         }
-    }
-</style>
-<style>
-        /* 기본 리셋 & Pretendard 폰트 설정 */
+
+        .subject-header {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 가로 3등분을 위한 Flexbox 설정 */
+        .subject-list {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .subject-list li {
+            flex: 0 1 calc(33.333% - 10px);
+            box-sizing: border-box;
+        }
+
+        .subject-link {
+            display: block;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #007bff;
+            text-decoration: none;
+            color: #333 !important;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .subject-link:hover {
+            background-color: #007bff;
+            color: #fff !important;
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .subject-list li {
+                flex: 0 1 100%;
+            }
+        }
+    </style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -84,9 +82,9 @@
         }
 
         /* 입체 책 및 서가 스타일 */
-        .book-card { 
-            perspective: 1000px; 
-            transition: all 0.3s ease; 
+        .book-card {
+            perspective: 1000px;
+            transition: all 0.3s ease;
         }
         .book-inner {
             transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -107,13 +105,23 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.2);
         }
 
-        /* 모달 스타일 */
-        .modal-backdrop { 
-            background-color: rgba(15, 23, 42, 0.65); 
-            backdrop-filter: blur(4px); 
+        /* 표지 이미지 위 글씨 가독성 오버레이 */
+        .cover-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 23, 42, 0.55) 0%,
+                rgba(15, 23, 42, 0.15) 45%,
+                rgba(15, 23, 42, 0.78) 100%
+            );
         }
-        .modal-content { 
-            animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+
+        /* 모달 스타일 */
+        .modal-backdrop {
+            background-color: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes modalSlideUp {
             from { opacity: 0; transform: translateY(20px) scale(0.97); }
@@ -173,8 +181,6 @@
         </div>
     </nav>
 
-
-
     <!-- ==========================================
          [디지털 도서관 / 교과목 서가 단독 메인 영역]
     ========================================== -->
@@ -225,7 +231,7 @@
             </button>
 
             <div id="modal-cover-bg" class="w-full md:w-5/12 p-8 flex items-center justify-center relative overflow-hidden">
-                <div class="relative z-10 w-36 aspect-[3/4] rounded-r-lg shadow-2xl overflow-hidden border-l-4 border-black/20">
+                <div class="relative z-10 w-36 aspect-[3/4] rounded-r-lg shadow-2xl overflow-hidden border-l-4 border-black/20 bg-slate-900">
                     <img id="modal-cover-img" src="" alt="Book Cover" class="w-full h-full object-cover" />
                 </div>
             </div>
@@ -259,13 +265,14 @@
         </div>
     </div>
 
-
     <!-- ==========================================
          자바스크립트 (도서 데이터 처리 및 랜더링)
     ========================================== -->
     <script>
-        // 새로운 책을 추가할 때 category 속성을 수동으로 적어주면 해당 분류로 지정됩니다.
-        // category를 명시하지 않은 경우 제목 키워드 분석을 통해 자동 설정되며, 매칭되지 않는 경우 기본값 '일반참고'로 분류됩니다.
+        // 표지 이미지가 들어갈 기본 폴더 경로 (예: covers/1.jpg ~ covers/48.jpg)
+        // 각 도서 객체에 cover: "경로 또는 URL"을 개별 지정해도 됩니다.
+        const COVER_BASE_PATH = "covers";
+
         const rawBooks = [
             { id: 1, name: "선교학", url: "https://www.coupang.com/vp/products/9607317056", author: "김낙신 저", store: "쿠팡" },
             { id: 2, name: "신약개론", url: "https://www.coupang.com/vp/products/9607328133", author: "김낙신 저", store: "쿠팡" },
@@ -315,15 +322,16 @@
             { id: 46, name: "문답으로 배우는 성경 신학용어  ", url: "https://bookk.co.kr/bookStore/6af31a18d0a65c4f1a010e54", author: "김낙신 저", store: "부크크" },
             { id: 47, name: "교회·노회·총회 행정용어 ", url: "https://bookk.co.kr/bookStore/6afcf986c78ff29af48c995f", author: "김낙신 저", store: "부크크" },
             { id: 48, name: "총회 헌법 용어사전  ", url: "https://bookk.co.kr/bookStore/6afcfad0aba22720fc802ba3", author: "김낙신 저", store: "부크크" }
-          ];
+        ];
 
         const storeBadgeStyles = {
-            "부크크": "bg-emerald-600/80 text-white",
-            "쿠팡": "bg-red-600/80 text-white",
-            "교보문고": "bg-sky-600/80 text-white",
-            "YES24": "bg-blue-600/80 text-white",
-            "알라딘": "bg-pink-600/80 text-white",
-            "기타": "bg-slate-700/80 text-white"
+            "부크크": "bg-emerald-600/90 text-white",
+            "쿠팡": "bg-red-600/90 text-white",
+            "교보문고": "bg-sky-600/90 text-white",
+            "YES24": "bg-blue-600/90 text-white",
+            "알라딘": "bg-pink-600/90 text-white",
+            "영풍문고": "bg-amber-600/90 text-white",
+            "기타": "bg-slate-700/90 text-white"
         };
 
         const colors = [
@@ -344,14 +352,46 @@
             if (lUrl.includes("yes24")) return "YES24";
             if (lUrl.includes("aladin")) return "알라딘";
             if (lUrl.includes("bookk")) return "부크크";
+            if (lUrl.includes("ypbooks")) return "영풍문고";
             return "기타";
         }
 
+        function generateFallbackCoverDataUrl(book) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 300;
+            canvas.height = 400;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, 300, 400);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 22px "Noto Sans KR", sans-serif';
+            ctx.textAlign = 'center';
+
+            const words = book.title.trim().split(/\s+/);
+            let line = '';
+            let y = 175;
+            for (let n = 0; n < words.length; n++) {
+                let testLine = line + words[n] + ' ';
+                if (testLine.length > 8 && n > 0) {
+                    ctx.fillText(line.trim(), 150, y);
+                    line = words[n] + ' ';
+                    y += 30;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line.trim(), 150, y);
+
+            ctx.font = '13px "Noto Sans KR", sans-serif';
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillText(book.author, 150, y + 40);
+
+            return canvas.toDataURL();
+        }
+
         const booksData = rawBooks.map((book, index) => {
-            // 수동으로 category가 작성되어 있으면 우선 반영
             let category = book.category;
 
-            // category가 명시되지 않은 경우 규칙에 맞춰 자동 지정
             if (!category) {
                 if (["구약개론", "신약개론", "공관복음", "모세오경", "예언서주해", "신약성서학 개론"].some(k => book.name.includes(k))) {
                     category = "성서학";
@@ -362,20 +402,24 @@
                 } else if (["실천신학", "목회학개론", "예배학개론", "설교학개론", "목회학", "장로교 행정론"].some(k => book.name.includes(k))) {
                     category = "실천/목회";
                 } else {
-                    category = "일반참고"; // 매칭 조건이 없는 신규 서적 기본값
+                    category = "일반참고";
                 }
             }
 
             const storeName = book.store && book.store.trim() !== "" ? book.store : detectStore(book.url);
             const storeBadgeClass = storeBadgeStyles[storeName] || storeBadgeStyles["기타"];
+            const coverImage = book.cover && book.cover.trim() !== ""
+                ? book.cover.trim()
+                : `${COVER_BASE_PATH}/${book.id}.jpg`;
 
             return {
                 ...book,
-                title: book.name,
+                title: book.name.trim(),
                 category: category,
                 store: storeName,
                 storeBadgeClass: storeBadgeClass,
                 author: book.author,
+                coverImage: coverImage,
                 coverColor: colors[index % colors.length],
                 icon: "fa-book"
             };
@@ -412,7 +456,7 @@
             if (!bookshelfGrid) return;
             const filteredBooks = booksData.filter(book => {
                 const matchesCategory = currentCategory === 'all' || book.category === currentCategory;
-                const matchesSearch = book.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+                const matchesSearch = book.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
                                       book.author.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
                                       book.store.toLowerCase().includes(currentSearchTerm.toLowerCase());
                 return matchesCategory && matchesSearch;
@@ -438,17 +482,24 @@
             card.innerHTML = `
                 <div class="relative mb-3">
                     <div class="book-inner aspect-[3/4] w-full bg-gradient-to-br ${book.coverColor} p-3.5 flex flex-col justify-between text-white relative overflow-hidden">
-                        <div class="book-spine-line"></div>
+                        <img
+                            src="${book.coverImage}"
+                            alt="${book.title} 겉표지"
+                            loading="lazy"
+                            class="cover-photo absolute inset-0 w-full h-full object-cover z-0"
+                        />
+                        <div class="cover-overlay absolute inset-0 z-[1]"></div>
+                        <div class="book-spine-line z-[2]"></div>
                         <div class="flex justify-between items-start pl-2 z-10">
                             <span class="text-[10px] font-semibold uppercase tracking-wider ${book.storeBadgeClass} px-1.5 py-0.5 rounded shadow-sm">${book.store}</span>
-                            <i class="fa-solid ${book.icon} text-xs opacity-70"></i>
+                            <i class="fa-solid ${book.icon} text-xs opacity-80"></i>
                         </div>
                         <div class="pl-2 my-auto z-10">
                             <h3 class="font-bold text-sm leading-tight drop-shadow-md line-clamp-2 mb-1">${book.title}</h3>
-                            <p class="text-[10px] opacity-80 font-light truncate">${book.author}</p>
+                            <p class="text-[10px] opacity-90 font-light truncate">${book.author}</p>
                         </div>
-                        <div class="pl-2 flex justify-between items-end text-[10px] opacity-80 z-10">
-                            <span class="text-[9px] bg-white/20 px-1 rounded">${book.category}</span>
+                        <div class="pl-2 flex justify-between items-end text-[10px] opacity-90 z-10">
+                            <span class="text-[9px] bg-black/40 backdrop-blur-[2px] px-1.5 py-0.5 rounded">${book.category}</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:scale-125 transition-transform"></i>
                         </div>
                     </div>
@@ -459,6 +510,14 @@
                     <p class="text-[11px] text-slate-400 truncate">${book.author}</p>
                 </div>
             `;
+
+            const coverImgEl = card.querySelector('.cover-photo');
+            if (coverImgEl) {
+                coverImgEl.addEventListener('error', () => {
+                    coverImgEl.remove();
+                }, { once: true });
+            }
+
             return card;
         }
 
@@ -474,36 +533,13 @@
 
             modalCoverBg.className = `w-full md:w-5/12 p-8 flex items-center justify-center bg-gradient-to-br ${book.coverColor} relative overflow-hidden`;
 
-            const canvas = document.createElement('canvas');
-            canvas.width = 300;
-            canvas.height = 400;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#0f172a';
-            ctx.fillRect(0, 0, 300, 400);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 22px "Noto Sans KR"';
-            ctx.textAlign = 'center';
+            const fallbackUrl = generateFallbackCoverDataUrl(book);
+            modalCoverImg.onerror = () => {
+                modalCoverImg.onerror = null;
+                modalCoverImg.src = fallbackUrl;
+            };
+            modalCoverImg.src = book.coverImage;
 
-            const words = book.title.split(' ');
-            let line = '';
-            let y = 180;
-            for (let n = 0; n < words.length; n++) {
-                let testLine = line + words[n] + ' ';
-                if (testLine.length > 8 && n > 0) {
-                    ctx.fillText(line, 150, y);
-                    line = words[n] + ' ';
-                    y += 30;
-                } else {
-                    line = testLine;
-                }
-            }
-            ctx.fillText(line, 150, y);
-
-            ctx.font = '13px "Noto Sans KR"';
-            ctx.fillStyle = '#94a3b8';
-            ctx.fillText(book.author, 150, y + 40);
-
-            modalCoverImg.src = canvas.toDataURL();
             bookModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -560,7 +596,7 @@
 
         document.addEventListener('DOMContentLoaded', init);
     </script>
-<footer class="simple-footer">
+    <footer class="simple-footer">
         <div class="container">
             <a class="simple-footer-brand" href="../../index.html">
                 <img src="../../assets/images/site-logo.png" alt="연구원 로고" width="56" height="56">
@@ -572,6 +608,7 @@
             <p class="simple-footer-copyright">&copy; 2026 대한예수교장로회(한영)총회신학학술연구원.<br>All rights reserved.</p>
         </div>
     </footer>
-    
+</body>
+</html>
 </body>
 </html>
