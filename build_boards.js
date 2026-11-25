@@ -5,11 +5,12 @@ const rootDir = __dirname;
 const contentDir = path.join(rootDir, 'content', 'boards');
 const dataDir = path.join(rootDir, 'board_data');
 const postsDir = path.join(rootDir, 'board_posts');
+const textbookPath = '/board_posts/online-lectures/2026-04-02-online-class-guide.html';
 
 const boards = {
     'online-lectures': {
-        title: '온라인강의',
-        description: '비대면 강의, 수업 일정, 수강 안내 게시판',
+        title: '온라인 교재',
+        description: '교재의 표지와 소개, 출판 정보 및 서점 링크를 확인할 수 있습니다.',
         page: 'board_online_lectures.html'
     },
     'student-portal': {
@@ -221,6 +222,7 @@ function buildLayout(title, content, extraScript = '') {
             <a href="../../campus_life.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-users"></i></div><span>대학생활</span></a>
             <a href="../../research_intro.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-microscope"></i></div><span>학술연구</span></a>
             <a href="../../online_service.html" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-desktop"></i></div><span>온라인서비스</span></a>
+            <a href="${textbookPath}" class="nav-icon-link"><div class="icon-box"><i class="ph-light ph-books"></i></div><span>온라인 교재</span></a>
         </div>
     </nav>
     <main class="fade-in">
@@ -248,10 +250,31 @@ function buildLayout(title, content, extraScript = '') {
 </html>`;
 }
 
+function buildTextbookPages(outputDir, catalogFile) {
+    const catalog = JSON.parse(fs.readFileSync(path.join(rootDir, 'content', 'textbooks.json'), 'utf8'));
+    const home = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+    const layout = home
+        .replace(/<title>.*?<\/title>/, '<title>{{title}} | 총회신학학술연구원</title>')
+        .replace(/<main\b[\s\S]*?<\/main>/, '{{main}}')
+        .replace('</head>', '    <link rel="stylesheet" href="/css/textbooks.css">\n</head>')
+        .replace(/\b(href|src)="([^"]+)"/g, (match, attribute, url) =>
+            /^(?:[a-z][a-z\d+.-]*:|\/|#)/i.test(url) ? match : `${attribute}="/${url}"`);
+
+    for (const [file, page] of Object.entries({ [catalogFile]: catalog.library, ...catalog.books })) {
+        const html = layout.replace('{{title}}', () => escapeHtml(page.title)).replace('{{main}}', () => page.main);
+        fs.writeFileSync(path.join(outputDir, file), html, 'utf8');
+    }
+}
+
 ensureDir(dataDir);
 ensureDir(postsDir);
 
-for (const [boardId, boardConfig] of Object.entries(boards)) {
+const requestedBoard = process.argv[2];
+if (requestedBoard && !Object.hasOwn(boards, requestedBoard)) {
+    throw new Error(`Unknown board: ${requestedBoard}`);
+}
+const selectedBoards = requestedBoard ? [[requestedBoard, boards[requestedBoard]]] : Object.entries(boards);
+for (const [boardId, boardConfig] of selectedBoards) {
     const boardDir = path.join(contentDir, boardId);
     ensureDir(boardDir);
 
@@ -282,11 +305,12 @@ for (const [boardId, boardConfig] of Object.entries(boards)) {
             </article>
         `;
 
-        fs.writeFileSync(
-            path.join(postOutputDir, `${slug}.html`),
-            buildLayout(title, articleHtml),
-            'utf8'
-        );
+        const postFile = `${slug}.html`;
+        if (meta.layout === 'textbooks') {
+            buildTextbookPages(postOutputDir, postFile);
+        } else {
+            fs.writeFileSync(path.join(postOutputDir, postFile), buildLayout(title, articleHtml), 'utf8');
+        }
 
         return {
             title,
