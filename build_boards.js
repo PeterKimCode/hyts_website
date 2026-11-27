@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { addTextbooks } = require('./scripts/textbook-additions.cjs');
+const { applyTextbookList, pruneTextbookPages } = require('./scripts/textbook-additions.cjs');
 
 const rootDir = __dirname;
 const contentDir = path.join(rootDir, 'content', 'boards');
@@ -253,7 +253,9 @@ function buildLayout(title, content, extraScript = '') {
 
 async function buildTextbookPages(outputDir, catalogFile) {
     const catalog = JSON.parse(fs.readFileSync(path.join(rootDir, 'content', 'textbooks.json'), 'utf8'));
-    await addTextbooks(catalog, rootDir, catalogFile, escapeHtml);
+    const originalFiles = Object.keys(catalog.books);
+    const input = path.join(rootDir, 'content', '교재추가.txt');
+    await applyTextbookList(catalog, { rootDir, catalogFile, escapeHtml, input, assetPrefix: '/' });
     const home = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
     const layout = home
         .replace(/<title>.*?<\/title>/, '<title>{{title}} | 총회신학학술연구원</title>')
@@ -266,6 +268,7 @@ async function buildTextbookPages(outputDir, catalogFile) {
         const html = layout.replace('{{title}}', () => escapeHtml(page.title)).replace('{{main}}', () => page.main);
         fs.writeFileSync(path.join(outputDir, file), html, 'utf8');
     }
+    pruneTextbookPages(outputDir, originalFiles, catalog.books);
 }
 
 ensureDir(dataDir);
