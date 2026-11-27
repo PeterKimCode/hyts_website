@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { addTextbooks } = require('./scripts/textbook-additions.cjs');
 
 const rootDir = __dirname;
 const contentDir = path.join(rootDir, 'content', 'boards');
@@ -250,8 +251,9 @@ function buildLayout(title, content, extraScript = '') {
 </html>`;
 }
 
-function buildTextbookPages(outputDir, catalogFile) {
+async function buildTextbookPages(outputDir, catalogFile) {
     const catalog = JSON.parse(fs.readFileSync(path.join(rootDir, 'content', 'textbooks.json'), 'utf8'));
+    await addTextbooks(catalog, rootDir, catalogFile, escapeHtml);
     const home = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
     const layout = home
         .replace(/<title>.*?<\/title>/, '<title>{{title}} | 총회신학학술연구원</title>')
@@ -274,6 +276,7 @@ if (requestedBoard && !Object.hasOwn(boards, requestedBoard)) {
     throw new Error(`Unknown board: ${requestedBoard}`);
 }
 const selectedBoards = requestedBoard ? [[requestedBoard, boards[requestedBoard]]] : Object.entries(boards);
+const textbookBuilds = [];
 for (const [boardId, boardConfig] of selectedBoards) {
     const boardDir = path.join(contentDir, boardId);
     ensureDir(boardDir);
@@ -307,7 +310,7 @@ for (const [boardId, boardConfig] of selectedBoards) {
 
         const postFile = `${slug}.html`;
         if (meta.layout === 'textbooks') {
-            buildTextbookPages(postOutputDir, postFile);
+            textbookBuilds.push(buildTextbookPages(postOutputDir, postFile));
         } else {
             fs.writeFileSync(path.join(postOutputDir, postFile), buildLayout(title, articleHtml), 'utf8');
         }
@@ -335,3 +338,8 @@ for (const [boardId, boardConfig] of selectedBoards) {
         'utf8'
     );
 }
+
+Promise.all(textbookBuilds).catch(error => {
+    console.error(error.message);
+    process.exitCode = 1;
+});
